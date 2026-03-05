@@ -1,7 +1,7 @@
 # HGST E7: Frustration Ordering in Non-Abelian Gauge Theory
 
 [![arXiv](https://img.shields.io/badge/arXiv-pending-b31b1b)](https://arxiv.org)
-[![DOI](https://img.shields.io/badge/DOI-pending-blue)](https://zenodo.org)
+[![DOI](https://zenodo.org/badge/1173352700.svg)](https://doi.org/10.5281/zenodo.18873889)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org)
 
@@ -133,7 +133,7 @@ If you use this code, please cite:
   year      = {2026},
   version   = {2.0.0},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.XXXXXXX},
+  doi       = {10.5281/zenodo.18873889},
   url       = {https://github.com/boonsup/hgst-e7}
 }
 ```
