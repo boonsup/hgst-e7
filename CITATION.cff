@@ -1,0 +1,47 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite both the paper and the software."
+
+title: "HGST E7: Simulation Code for Frustration Ordering in Non-Abelian Gauge Theory"
+version: "2.0.0"
+date-released: "2026-03-05"
+license: MIT
+
+authors:
+  - family-names: "Waikham"          # fill from .env AUTHOR_NAME
+    given-names:  "Boonsup"
+    orcid:        "0009-0000-7693-7295"           # fill from .env AUTHOR_ORCID
+    affiliation:  "College of Computing, Khon Kaen University, Khon Kaen, THAILAND."          # fill from .env AUTHOR_AFFIL
+
+repository-code: "https://github.com/boonsup/hgst-e7"            # fill from .env GITHUB_REPO
+
+abstract: >
+  Python simulation code for measuring the HGST MIXED frustration fraction R
+  across U(1), SU(2), SU(3), and Standard Model gauge groups on classical 2D
+  lattices. Includes finite-size scaling (FSS) analysis with autocorrelation
+  correction (Madras-Sokal) and a Colab-ready standalone script
+  (su2_l10_colab.py) for the SU(2) L=10 run.
+
+keywords:
+  - lattice gauge theory
+  - finite-size scaling
+  - non-Abelian gauge groups
+  - MIXED frustration fraction
+  - HGST
+  - SU(2)
+  - SU(3)
+  - Standard Model
+  - gene regulatory networks
+
+references:
+  - type: article
+    title: >
+      Frustration Ordering in Holographic Gauge-String Theory:
+      U(1) to SU(3)×SU(2)×U(1)
+    authors:
+      - family-names: "Waikham"
+        given-names:  "Boonsup"
+    year: 2026
+    identifiers:
+      - type: other
+        value: ""              # fill: arXiv:XXXX.XXXXX after submission
+        description: arXiv preprint

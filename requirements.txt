@@ -1,0 +1,12 @@
+# HGST E7 simulation requirements
+# Python >= 3.10
+#
+# Install:  pip install -r requirements.txt
+# Colab:    numpy and scipy are pre-installed; no extra action needed.
+
+numpy>=2.0,<3.0          # tested: 2.4.2
+scipy>=1.10,<2.0         # tested: 1.17.1  (scipy.linalg.expm for SU(3))
+
+# Optional — only needed for the Jupyter notebook
+# jupyter>=1.0
+# matplotlib>=3.7

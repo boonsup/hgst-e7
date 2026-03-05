@@ -1,0 +1,127 @@
+%% ============================================================
+%%  Response to Reviewers — HGST Preprint v1 → v2
+%%  "Frustration Universality in HGST: U(1) to the SM gauge group"
+%%  Date: March 5, 2026
+%% ============================================================
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{mdframed}
+\usepackage{amsmath,amssymb}
+\usepackage{setspace}
+\geometry{top=2.5cm,bottom=2.5cm,left=3cm,right=3cm}
+\onehalfspacing
+
+\definecolor{authorblue}{RGB}{0,70,140}
+\definecolor{reviewergray}{RGB}{80,80,80}
+\definecolor{changedgreen}{RGB}{0,120,50}
+
+\newmdenv[
+  linecolor=gray!50,
+  backgroundcolor=gray!6,
+  roundcorner=3pt,
+  innertopmargin=8pt,
+  innerbottommargin=8pt,
+  skipabove=6pt,skipbelow=6pt
+]{reviewerbox}
+
+\newmdenv[
+  linecolor=authorblue!60,
+  backgroundcolor=authorblue!5,
+  roundcorner=3pt,
+  innertopmargin=8pt,
+  innerbottommargin=8pt,
+  skipabove=6pt,skipbelow=6pt
+]{authorbox}
+
+\newcommand{\reviewer}[1]{\textbf{\textcolor{reviewergray}{Reviewer #1}}}
+\newcommand{\RC}[2]{\noindent\begin{reviewerbox}\textbf{\textcolor{reviewergray}{RC\,#1.#2:}}}
+\newcommand{\RCend}{\end{reviewerbox}}
+\newcommand{\AR}[2]{\noindent\begin{authorbox}\textbf{\textcolor{authorblue}{AR\,#1.#2:}}}
+\newcommand{\ARend}{\end{authorbox}}
+\newcommand{\changed}[1]{\textcolor{changedgreen}{\textit{[Changed: #1]}}}
+
+%% ============================================================
+\begin{document}
+%% ============================================================
+
+\begin{center}
+  {\Large\bfseries Response to Referees}\\[8pt]
+  {\large Frustration Universality in Hierarchical Graded Structure Theory:\\
+  A Lattice Study of the E7 MIXED Class from U(1) to the Standard Model Gauge Group}\\[6pt]
+  Manuscript revised \today \\[4pt]
+  {\small Authors: HGST Development Team}
+\end{center}
+
+\bigskip
+\noindent\rule{\linewidth}{0.8pt}
+
+\noindent
+We thank the referees for their careful reading and constructive comments.
+Below we address every point raised.
+Changes to the manuscript are highlighted in blue in the revised PDF
+(produced with \texttt{latexdiff main\_v1.tex main.tex}).
+All numerical results are unchanged; changes are editorial/clarificatory
+unless noted otherwise.
+
+\bigskip
+\noindent\rule{\linewidth}{0.4pt}
+
+%% ============================================================
+\section*{Referee 1}
+%% ============================================================
+
+%% --- Template: copy/paste the RC+AR block pair for each comment ---
+
+\RC{1}{1}
+  \textit{[Paste referee comment here.]}
+\RCend
+
+\AR{1}{1}
+  We thank the referee for this observation. [Response here.]
+  \changed{Section X, paragraph Y.}
+\ARend
+
+\RC{1}{2}
+  \textit{[Next comment.]}
+\RCend
+
+\AR{1}{2}
+  [Response here.]
+\ARend
+
+%% Add more RC+AR pairs as needed for Referee 1
+
+\bigskip
+\noindent\rule{\linewidth}{0.4pt}
+
+%% ============================================================
+\section*{Referee 2}
+%% ============================================================
+
+\RC{2}{1}
+  \textit{[Paste referee comment here.]}
+\RCend
+
+\AR{2}{1}
+  [Response here.]
+\ARend
+
+%% ============================================================
+\section*{List of All Changes (v1 $\to$ v2)}
+%% ============================================================
+
+\noindent The following table summarises every substantive change made to the manuscript.
+
+\medskip
+\begin{enumerate}[leftmargin=1.5em]
+  %% Fill in as revisions are made
+  \item \textbf{[§X, line Y]:} [Description of change.]
+\end{enumerate}
+
+\end{document}

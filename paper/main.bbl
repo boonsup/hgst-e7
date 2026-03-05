@@ -1,0 +1,64 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Wilson(1974)]{Wilson1974}
+Kenneth~G. Wilson.
+\newblock Confinement of quarks.
+\newblock \emph{Physical Review D}, 10\penalty0 (8):\penalty0 2445--2459, 1974.
+\newblock \doi{10.1103/PhysRevD.10.2445}.
+
+\bibitem[Barab\'{a}si and Oltvai(2004)]{Barabasi2004}
+Albert-L\'{a}szl\'{o} Barab\'{a}si and Zolt\'{a}n~N. Oltvai.
+\newblock Network biology: understanding the cell's functional organization.
+\newblock \emph{Nature Reviews Genetics}, 5:\penalty0 101--113, 2004.
+\newblock \doi{10.1038/nrg1272}.
+
+\bibitem[Alon(2007)]{Alon2007}
+Uri Alon.
+\newblock \emph{An Introduction to Systems Biology: Design Principles of
+  Biological Circuits}.
+\newblock Chapman and Hall/CRC, 2007.
+\newblock ISBN 978-1584886426.
+
+\bibitem[{HGST Development Team}(2025)]{HGST_E1}
+{HGST Development Team}.
+\newblock {HGST Extension E1}: {U}(1) {G}auge {T}heory on the {G}rade
+  {L}attice.
+\newblock Technical report, HGST Project, 2025.
+\newblock Internal report; validation code in \texttt{lattice.py},
+  \texttt{su2.py}.
+
+\bibitem[Madras and Sokal(1988)]{Madras1988}
+Neal Madras and Alan~D. Sokal.
+\newblock The pivot algorithm: a highly efficient {Monte Carlo} method for the
+  self-avoiding walk.
+\newblock \emph{Journal of Statistical Physics}, 50\penalty0 (1--2):\penalty0
+  109--186, 1988.
+\newblock \doi{10.1007/BF01022990}.
+
+\bibitem[Montvay and M\"{u}nster(1994)]{Montvay1994}
+Istv\'{a}n Montvay and Gernot M\"{u}nster.
+\newblock \emph{Quantum Fields on a Lattice}.
+\newblock Cambridge University Press, 1994.
+\newblock ISBN 978-0521599177.
+
+\bibitem[Santos-Zavaleta et~al.(2019)]{SantosZavaleta2019}
+Alberto Santos-Zavaleta et~al.
+\newblock {RegulonDB} v10.5: tackling challenges to unify classic molecular
+  biology knowledge and \textit{big data}.
+\newblock \emph{Nucleic Acids Research}, 47:\penalty0 D212--D220, 2019.
+\newblock \doi{10.1093/nar/gky1077}.
+\newblock RegulonDB v10.5; v11.2 data retrieved 2024.
+
+\bibitem[Monteiro et~al.(2020)]{Monteiro2020}
+Pedro~T. Monteiro et~al.
+\newblock {YEASTRACT+}: a portal for cross-species comparative genomics of
+  transcription regulation in yeasts.
+\newblock \emph{Nucleic Acids Research}, 48:\penalty0 D642--D649, 2020.
+\newblock \doi{10.1093/nar/gkz859}.
+
+\end{thebibliography}
