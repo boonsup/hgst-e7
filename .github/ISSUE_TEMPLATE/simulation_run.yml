@@ -1,0 +1,58 @@
+name: Simulation Run Request
+description: Propose a new lattice run (new L, gauge group, beta, kappa, or 3D)
+labels: ["simulation", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose a new production simulation that would
+        extend the FSS analysis or test a new gauge configuration.
+
+  - type: dropdown
+    id: gauge
+    attributes:
+      label: Gauge group
+      options:
+        - SU(2)
+        - SU(3)
+        - U(1)
+        - SM (SU3×SU2×U1)
+        - SU(N) large-N
+        - Other / new
+    validations:
+      required: true
+
+  - type: input
+    id: params
+    attributes:
+      label: Proposed parameters
+      placeholder: "L=12, beta=4.0, kappa=0.3, N_therm=4000, N_meas=500"
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Scientific motivation
+      description: What physics question does this run answer?
+      placeholder: |
+        SU(3) L=10 would reduce sigma_syst on R_inf(SU3) from ±0.0195
+        to ±0.005, making the SU2/SU3 thermodynamic ordering definitive.
+    validations:
+      required: true
+
+  - type: textarea
+    id: resources
+    attributes:
+      label: Available compute
+      placeholder: "Colab T4 GPU, ~2 hours; or local 8-core CPU, ~6 hours"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: I commit to
+      options:
+        - label: Running the simulation and uploading the JSON result file
+        - label: Opening a follow-up PR with data + updated FSS fit

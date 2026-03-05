@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  smoke-test:
+    name: Python ${{ matrix.python-version }} smoke test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Syntax check — all simulation modules
+        run: |
+          python -m py_compile simulation/su2.py
+          python -m py_compile simulation/su3.py
+          python -m py_compile simulation/u1.py
+          python -m py_compile simulation/lattice.py
+          python -m py_compile simulation/fields.py
+          python -m py_compile simulation/action.py
+          python -m py_compile simulation/observables.py
+          python -m py_compile simulation/updates.py
+          python -m py_compile simulation/simulation.py
+          python -m py_compile simulation/su2_l10_colab.py
+
+      - name: Smoke test — su2_l10_colab.py (L=4, 2 sweeps)
+        run: |
+          python - << 'EOF'
+          import ast, sys
+          with open("simulation/su2_l10_colab.py", encoding="utf-8") as f:
+              src = f.read()
+          ast.parse(src)
+
+          # Patch to tiny run
+          src = src.replace("L       = 10", "L       = 4")
+          src = src.replace("N_THERM = 4000", "N_THERM = 2")
+          src = src.replace("N_MEAS  = 500",  "N_MEAS  = 2")
+          src = src.replace("N_SKIP  = 5",    "N_SKIP  = 1")
+          exec(src, {"__name__": "__main__"})
+
+          import json
+          with open("su2_l10_summary.json") as f:
+              r = json.load(f)
+          assert r["stub_mode"] == False, "stub_mode must be False"
+          assert 0.0 < r["R_mean"] < 1.0, f"R_mean out of range: {r['R_mean']}"
+          print(f"PASS  R_mean={r['R_mean']:.4f}  tau_int={r['tau_int']}")
+          EOF
+
+      - name: Verify data files are valid JSON
+        run: |
+          python -c "
+          import json, pathlib, sys
+          errors = []
+          for f in pathlib.Path('data').glob('*.json'):
+              try:
+                  json.loads(f.read_text(encoding='utf-8'))
+              except Exception as e:
+                  errors.append(f'{f}: {e}')
+          if errors:
+              print('\\n'.join(errors)); sys.exit(1)
+          print(f'All {len(list(pathlib.Path(\"data\").glob(\"*.json\")))} JSON files valid')
+          "

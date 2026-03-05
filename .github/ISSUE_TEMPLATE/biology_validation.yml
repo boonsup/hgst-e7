@@ -1,0 +1,44 @@
+name: Biology / GRN Validation
+description: Report a new measurement of R on a biological network database
+labels: ["biology", "validation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help validate whether the numerical overlap R_∞(SU3) ≈ R(E. coli)
+        is robust across other gene regulatory network (GRN) databases.
+
+  - type: input
+    id: database
+    attributes:
+      label: Database / dataset
+      placeholder: "e.g. YEASTRACT (S. cerevisiae), STRING v12, ARACNE-AP"
+    validations:
+      required: true
+
+  - type: input
+    id: R_value
+    attributes:
+      label: Measured R (MIXED fraction)
+      placeholder: "e.g. 0.341 ± 0.012  (n=847 regulators, high-confidence only)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: method
+    attributes:
+      label: Measurement method
+      description: How was the sign matrix computed? Which interaction types were included?
+      placeholder: |
+        Used activation/repression edges only (no unknown).
+        BFS shortest-path holonomy with root = node of highest out-degree.
+        500 bootstrap resamples for error estimate.
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes / attached files
+    validations:
+      required: false

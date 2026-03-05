@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & Discussion
+    url: https://github.com/boonsup/hgst-e7/discussions
+    about: General questions about the physics, code, or paper
+  - name: Zenodo record (data & paper DOI)
+    url: https://doi.org/10.5281/zenodo.18873889
+    about: Cite the software or access archived data releases

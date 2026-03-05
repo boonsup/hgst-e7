@@ -1,0 +1,69 @@
+name: Bug Report — Simulation / Code
+description: Something crashes or produces wrong physics output
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill in as much detail as possible.
+        Attach the full traceback and the JSON output file if available.
+
+  - type: input
+    id: python_version
+    attributes:
+      label: Python version
+      placeholder: "e.g. 3.11.8"
+    validations:
+      required: true
+
+  - type: input
+    id: numpy_scipy
+    attributes:
+      label: numpy / scipy versions
+      placeholder: "e.g. numpy 2.4.2  scipy 1.17.1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Affected module
+      options:
+        - su2.py
+        - su3.py
+        - u1.py
+        - lattice.py
+        - fields.py
+        - action.py
+        - observables.py
+        - updates.py
+        - simulation.py
+        - su2_l10_colab.py
+        - sm_* modules
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Exact command or code snippet that triggers the bug
+      placeholder: "python simulation/su2_l10_colab.py  — crash at sweep 142"
+    validations:
+      required: true
+
+  - type: textarea
+    id: traceback
+    attributes:
+      label: Full traceback or wrong output
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: false
