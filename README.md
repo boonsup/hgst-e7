@@ -25,9 +25,10 @@ We measure the HGST **MIXED frustration fraction** $R$ — the fraction of sign-
 | Gauge group | $R_\infty$ | Status |
 |-------------|------------|--------|
 | U(1) | 0 | Falsified |
-| SU(2) | $0.3669 \pm 0.0036$ | Supported ✓ |
-| SU(3) | $0.3539 \pm 0.0195$ | Supported ✓ |
-| SM quarks | $\approx 0.493$ | Supported ✓ |
+| SU(2) | $0.3669 \pm 0.0036$ | Verified |
+| SU(3) | $0.3539 \pm 0.0195$ | Consistent |
+| SM C-scalar | $0.4981 \pm 0.0056$ | Verified |
+| SM N-scalar | $0.4980 \pm 0.0076$ | Verified |
 | *E. coli* RegulonDB | $0.349 \pm 0.018$ | (biological reference) |
 
 ---
@@ -57,9 +58,10 @@ HGST-E7/
 │   └── ...
 │
 ├── paper/               LaTeX source
-│   ├── main.tex         31-page preprint (Revision 2)
-│   ├── references.bib
-│   ├── main.bbl         Compiled bibliography (for arXiv)
+│   ├── Theoretical_Framework.tex  Axiomatic foundations & proofs (Revision 3)
+│   ├── Theoretical_Framework.bib  BibTeX entries for theoretical paper
+│   ├── Empirical_Study.tex        Lattice results & biology (Revision 3)
+│   ├── Empirical_Study.bib        BibTeX entries for empirical paper
 │   └── response_to_reviewers.tex
 │
 ├── notebooks/
@@ -108,15 +110,16 @@ python sm_scan.py --L 4 6 8 --beta3 8.0 --beta2 4.0 --kappa 0.3
 
 ---
 
-## Reproducibility
-
 All JSON files in `data/` are the actual production outputs used in the paper.  
 Simulation seeds are fixed (`SEED=203` for SU(2) L=10; see each script header).  
-The paper PDF can be recompiled from `paper/main.tex`:
+The paper PDFs can be recompiled separately:
 
 ```bash
 cd paper
-pdflatex main && bibtex main && pdflatex main && pdflatex main
+# For Theory:
+pdflatex Theoretical_Framework && bibtex Theoretical_Framework && pdflatex Theoretical_Framework
+# For Empirical:
+pdflatex Empirical_Study && bibtex Empirical_Study && pdflatex Empirical_Study
 ```
 
 ---
@@ -131,7 +134,7 @@ If you use this code, please cite:
   title     = {HGST E7: Simulation Code for Frustration Ordering
                in Non-Abelian Gauge Theory},
   year      = {2026},
-  version   = {2.0.0},
+  version   = {3.0.0},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.18873889},
   url       = {https://github.com/boonsup/hgst-e7}

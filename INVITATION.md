@@ -19,20 +19,21 @@ groups (U(1), SU(2), SU(3), and the full Standard Model product group) on
 classical 2D lattices, using Metropolis Monte Carlo with finite-size scaling
 (FSS).
 
-Key results to date (Revision 2, March 2026):
-
+Key results to date (Revision 3, March 2026):
   • U(1): R → 0 (Abelian, falsified)
-  • SU(2): R_∞ = 0.3669 ± 0.0036  (four-point FSS, L = 4, 6, 8, 10)
-  • SU(3): R_∞ = 0.3539 ± 0.0195  (four-point FSS, autocorrelation-corrected)
-  • SM quarks: R_∞ ≈ 0.493
-  • E. coli RegulonDB: R = 0.349 ± 0.018  (biological reference overlap)
+  • SU(2): R_∞ = 0.3669 ± 0.0036  (verified)
+  • SU(3): R_∞ = 0.3539 ± 0.0195  (consistent)
+  • SM C-scalar: R_∞ = 0.4981 ± 0.0056 (verified)
+  • SM N-scalar: R_∞ = 0.4980 ± 0.0076 (verified)
+  • E. coli RegulonDB: R = 0.349 ± 0.018  (biological reference)
 
 The simulation code is fully open, written in pure Python (numpy + scipy),
 and includes a self-contained Colab-ready script for immediate reproducibility.
 
   GitHub:  https://github.com/boonsup/hgst-e7
   Zenodo:  https://doi.org/10.5281/zenodo.18873889
-  Paper:   [arXiv link — pending submission]
+  Paper:   paper/Theoretical_Framework.tex (axiomatic)
+           paper/Empirical_Study.tex (computational)
 
 ---
 
@@ -81,7 +82,7 @@ I propose a lightweight, open model:
 
 **How to Get Started**
 
-  1. Read the paper:  paper/main.tex  (or the forthcoming arXiv preprint)
+  1. Read the papers: paper/Theoretical_Framework.tex and paper/Empirical_Study.tex
   2. Run the standalone script in under 20 minutes:
        pip install numpy scipy
        python simulation/su2_l10_colab.py

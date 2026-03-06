@@ -67,3 +67,5 @@ nul
 
 # ── Archive staging ───────────────────────────────────────────────────────────
 arxiv_submit/
+arxiv_submit_theory/
+arxiv_submit_empirical/

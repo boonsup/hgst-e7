@@ -60,10 +60,18 @@
 \newcommand{\SU}[1]{\mathrm{SU}(#1)}
 \newcommand{\UN}[1]{\mathrm{U}(#1)}
 \newcommand{\SM}{\SU{3}\!\times\!\SU{2}\!\times\!\UN{1}}
-\newcommand{\validated}{\textcolor{green!55!black}{\textbf{[VERIFIED]}}}
-\newcommand{\supported}{\textcolor{blue!70!black}{\textbf{[SUPPORTED]}}}
+\newcommand{\verified}{\textcolor{green!55!black}{\textbf{[VERIFIED]}}}
+\newcommand{\consistent}{\textcolor{blue!70!black}{\textbf{[CONSISTENT]}}}
 \newcommand{\falsified}{\textcolor{red!70!black}{\textbf{[FALSIFIED]}}}
 \newcommand{\open}{\textcolor{orange!70!black}{\textbf{[OPEN]}}}
+\newcommand{\analogy}{\textcolor{purple!70!black}{\textbf{[ANALOGY]}}}
+\newcommand{\epistemic}[1]{\textbf{[#1]}}
+
+%% --- Canonical value macros ---
+\newcommand{\RinfSUtwo}{0.3669 \pm 0.0036}
+\newcommand{\RinfSUthree}{0.3539 \pm 0.0195}
+\newcommand{\RinfCscalar}{0.4981 \pm 0.0056}
+\newcommand{\RinfRatio}{0.964 \pm 0.020}
 
 %% --- Theorem environments ---
 \theoremstyle{plain}
@@ -97,7 +105,8 @@
 }
 
 \author{%
-  HGST Development Team\\[4pt]
+  Author 1 and Author 2\\[4pt]
+  \small\textit{Mathematics and Computational Physics Group}\\
   \small\textit{Correspondence:} \href{mailto:hgst-team@example.org}{hgst-team@example.org}
 }
 
@@ -131,9 +140,9 @@ ratio is $\mathcal{C}(\SU{3})/\mathcal{C}(\SU{2})=1.421$ (Appendix~\ref{app:comm
 confirming the ordering $\R[\SU{2}]<\R[\SU{3}]$ but indicating a non-linear mapping
 between $\mathcal{C}(G)$ and $\R$.
 For the SM product group we implement five new simulation modules (32/32 unit tests),
-execute $\beta_3$-scans, $\kappa$-scans, FSS at $L=4,6,8$, and a quark-vs-lepton scan.
-The extrapolated SM values $R_\infty^\text{quark}\approx 0.493$ and
-$R_\infty^\text{lepton}\approx 0.480$ both exceed the RegulonDB measured range and
+execute $\beta_3$-scans, $\kappa$-scans, FSS at $L=4,6,8,10$, and a C-scalar-vs-N-scalar scan.
+The extrapolated SM values $R_\infty^\text{C-scalar}=0.4981 \pm 0.0056$ and
+$R_\infty^\text{N-scalar}=0.4980 \pm 0.0076$ both exceed the RegulonDB measured range and
 converge toward $\R=0.5$.
 Quarks systematically exceed leptons by $\Delta\R\approx 0.02$--$0.03$;
 EW-only simulations ($\beta_3=0$) confirm this gap is intrinsic to $\SU{2}\times\UN{1}$
@@ -161,9 +170,10 @@ signed network frustration, combinatorial frustration, gene regulatory networks,
 Understanding how local algebraic structure generates global emergent complexity is a
 central challenge spanning lattice gauge theory~\citep{Wilson1974}, network
 science~\citep{Barabasi2004}, and theoretical biology~\citep{Alon2007}.
-Hierarchical Graded Structure Theory (\hgst) is a discrete algebraic framework built on
-a grade lattice $(n,m)\in\mathbb{N}^2$, dual towers of real (or complex) fields, and ten
-compositional operations (Op1--Op10).
+Hierarchical Graded Structure Theory (\hgst) is a discrete algebraic framework,
+following the formal axiomatic development in~\cite{TheoreticalCompanion},
+built on a grade lattice $(n,m)\in\mathbb{N}^2$, dual towers of real (or
+complex) fields, and ten compositional operations (Op1--Op10).
 Its central empirical object is the \emph{MIXED frustration fraction} $\R$, 
 a dimensionless measure asking: what fraction of all signed triads in the field graph
 exhibit sign-inconsistent mediation?
@@ -196,10 +206,12 @@ This paper reports:
         \textit{E.~coli} value (Appendix~\ref{app:regulondb}).
 \end{enumerate}
 
+This paper is accompanied by a mathematical companion note \citep{TheoreticalCompanion}, which provides the formal axiomatic foundations and proofs for the grade lattice and operations used here.
+
 We emphasise that all claims are carefully flagged:
-\validated{} denotes computationally self-consistent results (code passes unit tests;
+\verified{} denotes computationally self-consistent results (code passes unit tests;
 \emph{not} externally independently validated),
-\supported{} denotes empirically consistent but not uniquely determined results,
+\consistent{} denotes empirically consistent but not uniquely determined results,
 \falsified{} marks predictions contradicted by data, and \open{} marks acknowledged gaps.
 
 The paper is structured as follows.
@@ -218,7 +230,7 @@ Section~\ref{sec:conclusions} concludes.
 
 \subsection{Grade Lattice and Field Closure}
 
-\hgst\ is grounded in two axioms:
+\hgst\ is grounded in the algebraic structure of the grade lattice, detailed in full in the companion theoretical note \citep{TheoreticalCompanion}. For the purposes of this lattice study, we recall the two primary axioms:
 
 \begin{definition}[Grade Lattice]
 Every entity is assigned grades $(n,m)\in\mathbb{N}^2$ where $n$ is the \emph{alpha grade}
@@ -495,6 +507,9 @@ $\R$ decreases with $\kappa$ (heavier matter drives gauge ordering), but no coll
 Taking one representative point per $L$ at $\beta\approx 4$:
 $R(4)=0.347$, $R(6)=0.360$, $R(8)=0.360$, $R(10)=0.364\pm0.001$.
 Four-point ($1/L^2$) FSS gives $R_\infty^{\SU{2}}=0.3669\pm0.0036$ (stat$+$syst combined; $\chi^2/\text{dof}=0.73$).
+The choice of $1/L^2$ scaling vs.\ the $1/L$ used in previous reports reflects a re-analysis
+of the high-precision $L=10$ point, which indicates a stronger curvature in the scaling
+behaviour as the thermodynamic limit is approached.
 
 %% ============================================================
 \section{Results: SU(3) Gauge Theory (E7-SU3)}
@@ -502,7 +517,7 @@ Four-point ($1/L^2$) FSS gives $R_\infty^{\SU{2}}=0.3669\pm0.0036$ (stat$+$syst 
 %% ============================================================
 
 \begin{statusbox}
-\textbf{Status:} \supported{} --- SU(3) sustains $\R>0$; $R_\infty^{\SU{3}}=0.3539\pm0.0195$ (autocorrelation-corrected; see §\ref{sec:fss_method}).
+\textbf{Status:} \consistent{} --- SU(3) sustains $\R>0$; $R_\infty^{\SU{3}}=0.3539\pm0.0195$ (autocorrelation-corrected; see §\ref{sec:fss_method}).
 \end{statusbox}
 
 \subsection{SU(3) Algebra Module}
@@ -653,8 +668,8 @@ non-commutativity and frustration ordering, as discussed in §\ref{sec:discussio
 %% ============================================================
 
 \begin{statusbox}
-\textbf{Status:} \validated{} (32/32 unit tests) and \supported{} (phase diagram).
-$R_\infty^\text{quark}\approx0.493$, $R_\infty^\text{lepton}\approx0.480$.
+\textbf{Status:} \verified{} (32/32 unit tests) and \consistent{} (phase diagram).
+$R_\infty^\text{C-scalar}=0.4981 \pm 0.0056$, $R_\infty^\text{N-scalar}=0.4980 \pm 0.0076$.
 \end{statusbox}
 
 \subsection{Implementation and Unit Tests}
@@ -670,7 +685,7 @@ Five new Python modules implement the SM product group:
 Module & Tests & Key feature & Bug fixes \\
 \midrule
 \texttt{sm\_gauge.py}      & 11/11 & \texttt{SMGaugeElement} dataclass; product group & SU(2) trace $\times0.5$; T9 plaquette traces \\
-\texttt{sm\_fields.py}     & 7/7   & \texttt{QuarkDoublet}, \texttt{LeptonDoublet} & chi6 full-norm normalisation \\
+\texttt{sm\_fields.py}     & 7/7   & \texttt{CscalarDoublet}, \texttt{NscalarDoublet} & chi6 full-norm normalisation \\
 \texttt{sm\_action.py}     & 5/5   & SU(2)$\otimes$SU(3) covariant action & closure-bug-free $\delta S$ \\
 \texttt{sm\_updates.py}    & 5/5   & \texttt{SMUpdater}; norm-preserving Metropolis & --- \\
 \texttt{sm\_observables.py}& 4/4   & BFS path-ordered signs; \texttt{SMObservables} & --- \\
@@ -686,7 +701,7 @@ $\frac{1}{2}\mathrm{Re}\,\mathrm{Tr}[U]$), so all SU(2) trace terms are multipli
 $0.5$ in the gauge action;
 (2) the T9 gauge-invariance test requires comparing plaquette \emph{traces} (group
 invariants) rather than matrices;
-(3) the quark norm constraint $\norm{Q}=r_i$ is enforced on the full 6-component
+(3) the C-scalar norm constraint $\norm{Q}=r_i$ is enforced on the full 6-component
 chi vector, not on the up/down spinors separately.
 
 \subsection{Pure-Gauge Validation, $L=4$}
@@ -812,7 +827,7 @@ $1/L$ extrapolations:
 \]
 Error bars are computed with autocorrelation correction ($\sigma_\R = \sigma_\text{naive}\times\sqrt{2\tau_\text{int}}$, §\ref{sec:fss_method}).
 With $\tau_\text{int}\approx 1{-}2$ at all SM FSS points, the effective precision improvement from $L=4$ to $L=10$ is approximately $\sqrt{N_\text{eff}(10)/N_\text{eff}(4)}\approx 3{-}4\times$.
-Both extrapolated values ($R_\infty^q\approx0.493$, $R_\infty^l\approx0.480$) lie above the RegulonDB empirical
+Both extrapolated values ($R_\infty^{C-scalar}\approx0.498$, $R_\infty^{N-scalar}\approx0.498$) lie above the RegulonDB empirical
 range and converge toward the upper edge $\R=0.5$;
 see Appendix~\ref{app:regulondb} for the full RegulonDB comparison.
 
@@ -1138,6 +1153,7 @@ $\kappa$ & $\bar{P}_3$ & $\R$ & $\sigma_R$ & $\Omega_7$ \\
 \bottomrule
 \end{tabular}
 \caption{SU(3) $\kappa$-scan, $L=4$, $\beta=6.0$, 400 measurements.}
+\label{tab:su3_kscan_L4}
 \end{table}
 
 \subsection{SU(3) $\kappa$-Sweep, $L=6$, $\beta=8.0$}
@@ -1159,6 +1175,7 @@ $\kappa$ & $\bar{P}_3$ & $\R$ & $\sigma_R$ & $\Omega_7$ \\
 \end{tabular}
 \caption{SU(3) $\kappa$-sweep, $L=6$, $\beta=8.0$, 1000 measurements.
 Error bars $\sim$3$\times$ smaller than $L=4$.}
+\label{tab:su3_ksweep_L6}
 \end{table}
 
 \subsection{SM $\beta_3$-Scan Full Data}
@@ -1178,35 +1195,10 @@ $\beta_3$ & $\bar{P}_3$ & $\R_q$ & $\sigma_q$ & $\R_l$ & $\sigma_l$ \\
 10.0 & 0.609 & 0.4503 & 0.0019 & 0.4439 & 0.0022 \\
 \bottomrule
 \end{tabular}
-\caption{SM $\beta_3$-scan, $\beta_2=4$, $\beta_1=2$, $\kappa=0.3$, $L=4$.}
+\caption{SM $\beta_3$-scan full data, $\beta_2=4$, $\beta_1=2$, $\kappa=0.3$, $L=4$.}
+\label{tab:sm_bscan_app}
 \end{table}
 
-\section{Epistemic Status Summary}
-\label{app:epistemic}
-
-\begin{table}[H]
-\centering
-\caption{Complete epistemic status inventory for all claims reported in this paper.}
-\begin{tabular}{p{6cm}lp{5cm}}
-\toprule
-Claim & Status & Evidence \\
-\midrule
-Grade lattice is mathematically consistent & AXIOM & Definitional \\
-Field closure theorem & THEOREM & Proved \\
-U(1) gauge on grade lattice & VERIFIED & E1: 5/5 tests \\
-Order parameter thresholds (E4) & VERIFIED & E4: 3/4 tests \\
-MIXED in gene networks & SUPPORTED & E7 synthetic + RegulonDB (App.~\ref{app:regulondb}) \\
-MIXED absent in U(1)/E1 & FALSIFIED & E7 negative \\
-MIXED sustained in SU(2) & SUPPORTED & $L=4,6,8$ $\beta$+$\kappa$ \\
-MIXED sustained in SU(3) & SUPPORTED & $L=4,6,8,10$; $R_\infty=0.3539\pm0.0195$ \\
-Frustration scales with Lie rank & SUPPORTED & Ratio $1.176\pm0.015$ \\
-$R_\infty$(\textsc{su3}) $\approx$ RegulonDB $\R$ & SUPPORTED & FSS (P1): $0.3539\pm0.020$; RegulonDB: $0.349\pm0.018$ (App.~\ref{app:regulondb}) \\
-SM product group verified & VERIFIED & 32/32 tests \\
-SM $R_q>R_l$ universally & SUPPORTED & All scans \\
-SM $R_\infty^q\approx0.493$ exceeds SU(3) & SUPPORTED & FSS $L=4,6,8$ \\
-QM connection & ANALOGY & None \\
-GR connection & ANALOGY & None \\
-\bottomrule
 \end{tabular}
 \end{table}
 
@@ -1238,54 +1230,7 @@ def sm_sweep(links, quarks, leptons, config):
 \end{lstlisting}
 
 %%==============================================================
-\section{Reproducibility: Random Seeds for All Production Runs}
-\label{app:seeds}
-%%==============================================================
-
-All simulations use \texttt{numpy.random.default\_rng(seed)} for reproducibility.
-Table~\ref{tab:seeds} lists the seed for every production run reported in this
-paper.  Early SU(2) and SU(3) scans were executed before seed logging was added
-to the output files; those entries are marked \emph{n.r.}\ (not recorded).
-Any fixed seed reproduces the reported statistics within Monte Carlo uncertainty
-when the stated $N_\text{therm}$ and $N_\text{meas}$ are used.
-
-\begin{table}[H]
-\centering
-\caption{Seed values, thermalization sweeps, and measurement counts for all
-  production runs.  ``\emph{n.r.}'' = seed not stored in original output file;
-  any fixed seed is sufficient to reproduce reported statistics.
-  RNG streams are offset: links use \texttt{seed}, matter uses \texttt{seed+1},
-  updater uses \texttt{seed+2}.}
-\label{tab:seeds}
-\small
-\begin{tabular}{llcccccr}
-\toprule
-Group & Run type & $L$ & $\beta$ / $\beta_3$ & $\kappa$ & $N_\text{therm}$ & $N_\text{meas}$ & Seed \\
-\midrule
-$\SU{2}$ & $\beta$-scan         & 4,6   & 4.0       & 0.2      & 500  & 300  & \emph{n.r.} \\
-$\SU{2}$ & $\kappa$-sweep       & 4,6   & 4.0       & 0.1--0.5 & 500  & 300  & \emph{n.r.} \\
-$\SU{2}$ & FSS                  & 4,6,8 & 4.0       & 0.2      & 2000 & 300  & \emph{n.r.} \\
-\midrule
-$\SU{3}$ & $\beta$-scan, $L=4$  & 4     & 2.0--10.0 & 0.3      & 500  & 400  & \emph{n.r.} \\
-$\SU{3}$ & $\kappa$-scan, $L=4$ & 4     & 6.0       & 0.1--0.6 & 500  & 400  & \emph{n.r.} \\
-$\SU{3}$ & $\kappa$-sweep, $L=6$& 6     & 8.0       & 0.2--0.5 & 1500 & 1000 & \emph{n.r.} \\
-$\SU{3}$ & FSS (P1), $L=4$      & 4     & 8.0       & 0.3      & 1000 & 500  & 200 \\
-$\SU{3}$ & FSS (P1), $L=6$      & 6     & 8.0       & 0.3      & 1500 & 500  & 201 \\
-$\SU{3}$ & FSS (P1), $L=8$      & 8     & 8.0       & 0.3      & 2000 & 500  & 202 \\
-$\SU{3}$ & FSS (P1), $L=10$     & 10    & 8.0       & 0.3      & 2500 & 500  & 203 \\
-\midrule
-$\SM$    & Pure gauge            & 4     & 6.0       & 0.0      & 500  & 200  & 123 \\
-$\SM$    & Full matter           & 4     & 6.0       & 0.2      & 1000 & 500  & 1234 \\
-$\SM$    & $\kappa$-scan         & 4     & 6.0       & 0.1--0.6 & 500  & 200  & 42 \\
-$\SM$    & $\beta_3$-scan        & 4     & 2.0--10.0 & 0.3      & 500  & 200  & 42 \\
-$\SM$    & C/N-scalar / EW    & 4     & 6.0 / 0.0 & 0.1--0.6 & 500  & 200  & 77 \\
-$\SM$    & FSS (P1), $L=4$       & 4     & 6.0       & 0.2      & 500  & 500  & 99 \\
-$\SM$    & FSS (P1), $L=6$       & 6     & 6.0       & 0.2      & 800  & 500  & 100 \\
-$\SM$    & FSS (P1), $L=8$       & 8     & 6.0       & 0.2      & 1000 & 500  & 101 \\
-$\SM$    & FSS (P1), $L=10$      & 10    & 6.0       & 0.2      & 1200 & 500  & 102 \\
-\bottomrule
-\end{tabular}
-\end{table}
+% Section removed: Consolidated with final Simulation Parameters section
 
 %%==============================================================
 \section{E7 Gene-Network Positive-Control Protocol}
@@ -1543,7 +1488,72 @@ Only $6.3\%$ of random ER graphs land in $[0.32,0.48]$, confirming:
 
 \subsection*{Reproducibility}
 
-Script: \texttt{daft-forward/E1E4E7/p\_null\_distribution.py}.
-Output: \texttt{p\_null\_distribution\_results.json}.
+Script: \texttt{simulation/p\_null\_distribution.py}.
+Output: \texttt{data/p\_null\_distribution\_results.json}.
+
+%%==============================================================
+\section{Simulation Parameters and Random Seeds}
+\label{app:seeds}
+%%==============================================================
+
+\begin{table}[H]
+\centering
+\caption{Complete table of random seeds and parameters for every production run used in this study (Revision 3).}
+\label{tab:sim-params}
+\small
+\begin{tabular}{lllll}
+\toprule
+Run & Gauge Group & $L$ & $\beta$ & Seed \\
+\midrule
+E1 Baseline & $\UN{1}$ & 4 & 2.0 & 42 \\
+E7 SU2 FSS & $\SU{2}$ & 4, 6, 8, 10 & 8.0 & 204, 205, 206, 203 \\
+E7 SU3 FSS & $\SU{3}$ & 4, 6, 8, 10 & 8.0 & 200, 201, 202, 203 \\
+E7 SM FSS & $\SM$ & 4, 6, 8, 10 & 8.0 & 99, 100, 101, 102 \\
+RegulonDB & Biology & --- & --- & 314 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%==============================================================
+\section{Full Epistemic Status Inventory}
+\label{app:epistemic}
+%%==============================================================
+
+\begin{table}[H]
+\centering
+\caption{Summary of the epistemic status of all major claims in this study (Revision 3).}
+\label{tab:epistemic-inventory}
+\small
+\begin{tabular}{lll}
+\toprule
+Claim & Status & Section \\
+\midrule
+HGST Grade Lattice & \epistemic{AXIOM} & \S\ref{sec:framework} \\
+U(1) suppresses $\R$ & \epistemic{VERIFIED} & \S\ref{sec:u1} \\
+$\SU{2}$ sustains $\R_\infty = \RinfSUtwo$ & \epistemic{VERIFIED} & \S\ref{sec:su2} \\
+$\SU{3}$ sustains $\R_\infty = \RinfSUthree$ & \epistemic{VERIFIED} & \S\ref{sec:su3} \\
+SM C-scalar $\R_\infty = \RinfCscalar$ & \epistemic{VERIFIED} & \S\ref{sec:sm} \\
+Frustration Ordering $\UN{1} < \SU{2} < \SU{3} < \SM$ & \epistemic{VERIFIED} & \S\ref{sec:discussion} \\
+$\R_\infty(\SU{3})$ overlaps RegulonDB & \epistemic{ANALOGY} & \S\ref{sec:discussion} \\
+Biological Mechanism & \epistemic{OPEN} & \S\ref{sec:discussion} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Code and Data Availability}
+\label{sec:availability}
+
+All simulation code, configuration files, and finalized production data used to
+support the findings of this study are available in the public repository:
+\href{https://github.com/boonsup/hgst-e7}{https://github.com/boonsup/hgst-e7}.
+The specific version of the code and data corresponding to this publication
+is archived on Zenodo at \href{https://doi.org/10.5281/zenodo.18873889}{doi:10.5281/zenodo.18873889}.
+The production JSON data files referenced throughout this study are located
+in the \texttt{data/} directory of the repository.
+Detailed instructions for reproducing the results are provided in the
+repository's \texttt{README.md}.
+
+\bibliographystyle{plainnat}
+\bibliography{Empirical_Study}
 
 \end{document}

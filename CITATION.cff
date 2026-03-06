@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this code, please cite both the paper and the software."
 
 title: "HGST E7: Simulation Code for Frustration Ordering in Non-Abelian Gauge Theory"
-version: "2.0.0"
-date-released: "2026-03-05"
+version: "3.0.0"
+date-released: "2026-03-06"
 license: MIT
 
 authors:
@@ -15,11 +15,10 @@ authors:
 repository-code: "https://github.com/boonsup/hgst-e7"            # fill from .env GITHUB_REPO
 
 abstract: >
-  Python simulation code for measuring the HGST MIXED frustration fraction R
-  across U(1), SU(2), SU(3), and Standard Model gauge groups on classical 2D
-  lattices. Includes finite-size scaling (FSS) analysis with autocorrelation
-  correction (Madras-Sokal) and a Colab-ready standalone script
-  (su2_l10_colab.py) for the SU(2) L=10 run.
+  Python simulation code and LaTeX manuscript source for Hierarchical Graded Structure Theory (HGST).
+  The project measures the MIXED frustration fraction R across U(1), SU(2), SU(3), and 
+  Standard Model gauge groups on classical 2D lattices. Includes finite-size scaling (FSS)
+  utilities, Madras-Sokal autocorrelation corrections, and biological validation datasets.
 
 keywords:
   - lattice gauge theory
@@ -43,5 +42,5 @@ references:
     year: 2026
     identifiers:
       - type: other
-        value: ""              # fill: arXiv:XXXX.XXXXX after submission
+        value: "pending"              # fill: arXiv ID after submission
         description: arXiv preprint

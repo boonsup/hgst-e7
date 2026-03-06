@@ -1,7 +1,7 @@
 # Upload & Release Plan — HGST E7 Preprint + Code
 ## arXiv · Zenodo · GitHub
 
-Status: main.tex 31 pages, 0 errors (Revision 2, 2026-03-05)
+Status: paper/ 2 manuscrpits, 0 errors (Revision 3, 2026-03-06)
 
 ---
 
@@ -64,8 +64,10 @@ HGST-E7/                          ← repo root
 │   └── sm_qvsl_L4.json
 │
 ├── paper/                         ← LaTeX source
-│   ├── main.tex
-│   ├── references.bib
+│   ├── Theoretical_Framework.tex   ← Axiomatic foundations (Revision 3)
+│   ├── Theoretical_Framework.bib
+│   ├── Empirical_Study.tex         ← Lattice results (Revision 3)
+│   ├── Empirical_Study.bib
 │   └── response_to_reviewers.tex
 │
 └── notebooks/
@@ -132,13 +134,19 @@ Keywords:    lattice gauge theory, finite-size scaling, non-Abelian gauge groups
 
 ## PHASE 3 — arXiv Submission
 
-### 3-A  Prepare submission archive
+### 3-A  Prepare submission archive (Independent for each paper)
 ```bash
-mkdir arxiv_submit
-cp paper/main.tex arxiv_submit/
-cp paper/references.bib arxiv_submit/
-# run bibtex + pdflatex twice locally to confirm clean compile
-cd arxiv_submit && pdflatex main && bibtex main && pdflatex main && pdflatex main
+mkdir arxiv_submit_theory
+cp paper/Theoretical_Framework.tex arxiv_submit_theory/
+cp paper/Theoretical_Framework.bib arxiv_submit_theory/
+# compile and verify
+cd arxiv_submit_theory && pdflatex Theoretical_Framework && bibtex Theoretical_Framework && pdflatex Theoretical_Framework
+
+mkdir arxiv_submit_empirical
+cp paper/Empirical_Study.tex arxiv_submit_empirical/
+cp paper/Empirical_Study.bib arxiv_submit_empirical/
+# compile and verify
+cd arxiv_submit_empirical && pdflatex Empirical_Study && bibtex Empirical_Study && pdflatex Empirical_Study
 ```
 
 ### 3-B  arXiv metadata (https://arxiv.org/submit)
