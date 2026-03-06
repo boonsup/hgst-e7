@@ -1,0 +1,104 @@
+% ============================================================
+%  appendix/proofs.tex
+%  Appendix A — Proof of Theorem 1 (Inversion)
+%  Appendix B — Proof of Theorem 2 (Grade-Difference Group)
+%  STATUS: Write W1
+% ============================================================
+
+% Note: this file is \input{} from main.tex inside \appendix.
+% The \section headings live in main.tex; only proof bodies here.
+
+% ============================================================
+%  APPENDIX A — Theorem 1: Full Proof
+% ============================================================
+
+\section{Proof of Theorem~\ref{thm:inversion} (Inversion)}
+\label{app:proofs-th1}
+
+\subsection*{Setup}
+
+Recall: $F(n,m) = 2^{n-m}$ for $(n,m)\in\mathbb{N}^2$,
+$\mathrm{VACUUM} = F(0,0) = 1$, and $\mathrm{Op4}$ is multiplication.
+
+\begin{proof}[Proof of Theorem~1 (Inversion)]
+We prove existence and uniqueness of $x^{-1}$ for every non-vacuum element.
+
+\medskip
+\textbf{Step 1 — Construction.}
+For $x = F(n,m) = 2^{n-m}$ with $(n,m)\neq(0,0)$, define
+\[
+  x^{-1} \coloneqq 2^{-(n-m)} \in \mathcal{F}^*.
+\]
+This element exists in $\mathcal{F}^*$ since any $(a,b) \in \mathbb{N}^2$ with $a-b = -(n-m)$ indexes it.
+
+\textbf{Step 2 — Verification.}
+\[
+  \mathrm{Op4}(x, x^{-1})
+  = 2^{n-m} \cdot 2^{-(n-m)}
+  = 2^{(n-m)-(n-m)}
+  = 2^0
+  = 1
+  = F(0,0)
+  = \mathrm{VACUUM}. \quad\checkmark
+\]
+
+\textbf{Step 3 — Uniqueness.}
+Suppose $F(a,b)\cdot F(n,m) = F(0,0) = 1$.
+Then $2^{a-b}\cdot 2^{n-m} = 2^0$, so $(a-b)+(n-m)=0$, giving
+$a-b = -(n-m)$.
+Hence the grades $(a,b)$ are exactly those indexing $x^{-1}$, making it unique in $\mathcal{F}^*$. $\square$
+
+\medskip
+\textbf{Worked example.}
+Grade $(3,2)$: $F = 2^{3-2} = 2$.
+Inverse: $F^{-1} = 2^{-(3-2)} = 2^{-1} = 0.5$.
+Check: $2 \times 0.5 = 1 = \mathrm{VACUUM}$.\quad\checkmark
+\end{proof}
+
+% ============================================================
+%  APPENDIX B — Theorem 2: Grade-Difference Group (REWRITE)
+%  ⚠ This is a REWRITE from plan v1. Do NOT use "field".
+% ============================================================
+
+\section{Proof of Theorem~\ref{thm:gdg} (Grade-Difference Group)}
+\label{app:proofs-th2}
+
+\begin{proof}[Proof of Theorem~2 (Grade-Difference Group)]
+
+Let $\mathcal{F}^* \coloneqq \{F(n,m)=2^{n-m} : (n,m)\in\mathbb{N}^2,\,
+(n,m)\neq(0,0)\}$ with operation $\cdot$ (multiplication).
+Define $\varphi\colon \mathcal{F}^* \to \mathbb{Z}$ by
+$\varphi(F(n,m)) = n - m$.
+
+\medskip
+\textbf{Homomorphism.}
+$\varphi(F(n,m)\cdot F(n',m')) = \varphi(2^{n-m}\cdot 2^{n'-m'})
+= \varphi(2^{(n+n')-(m+m')}) = (n+n')-(m+m') = (n-m)+(n'-m')
+= \varphi(F(n,m)) + \varphi(F(n',m'))$. \checkmark
+
+\medskip
+\textbf{Bijectivity.}
+\emph{Injective:} if $n_1-m_1 = n_2-m_2$ then $\varphi(F_1)=\varphi(F_2)$.
+\emph{Surjective:} for any $k\in\mathbb{Z}$ choose $(n,m)=(k,0)$ if $k\geq 0$
+or $(0,-k)$ if $k<0$; then $\varphi(F(n,m))=k$. \checkmark
+
+\medskip
+\textbf{Identity.}
+The multiplicative identity of $\mathcal{F}^*$ is $F(1,1) = 2^{1-1} = 1$.
+Note that VACUUM $= F(0,0)$ is \emph{excluded} from $\mathcal{F}^*$, so the
+group identity is $F(1,1)$, not VACUUM.
+$\varphi(F(1,1)) = 1-1 = 0$, the additive identity of $(\mathbb{Z},+)$.
+\checkmark
+
+\medskip
+\textbf{Surjectivity extended.}
+For any $k\in\mathbb{Z}$: if $k=0$ take $F(1,1)$; if $k>0$ take $F(k{+}1,1)$;
+if $k<0$ take $F(1,1{-}k)$. All are in $\mathcal{F}^*$ (none is VACUUM).
+\checkmark
+
+\medskip
+Hence $\varphi\colon (\mathcal{F}^*, \cdot) \xrightarrow{\sim} (\mathbb{Z},+)$
+is a group isomorphism, proving Theorem~2.
+The group $G_\Delta \coloneqq (\mathcal{F}^*, \cdot)$ is the
+\emph{grade-difference group}. $\square$
+\end{proof}

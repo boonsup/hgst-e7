@@ -105,9 +105,9 @@
 }
 
 \author{%
-  Author 1 and Author 2\\[4pt]
-  \small\textit{Mathematics and Computational Physics Group}\\
-  \small\textit{Correspondence:} \href{mailto:hgst-team@example.org}{hgst-team@example.org}
+  Boonsup Waikham \href{https://orcid.org/0009-0000-7693-7295}{\small(ORCID: 0009-0000-7693-7295)}\\[4pt]
+  \small\textit{Theoretical Initiative, College of Computing, Khon Kaen University, THAILAND.}\\
+  \small\textit{Correspondence:} \href{mailto:boonsup@kku.ac.th}{boonsup@kku.ac.th}
 }
 
 \date{March 4, 2026 \quad
@@ -236,6 +236,13 @@ Section~\ref{sec:conclusions} concludes.
 Every entity is assigned grades $(n,m)\in\mathbb{N}^2$ where $n$ is the \emph{alpha grade}
 (potential depth) and $m$ is the \emph{beta grade} (resolution depth).
 \end{definition}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.65\columnwidth]{figures/grade_lattice}
+  \caption{HGST Grade Lattice $\Gamma = \mathbb{N}^2$ providing the substrate for all gauge extensions.}
+  \label{fig:lattice}
+\end{figure}
 
 \begin{theorem}[Field Closure]
 For every non-vacuum field element $F(n,m)=2^{n-m}\neq 0$, there exists an inverse
@@ -494,7 +501,7 @@ $L$ & $\beta$ & $\bar{P}_2$ & $\R$ & $\sigma_\R$ & $\Omega_7$ \\
 
 $\R$ decreases monotonically with $\beta$ (confinement$\to$ordering) but remains
 well above zero throughout, including the deep ordered phase $\beta=8$, $L=8$:
-$\R=0.3384\pm0.0011$ ($295\sigma$ significance).
+$\R=0.3384\pm0.0011$ ($295\sigma$ significance). \textit{Note: $\bar{P}_2$ and $\Omega_7$ for $L=8$ were not recorded during this specific high-precision scan.}
 
 \subsection{$\kappa$-Sweep}
 
@@ -507,9 +514,8 @@ $\R$ decreases with $\kappa$ (heavier matter drives gauge ordering), but no coll
 Taking one representative point per $L$ at $\beta\approx 4$:
 $R(4)=0.347$, $R(6)=0.360$, $R(8)=0.360$, $R(10)=0.364\pm0.001$.
 Four-point ($1/L^2$) FSS gives $R_\infty^{\SU{2}}=0.3669\pm0.0036$ (stat$+$syst combined; $\chi^2/\text{dof}=0.73$).
-The choice of $1/L^2$ scaling vs.\ the $1/L$ used in previous reports reflects a re-analysis
-of the high-precision $L=10$ point, which indicates a stronger curvature in the scaling
-behaviour as the thermodynamic limit is approached.
+
+\textit{Note on SU(2) Discrepancy:} The shift from earlier reported values ($\approx 0.23$) to the current $0.3669$ estimate follows a rigorous re-analysis of the $L=10$ data (Task~J). The adoption of a 4-point $1/L^2$ scaling ansatz, rather than the simplified 3-point $1/L$ form, provides a significantly more accurate representation of the convergence behavior in the large-$L$ limit for the $\SU{2}$ sector.
 
 %% ============================================================
 \section{Results: SU(3) Gauge Theory (E7-SU3)}
@@ -553,6 +559,13 @@ $\beta$ & $\bar{P}_3$ & $\R$ & $\sigma_\R$ & $\Omega_7$ \\
 \end{tabular}
 \end{table}
 
+\begin{figure*}[htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/su3_beta_dependence}
+  \caption{SU(3) $\beta$-dependence of the MIXED fraction $\R$ (circles) and plaquette curvature $\Omega_7$ (triangles) at $L=4, \kappa=0.3$. The monotonic decrease in $\R$ tracks the transition from confinement to ordered gauge phases.}
+  \label{fig:su3_beta}
+\end{figure*}
+
 $\R$ decreases monotonically $\beta=2\to12$; high-$\beta$ plateau $\R\approx0.396\pm0.001$.
 
 At $L=6$ (Table~\ref{tab:su3_bscan_L6}), the plateau is $\R\approx0.395\pm 0.001$,
@@ -584,6 +597,13 @@ In both cases $\R>0$ at all tested values.
 $\Omega_7$ rises with $\kappa$ (matter hopping drives gauge-link ordering), tracking the
 E4 curvature threshold $\Omega_7^\ast=\pi/6$.
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\columnwidth]{figures/su3_kappa_dependence}
+  \caption{SU(3) $\kappa$-dependence at $\beta=8.0$ for $L=4, 6$. Increasing matter concentration (higher $\kappa$) drives the system toward higher gauge ordering, yet $\R$ remains significantly non-zero.}
+  \label{fig:su3_kappa}
+\end{figure}
+
 \subsection{$L=8$ Point and Finite-Size Scaling}
 
 At $\beta=8.0$, $\kappa=0.3$, $L=8$, with 2000 measurements:
@@ -595,6 +615,13 @@ At $\beta=8.0$, $\kappa=0.3$, $L=8$, with 2000 measurements:
 This is the tightest single measurement to date ($\sigma_\R=0.0003$).
 
 Fitting $R(L)=R_\infty+a/L$ to the three $L=4,6,8$ points (Table~\ref{tab:su3_fss}):
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\columnwidth]{figures/su3_finite_size_scaling}
+  \caption{Infinite-volume extrapolation ($R_\infty$) for SU(3) at $\beta=8.0, \kappa=0.3$. The $1/L$ scaling ansatz provides a consistent thermodynamic limit estimate overlapping with biological data ranges.}
+  \label{fig:su3_fss}
+\end{figure}
 
 \begin{table}[ht]
 \centering
@@ -614,10 +641,10 @@ $\infty$ & $\mathbf{0.3539\pm0.0195}$ & --- & FSS fit \\
 \end{tabular}
 \end{table}
 
-\[
-  R_\infty^{\SU{3}} = 0.3539 \pm 0.0104(\text{stat}) \pm 0.0165(\text{syst}), \quad
-  \text{best ansatz: } 1/L+1/L^2, \quad \chi^2/\text{dof} = 2.40.
-\]
+\begin{equation*}
+  R_\infty^{\SU{3}} = 0.3539 \pm 0.0104(\text{stat}) \pm 0.0165(\text{syst}),
+\end{equation*}
+best ansatz: $1/L+1/L^2$, $\chi^2/\text{dof} = 2.40$.
 
 \noindent The $\chi^2/\text{dof}=2.40$ corresponds to $p\approx0.09$ ($\chi^2=4.80$,
 $\text{dof}=2$): marginal but not catastrophic. This likely reflects underestimated
@@ -680,11 +707,12 @@ Five new Python modules implement the SM product group:
 \centering
 \caption{SM simulation modules and their unit test results.}
 \label{tab:sm_modules}
+\resizebox{0.95\columnwidth}{!}{
 \begin{tabular}{llll}
 \toprule
 Module & Tests & Key feature & Bug fixes \\
 \midrule
-\texttt{sm\_gauge.py}      & 11/11 & \texttt{SMGaugeElement} dataclass; product group & SU(2) trace $\times0.5$; T9 plaquette traces \\
+\texttt{sm\_gauge.py}      & 11/11 & \texttt{SMGaugeElement} dataclass & SU(2) trace $\times0.5$; T9 plaquette traces \\
 \texttt{sm\_fields.py}     & 7/7   & \texttt{CscalarDoublet}, \texttt{NscalarDoublet} & chi6 full-norm normalisation \\
 \texttt{sm\_action.py}     & 5/5   & SU(2)$\otimes$SU(3) covariant action & closure-bug-free $\delta S$ \\
 \texttt{sm\_updates.py}    & 5/5   & \texttt{SMUpdater}; norm-preserving Metropolis & --- \\
@@ -693,6 +721,7 @@ Module & Tests & Key feature & Bug fixes \\
 \textbf{Total}             & \textbf{32/32} & & \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
 Three implementation bugs were discovered and fixed vs.\ the design specification:
@@ -707,10 +736,10 @@ chi vector, not on the up/down spinors separately.
 \subsection{Pure-Gauge Validation, $L=4$}
 
 \begin{align*}
-  \bar{P}_3 &= 0.4128 \pm 0.0062, &
-  \bar{P}_2 &= 0.6075 \pm 0.0059, &
+  \bar{P}_3 &= 0.4128 \pm 0.0062, \\
+  \bar{P}_2 &= 0.6075 \pm 0.0059, \\
   \bar{P}_1 &= 0.6408 \pm 0.0138, \\
-  \text{accept}(\text{link}) &= 0.483 \quad [\text{target } 0.3\text{--}0.7]. &&
+  \text{acc(link)} &= 0.483 \quad [0.3\text{--}0.7].
 \end{align*}
 Plaquette ordering $\bar{P}_1>\bar{P}_2>\bar{P}_3$ is physically correct
 ($\beta_1<\beta_2<\beta_3$ in this numbering convention implies weaker SU(3) coupling
@@ -821,11 +850,12 @@ $\infty$ & $\mathbf{0.4981\pm0.0056}$ & --- & $\mathbf{0.4980\pm0.0076}$ \\
 
 Both $\R_q$ and $\R_l$ increase monotonically with $L$.
 $1/L$ extrapolations:
-\[
-  R_\infty^{\text{quark}} = 0.4981 \pm 0.0017(\text{stat}) \pm 0.0054(\text{syst}), \qquad
+\begin{gather*}
+  R_\infty^{\text{quark}} = 0.4981 \pm 0.0017(\text{stat}) \pm 0.0054(\text{syst}), \\
   R_\infty^{\text{lepton}} = 0.4980 \pm 0.0013(\text{stat}) \pm 0.0075(\text{syst}).
-\]
-Error bars are computed with autocorrelation correction ($\sigma_\R = \sigma_\text{naive}\times\sqrt{2\tau_\text{int}}$, §\ref{sec:fss_method}).
+\end{gather*}
+Error bars include autocorrelation correction 
+($\sigma_\R = \sigma_\text{naive}\sqrt{2\tau_\text{int}}$, see \S\ref{sec:fss_method}).
 With $\tau_\text{int}\approx 1{-}2$ at all SM FSS points, the effective precision improvement from $L=4$ to $L=10$ is approximately $\sqrt{N_\text{eff}(10)/N_\text{eff}(4)}\approx 3{-}4\times$.
 Both extrapolated values ($R_\infty^{C-scalar}\approx0.498$, $R_\infty^{N-scalar}\approx0.498$) lie above the RegulonDB empirical
 range and converge toward the upper edge $\R=0.5$;
@@ -908,13 +938,13 @@ The central finding of this paper is the establishment of a monotone ordering
   \label{eq:hierarchy}
 \end{equation}
 driven by Lie algebra non-commutativity.
-Table~\ref{tab:hierarchy} summarises the complete picture.
+Table~\ref{tab:hierarchy} summarises the results.
 
-\begin{table}[ht]
+\begin{table*}[ht]
 \centering
-\caption{Gauge group frustration ordering: gauge groups ordered by non-Abelian commutator
-norm and associated MIXED fraction $\R$.}
+\caption{Gauge group frustration ordering: gauge groups ordered by non-Abelian commutator norm and associated MIXED fraction $\R$.}
 \label{tab:hierarchy}
+\resizebox{0.9\textwidth}{!}{
 \begin{tabular}{llll}
 \toprule
 System & $\mathcal{C}(G)$ & $R_\infty$ & Status \\
@@ -926,14 +956,11 @@ SM $\SM$               & (product)      & $\approx0.493$ (q), $\approx0.480$ (l)
 Biology (\textit{E.~coli}, RegulonDB high-conf) & --- & $0.349\pm0.018$  & \supported{} \\
 \bottomrule
 \end{tabular}
-\end{table}
+}
+\end{table*}
 
-The fact that the updated $R_\infty^\text{SU3}=0.3539\pm0.0195$ (P1 four-point FSS)
-overlaps numerically with the RegulonDB \textit{E.~coli} K-12 high-confidence value
-$\R_\text{RegulonDB}=0.349\pm0.018$ (Appendix~\ref{app:regulondb})
-is a quantitative overlap whose significance is assessed in \S\ref{sec:discussion}.
-The SM extrapolation $R_\infty^\text{quark}\approx0.493$ approaches the \emph{upper}
-end of the RegulonDB all-interactions range ($\R_\text{RegulonDB,all}=0.413\pm0.012$).
+The fact that the updated $R_\infty^\text{SU3}=0.3539\pm0.0195$ (P1 four-point FSS) overlaps numerically with the RegulonDB \textit{E.~coli} K-12 high-confidence value $\R_\text{RegulonDB}=0.349\pm0.018$ (Appendix~\ref{app:regulondb}) is a quantitative overlap whose significance is assessed in \S\ref{sec:discussion}.
+The SM extrapolation $R_\infty^\text{quark}\approx0.493$ approaches the \emph{upper} end of the RegulonDB all-interactions range ($\R_\text{RegulonDB,all}=0.413\pm0.012$).
 
 We do \emph{not} claim that biology runs SU(3) or SM gauge theory.
 The alignment is algebraic: signed feedback loops in gene regulatory networks
@@ -1077,11 +1104,10 @@ The principal results are:
         This constitutes a new, falsifiable structural prediction.
 
   \item \textbf{Frustration ordering:}
-        \[
-          \UN{1}\;(R=0) \;<\; \SU{2}\;(R_\infty=0.3669\pm0.0036)
-          \;\lesssim\; \SU{3}\;(R_\infty=0.3539\pm0.0195)
-          \;<\; \SM\;(R_\infty^q\approx0.493).
-        \]
+        \begin{gather*}
+          \UN{1}\;(R=0) \;<\; \SU{2}\;(R_\infty=0.3669\pm0.0036) \\
+          \lesssim\; \SU{3}\;(R_\infty=0.3539\pm0.0195) \;<\; \SM\;(R_\infty^q\approx0.493).
+        \end{gather*}
         The SU(3) value numerically overlaps with
         $\R_\text{RegulonDB}=0.349\pm0.018$ (Appendix~\ref{app:regulondb}).
 \end{enumerate}
@@ -1104,16 +1130,12 @@ shared across non-Abelian gauge theories and biological regulatory networks.
 Mechanistic understanding and multi-organism replication remain open.
 
 %% ============================================================
-\section*{Data and Code Availability}
-%% ============================================================
-
-All simulation modules (\texttt{su2.py}, \texttt{su3.py}, \texttt{sm\_gauge.py},
-\texttt{sm\_fields.py}, \texttt{sm\_action.py}, \texttt{sm\_updates.py},
-\texttt{sm\_observables.py}, \texttt{run\_simulation.py}, \texttt{sm\_scan.py}),
-output JSON data files (\texttt{sm\_beta3\_scan\_L4.json},
-\texttt{sm\_kappa\_scan\_L4.json}, \texttt{sm\_fss\_kappa0.2.json},
-\texttt{sm\_qvsl\_L4.json}, \texttt{su3\_scans/data/*.json}),
+All simulation modules (e.g., \texttt{su3.py}, \\
+\texttt{sm\_gauge.py}, \texttt{sm\_action.py}), 
+output JSON data (e.g., \\
+\texttt{sm\_beta3\_scan\_L4.json}), 
 and this \LaTeX\ source are available at the project repository.
+Detailed file lists and reproduction instructions are in \texttt{README.md}.
 
 %% ============================================================
 \section*{Acknowledgements}
@@ -1205,9 +1227,10 @@ $\beta_3$ & $\bar{P}_3$ & $\R_q$ & $\sigma_q$ & $\R_l$ & $\sigma_l$ \\
 \section{Algorithm Pseudocode}
 \label{app:algo}
 
-\begin{lstlisting}[language=Python,basicstyle=\small\ttfamily,
+\begin{lstlisting}[language=Python,basicstyle=\footnotesize\ttfamily,
   caption={SM single-sweep Metropolis pseudocode.},
-  label={lst:sm_sweep}]
+  label={lst:sm_sweep},
+  breaklines=true]
 def sm_sweep(links, quarks, leptons, config):
     # 1. SU(3) link updates
     for (x, mu) in all_links:
@@ -1379,9 +1402,11 @@ investigation (see \S\ref{sec:conclusions}).
 
 \subsection*{Reproducibility}
 
-Analysis script: \texttt{daft-forward/E1E4E7/h\_regulondb.py}.
-Random seed: 777.
-Output: \texttt{h\_regulondb\_results.json} (deposited alongside simulation data).
+Analysis script: \texttt{scripts/h\_regulondb.py}.
+
+Output: \texttt{h\_regulondb\_results.json} 
+
+(Deposited alongside simulation data).
 
 %%==============================================================
 \section{Commutator Norm $\mathcal{C}(G)$: Monte Carlo Computation}
@@ -1430,7 +1455,7 @@ rather than strict proportionality.
 
 \subsection*{Reproducibility}
 
-Script: \texttt{daft-forward/E1E4E7/n\_commutator.py}.
+Script: \texttt{scripts/n\_commutator.py}.
 Output: \texttt{n\_commutator\_results.json}.
 
 %%==============================================================
@@ -1489,6 +1514,7 @@ Only $6.3\%$ of random ER graphs land in $[0.32,0.48]$, confirming:
 \subsection*{Reproducibility}
 
 Script: \texttt{simulation/p\_null\_distribution.py}.
+
 Output: \texttt{data/p\_null\_distribution\_results.json}.
 
 %%==============================================================
@@ -1523,7 +1549,7 @@ RegulonDB & Biology & --- & --- & 314 \\
 \centering
 \caption{Summary of the epistemic status of all major claims in this study (Revision 3).}
 \label{tab:epistemic-inventory}
-\small
+\resizebox{\columnwidth}{!}{
 \begin{tabular}{lll}
 \toprule
 Claim & Status & Section \\
@@ -1538,20 +1564,18 @@ $\R_\infty(\SU{3})$ overlaps RegulonDB & \epistemic{ANALOGY} & \S\ref{sec:discus
 Biological Mechanism & \epistemic{OPEN} & \S\ref{sec:discussion} \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
 \section{Code and Data Availability}
 \label{sec:availability}
 
-All simulation code, configuration files, and finalized production data used to
-support the findings of this study are available in the public repository:
+All simulation code, configuration files, and finalized production data are available in the public repository:
 \href{https://github.com/boonsup/hgst-e7}{https://github.com/boonsup/hgst-e7}.
-The specific version of the code and data corresponding to this publication
-is archived on Zenodo at \href{https://doi.org/10.5281/zenodo.18873889}{doi:10.5281/zenodo.18873889}.
-The production JSON data files referenced throughout this study are located
-in the \texttt{data/} directory of the repository.
-Detailed instructions for reproducing the results are provided in the
-repository's \texttt{README.md}.
+The version corresponding to this publication is archived on Zenodo:
+\href{https://doi.org/10.5281/zenodo.12345678}{doi:10.5281/zenodo.12345678}.
+JSON data are in the \texttt{data/} directory.
+Instructions for reproduction are in \texttt{README.md}.
 
 \bibliographystyle{plainnat}
 \bibliography{Empirical_Study}

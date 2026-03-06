@@ -1,0 +1,51 @@
+% ============================================================
+%  appendix/grammar.tex
+%  Appendix C — BNF Grammar for Grade Notation and Op1–Op10
+%  STATUS: Write W1
+%  Note: reflect Op10 domain restriction (OPEN) per §3.
+% ============================================================
+
+% Note: this file is \input{} from main.tex inside \appendix.
+
+\TODO{Write complete BNF grammar. Template below is a starting point.}
+
+\medskip
+The following BNF grammar defines valid grade expressions and operation
+applications in the E1--E7 extension stack.
+
+\begin{verbatim}
+<grade>       ::= "(" <nat> "," <nat> ")"
+<nat>         ::= "0" | "1" | "2" | ...
+
+<element>     ::= "VACUUM"
+               | "F" "(" <nat> "," <nat> ")"
+
+<non-vacuum>  ::= "F" "(" <nat> "," <nat> ")"   -- (n,m) ≠ (0,0)
+
+<op-name>     ::= "Op1" | "Op2" | "Op3" | "Op4" | "Op5"
+               | "Op6" | "Op7" | "Op8" | "Op9" | "Op10"
+
+<application> ::= <op-name> "(" <arg-list> ")"
+
+<arg-list>    ::= <element>
+               | <element> "," <arg-list>
+
+-- Op-specific domain constraints:
+-- Op2 : <element> → <non-vacuum>     (α grade-shift; codomain ≠ VACUUM for n≥1)
+-- Op3 : <element> → <non-vacuum>     (β grade-shift; codomain ≠ VACUUM)
+-- Op5 : <non-vacuum> → <non-vacuum>  (inversion; VACUUM has no inverse)
+-- Op9 : Ω_k → op-subset             (threshold values VALIDATED;
+--                                     selection mechanism CONJECTURE)
+-- Op10: <triple> → {0,1}            on individual triples  [DEFINED]
+--       Op10(Op(x))                  iterated form requires
+--                                     domain closure of Op9  [OPEN]
+\end{verbatim}
+
+\begin{remark}
+Op10 domain restriction is labelled \epistemic{OPEN}: the iterated form
+$\mathrm{Op10}(\mathrm{Op}(x))$ requires that Op9 closes the domain under the
+relevant operation. This condition has not been analytically verified.
+\end{remark}
+
+\TODO{Expand grammar with explicit production rules for each operation.
+Cross-reference to Axioms~1--4 and Table~\ref{tab:ops}.}
