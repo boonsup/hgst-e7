@@ -6,3 +6,6 @@ contact_links:
   - name: Zenodo record (data & paper DOI)
     url: https://doi.org/10.5281/zenodo.18873889
     about: Cite the software or access archived data releases
+  - name: Code of Conduct
+    url: https://github.com/boonsup/hgst-e7/blob/main/CODE_OF_CONDUCT.md
+    about: Community standards and scientific integrity policy

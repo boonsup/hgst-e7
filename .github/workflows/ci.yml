@@ -7,6 +7,7 @@ on:
     branches: [main]
 
 jobs:
+  # ── Job 1: Python smoke tests ────────────────────────────────────────────────
   smoke-test:
     name: Python ${{ matrix.python-version }} smoke test
     runs-on: ubuntu-latest
@@ -27,16 +28,7 @@ jobs:
 
       - name: Syntax check — all simulation modules
         run: |
-          python -m py_compile simulation/su2.py
-          python -m py_compile simulation/su3.py
-          python -m py_compile simulation/u1.py
-          python -m py_compile simulation/lattice.py
-          python -m py_compile simulation/fields.py
-          python -m py_compile simulation/action.py
-          python -m py_compile simulation/observables.py
-          python -m py_compile simulation/updates.py
-          python -m py_compile simulation/simulation.py
-          python -m py_compile simulation/su2_l10_colab.py
+          for f in simulation/*.py; do python -m py_compile "$f" && echo "OK $f"; done
 
       - name: Smoke test — su2_l10_colab.py (L=4, 2 sweeps)
         run: |
@@ -75,3 +67,104 @@ jobs:
               print('\\n'.join(errors)); sys.exit(1)
           print(f'All {len(list(pathlib.Path(\"data\").glob(\"*.json\")))} JSON files valid')
           "
+
+      - name: Canonical regression — guard committed R_inf values
+        run: |
+          python - << 'EOF'
+          import json, pathlib, sys
+
+          CANONICAL = {
+              # file                          key           expected     tol
+              "data/su2_l10_summary.json":   [("R_mean",   0.3598,     0.010)],
+              "data/su2_L12_b8.json":        [("R_mean",   0.3521,     0.010)],
+              "data/p1_su3_fss_corrected.json": [("R_inf", 0.3539,     0.025)],
+          }
+
+          failures = []
+          for path, checks in CANONICAL.items():
+              p = pathlib.Path(path)
+              if not p.exists():
+                  print(f"SKIP {path} (not found)")
+                  continue
+              data = json.loads(p.read_text())
+              for key, expected, tol in checks:
+                  val = data.get(key)
+                  if val is None:
+                      print(f"SKIP {path}[{key}] (key absent)")
+                      continue
+                  if abs(float(val) - expected) > tol:
+                      failures.append(
+                          f"REGRESS {path}[{key}]: got {val}, expected {expected}±{tol}"
+                      )
+                  else:
+                      print(f"OK {path}[{key}] = {val}")
+
+          if failures:
+              print("\n".join(failures)); sys.exit(1)
+          EOF
+
+  # ── Job 2: LaTeX compile (theory paper) ─────────────────────────────────────
+  latex-theory:
+    name: LaTeX — Theoretical Framework
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install TeX Live (minimal + required packages)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-base texlive-latex-recommended \
+            texlive-latex-extra texlive-science texlive-fonts-recommended \
+            texlive-bibtex-extra biber
+
+      - name: Compile Theoretical_Framework
+        working-directory: paper
+        run: |
+          pdflatex -interaction=nonstopmode -halt-on-error Theoretical_Framework.tex
+          bibtex Theoretical_Framework
+          pdflatex -interaction=nonstopmode -halt-on-error Theoretical_Framework.tex
+          pdflatex -interaction=nonstopmode -halt-on-error Theoretical_Framework.tex
+          echo "Pages: $(pdfinfo Theoretical_Framework.pdf | grep Pages | awk '{print $2}')"
+
+      - name: Check for undefined references
+        working-directory: paper
+        run: |
+          if grep -q "undefined" Theoretical_Framework.log; then
+            grep "undefined" Theoretical_Framework.log
+            exit 1
+          fi
+          echo "No undefined references."
+
+  # ── Job 3: LaTeX compile (empirical paper) ──────────────────────────────────
+  latex-empirical:
+    name: LaTeX — Empirical Study
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-base texlive-latex-recommended \
+            texlive-latex-extra texlive-science texlive-fonts-recommended \
+            texlive-bibtex-extra biber
+
+      - name: Compile Empirical_Study
+        working-directory: paper
+        run: |
+          pdflatex -interaction=nonstopmode -halt-on-error Empirical_Study.tex
+          bibtex Empirical_Study
+          pdflatex -interaction=nonstopmode -halt-on-error Empirical_Study.tex
+          pdflatex -interaction=nonstopmode -halt-on-error Empirical_Study.tex
+
+      - name: Check for undefined references
+        working-directory: paper
+        run: |
+          if grep -q "undefined" Empirical_Study.log; then
+            grep "undefined" Empirical_Study.log
+            exit 1
+          fi
+          echo "No undefined references."
+

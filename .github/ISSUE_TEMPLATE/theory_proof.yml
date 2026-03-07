@@ -1,0 +1,81 @@
+name: Theory / Proof Contribution
+description: Propose or submit a new formal proof, lemma, or theoretical result for HGST
+labels: ["theory", "good-first-proof"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for any theoretical contribution: new lemmas, corrections
+        to existing proofs, analytical bounds, or mathematical extensions.
+        
+        **Notation standard:** All proofs must use the conventions in
+        `paper/Theoretical_Framework.tex` §1–§3 (grade lattice Γ, operations Op1–Op10,
+        field F*, grade-difference group G∆).
+
+  - type: dropdown
+    id: contribution_type
+    attributes:
+      label: Type of theoretical contribution
+      options:
+        - New lemma / proposition
+        - Proof of existing conjecture
+        - Correction / strengthening of existing proof
+        - Analytical bound on R_inf(SU(N))
+        - Connection to established mathematics (topology, algebra, combinatorics)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: section
+    attributes:
+      label: Relevant section in Theoretical_Framework.tex
+      placeholder: "e.g. §5 (Grade-Difference Group), Appendix B (Proofs)"
+    validations:
+      required: false
+
+  - type: textarea
+    id: statement
+    attributes:
+      label: Statement (LaTeX)
+      description: >
+        Write the lemma/theorem/proposition in LaTeX using standard HGST notation.
+        Wrap in \begin{lemma}...\end{lemma} or similar.
+      placeholder: |
+        \begin{lemma}
+        For any finite group $G$ acting freely on $\mathcal{F}^*$, the
+        MIXED frustration fraction satisfies $R_\infty(G) \geq 1/|G|$.
+        \end{lemma}
+      render: latex
+    validations:
+      required: true
+
+  - type: textarea
+    id: proof_sketch
+    attributes:
+      label: Proof sketch or full proof
+      description: Include the key steps. Full proofs go in paper/appendix/proofs.tex via PR.
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Key references (BibTeX keys or DOI)
+      placeholder: |
+        Cartwright1956 (sign-consistency), Wilson1974 (lattice gauge),
+        DOI: 10.1016/j.physrep.2020.01.002
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist before submitting a PR with this proof
+      options:
+        - label: Notation follows `paper/Theoretical_Framework.tex` conventions
+        - label: Proof added to `paper/appendix/proofs.tex`
+        - label: BibTeX entry added to `paper/Theoretical_Framework.bib`
+        - label: LaTeX compiles without errors (`pdflatex Theoretical_Framework`)
+        - label: No introduction of biological claims in the theory paper

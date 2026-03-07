@@ -5,6 +5,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org)
 [![Status](https://img.shields.io/badge/Paper-Accepted-green)](https://github.com/boonsup/hgst-e7)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![CI](https://github.com/boonsup/hgst-e7/actions/workflows/ci.yml/badge.svg)](https://github.com/boonsup/hgst-e7/actions/workflows/ci.yml)
 
 **Author:** Boonsup Waikham  
 **Affiliation:** College of Computing, Khon Kaen University, Khon Kaen, Thailand  

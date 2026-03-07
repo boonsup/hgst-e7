@@ -1,0 +1,59 @@
+# GitHub issue/PR labels for HGST-E7
+# Apply via: gh label create --force ... (or import with a third-party tool)
+# These labels are referenced in CONTRIBUTING.md and issue templates.
+
+labels:
+  # ── Triage / invitation ───────────────────────────────────────────────────
+  - name: good-first-proof
+    color: "0075ca"
+    description: "Theoretical: a lemma or proof suitable for a new contributor"
+
+  - name: good-first-issue
+    color: "7057ff"
+    description: "Code/docs task suitable for someone new to the project"
+
+  - name: reproducibility-check
+    color: "e4e669"
+    description: "Empirical: an existing result that needs independent replication"
+
+  # ── Scientific domain ─────────────────────────────────────────────────────
+  - name: theory
+    color: "0e8a16"
+    description: "Axiomatic foundations, proofs, definitions (Theoretical_Framework)"
+
+  - name: simulation
+    color: "1d76db"
+    description: "New lattice run, FSS analysis, or gauge-group extension"
+
+  - name: biology
+    color: "bfd4f2"
+    description: "GRN / RegulonDB validation (companion paper scope)"
+
+  - name: validation
+    color: "fbca04"
+    description: "Cross-check of canonical values or FSS fits"
+
+  # ── Status ────────────────────────────────────────────────────────────────
+  - name: bug
+    color: "d73a4a"
+    description: "Something produces wrong physics output or crashes"
+
+  - name: enhancement
+    color: "a2eeef"
+    description: "New feature, new gauge group, GPU port, 3D extension"
+
+  - name: documentation
+    color: "0075ca"
+    description: "README, CONTRIBUTING, paper corrections, Colab tutorial"
+
+  - name: question
+    color: "d876e3"
+    description: "Physics or code question — redirect to Discussions if broad"
+
+  - name: wontfix
+    color: "ffffff"
+    description: "Out of scope for this project"
+
+  - name: duplicate
+    color: "cfd3d7"
+    description: "Already tracked in another issue"
