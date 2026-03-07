@@ -1,24 +1,28 @@
 cff-version: 1.2.0
-message: "If you use this code, please cite both the paper and the software."
+message: "If you use this code or data, please cite the software record and the relevant paper."
+type: software
 
 title: "HGST E7: Simulation Code for Frustration Ordering in Non-Abelian Gauge Theory"
 version: "4.0.0"
 date-released: "2026-03-07"
 license: MIT
+doi: "10.5281/zenodo.18873889"
 
 authors:
-  - family-names: "Waikham"          # fill from .env AUTHOR_NAME
+  - family-names: "Waikham"
     given-names:  "Boonsup"
-    orcid:        "0009-0000-7693-7295"           # fill from .env AUTHOR_ORCID
-    affiliation:  "College of Computing, Khon Kaen University, Khon Kaen, THAILAND."          # fill from .env AUTHOR_AFFIL
+    orcid:        "https://orcid.org/0009-0000-7693-7295"
+    affiliation:  "College of Computing, Khon Kaen University, Khon Kaen, Thailand"
 
-repository-code: "https://github.com/boonsup/hgst-e7"            # fill from .env GITHUB_REPO
+repository-code: "https://github.com/boonsup/hgst-e7"
+url: "https://doi.org/10.5281/zenodo.18873889"
 
 abstract: >
-  Python simulation code and LaTeX manuscript source for Hierarchical Graded Structure Theory (HGST).
-  The project measures the MIXED frustration fraction R across U(1), SU(2), SU(3), and 
-  Standard Model gauge groups on classical 2D lattices. Includes finite-size scaling (FSS)
-  utilities, Madras-Sokal autocorrelation corrections, and biological validation datasets.
+  Python simulation code and LaTeX manuscript source for Hierarchical Graded
+  Structure Theory (HGST). Measures the MIXED frustration fraction R across
+  U(1), SU(2), SU(3), and Standard Model gauge groups on classical 2D lattices.
+  Includes finite-size scaling (FSS) utilities, Madras-Sokal autocorrelation
+  corrections, and L=4–12 production data.
 
 keywords:
   - lattice gauge theory
@@ -29,18 +33,74 @@ keywords:
   - SU(2)
   - SU(3)
   - Standard Model
-  - gene regulatory networks
+
+# GitHub will use preferred-citation for the "Cite this repository" button.
+preferred-citation:
+  type: article
+  title: >
+    Hierarchical Graded Structure Theory: Axiomatic Foundations,
+    the Grade-Difference Group, and Non-Abelian Frustration Ordering
+    in Classical Lattice Gauge Extensions E1–E7
+  authors:
+    - family-names: "Waikham"
+      given-names:  "Boonsup"
+      orcid:        "https://orcid.org/0009-0000-7693-7295"
+      affiliation:  "College of Computing, Khon Kaen University, Khon Kaen, Thailand"
+  year: 2026
+  journal: "Journal of Computational Science & Theoretical Physics"
+  identifiers:
+    - type: doi
+      value: "10.5281/zenodo.18873889"
+      description: "Zenodo software + preprint archive (live DOI)"
+    - type: other
+      value: "pending"
+      description: "arXiv ID — update after submission"
 
 references:
-  - type: article
-    title: >
-      Frustration Ordering in Holographic Gauge-String Theory:
-      U(1) to SU(3)×SU(2)×U(1)
+  # ── Software record (Zenodo) ─────────────────────────────────────────────
+  - type: software
+    title: "HGST E7: Simulation Code (v4.0.0)"
     authors:
       - family-names: "Waikham"
         given-names:  "Boonsup"
     year: 2026
+    version: "4.0.0"
+    repository-code: "https://github.com/boonsup/hgst-e7"
+    identifiers:
+      - type: doi
+        value: "10.5281/zenodo.18873889"
+
+  # ── Theory paper ─────────────────────────────────────────────────────────
+  - type: article
+    title: >
+      Hierarchical Graded Structure Theory: Axiomatic Foundations,
+      the Grade-Difference Group, and Non-Abelian Frustration Ordering
+      in Classical Lattice Gauge Extensions E1–E7
+    authors:
+      - family-names: "Waikham"
+        given-names:  "Boonsup"
+        orcid:        "https://orcid.org/0009-0000-7693-7295"
+    year: 2026
+    journal: "Journal of Computational Science & Theoretical Physics"
     identifiers:
       - type: other
-        value: "pending"              # fill: arXiv ID after submission
-        description: arXiv preprint
+        value: "pending"
+        description: "arXiv ID — update after submission"
+
+  # ── Empirical paper ───────────────────────────────────────────────────────
+  - type: article
+    title: >
+      Frustration Universality in Hierarchical Graded Structure Theory:
+      A Lattice Study of the E7 MIXED Class from U(1) to the
+      SU(3)×SU(2)×U(1) Gauge Group
+    authors:
+      - family-names: "Waikham"
+        given-names:  "Boonsup"
+        orcid:        "https://orcid.org/0009-0000-7693-7295"
+    year: 2026
+    journal: "Journal of Computational Science & Theoretical Physics"
+    identifiers:
+      - type: other
+        value: "pending"
+        description: "arXiv ID — update after submission"
+
