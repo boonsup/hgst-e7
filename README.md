@@ -16,10 +16,13 @@
 
 ## Overview
 
-This repository contains the Python simulation code and LaTeX paper source for:
+This repository contains the Python simulation code and LaTeX paper source for two companion papers (both **accepted**, 2026):
 
-> **Frustration Ordering in Holographic Gauge-String Theory: U(1) to SU(3)×SU(2)×U(1)**  
-> Boonsup Waikham, College of Computing, Khon Kaen University (2026)
+> **[Theory]** Hierarchical Graded Structure Theory: Axiomatic Foundations, the Grade-Difference Group, and Non-Abelian Frustration Ordering in Classical Lattice Gauge Extensions E1–E7  
+> Boonsup Waikham, College of Computing, Khon Kaen University
+
+> **[Empirical]** Frustration Universality in Hierarchical Graded Structure Theory: A Lattice Study of the E7 MIXED Class from U(1) to the SU(3)×SU(2)×U(1) Gauge Group  
+> Boonsup Waikham, College of Computing, Khon Kaen University
 
 We measure the HGST **MIXED frustration fraction** $R$ — the fraction of sign-inconsistent holonomy triads — across four gauge groups on classical 2D lattices, with finite-size scaling (FSS) to the thermodynamic limit.
 
@@ -61,12 +64,19 @@ HGST-E7/
 │   ├── p1_sm_fss_corrected.json
 │   └── ...
 │
-├── paper/               LaTeX source
-│   ├── Theoretical_Framework.tex  Axiomatic foundations & proofs (Revision 3)
-│   ├── Theoretical_Framework.bib  BibTeX entries for theoretical paper
-│   ├── Empirical_Study.tex        Lattice results & biology (Revision 3)
-│   ├── Empirical_Study.bib        BibTeX entries for empirical paper
-│   └── response_to_reviewers.tex
+├── arxiv_submit_theory/   LaTeX source — theory paper (Revision 4, ACCEPTED)
+│   ├── main.tex           Axiomatic foundations, grade-difference group, E1–E7
+│   ├── main.bbl           Pre-generated bibliography (required by arXiv)
+│   ├── references.bib
+│   └── figures/
+│
+├── arxiv_submit_empirical/ LaTeX source — empirical paper (Revision 4, ACCEPTED)
+│   ├── main.tex           FSS lattice study, U(1)→SM gauge groups
+│   ├── main.bbl
+│   ├── references.bib
+│   └── figures/
+│
+├── paper/               Working LaTeX drafts and reviewer response
 │
 ├── notebooks/
 │   └── vacation_analysis.ipynb

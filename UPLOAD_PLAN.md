@@ -121,7 +121,7 @@ License:     MIT  (or CC BY 4.0 — your choice)
 Related identifiers:
   → arXiv:XXXX.XXXXX  (add once arXiv ID is known)
 Keywords:    lattice gauge theory, finite-size scaling, non-Abelian gauge groups,
-             MIXED frustration, HGST, SU(2) SU(3), gene regulatory networks
+             MIXED frustration, HGST, SU(2), SU(3), Standard Model
 ```
 
 ### 2-C  Add DOI badge to README.md
@@ -134,31 +134,48 @@ Keywords:    lattice gauge theory, finite-size scaling, non-Abelian gauge groups
 ## PHASE 3 — arXiv Submission
 
 ### 3-A  Prepare submission archive (Independent for each paper)
-```bash
-mkdir arxiv_submit_theory
-cp paper/Theoretical_Framework.tex arxiv_submit_theory/
-cp paper/Theoretical_Framework.bib arxiv_submit_theory/
-# compile and verify
-cd arxiv_submit_theory && pdflatex Theoretical_Framework && bibtex Theoretical_Framework && pdflatex Theoretical_Framework
 
-mkdir arxiv_submit_empirical
-cp paper/Empirical_Study.tex arxiv_submit_empirical/
-cp paper/Empirical_Study.bib arxiv_submit_empirical/
-# compile and verify
-cd arxiv_submit_empirical && pdflatex Empirical_Study && bibtex Empirical_Study && pdflatex Empirical_Study
+> **Both `arxiv_submit_theory/` and `arxiv_submit_empirical/` directories already exist in the repo with `main.tex`, `main.bbl`, `references.bib`, and `figures/`.**
+> Recompile to verify before submitting:
+
+```bash
+# Theory
+cd arxiv_submit_theory && pdflatex main && bibtex main && pdflatex main && pdflatex main
+
+# Empirical
+cd ../arxiv_submit_empirical && pdflatex main && bibtex main && pdflatex main && pdflatex main
 ```
 
 ### 3-B  arXiv metadata (https://arxiv.org/submit)
+
+**Theory paper:**
 ```
-Title:     Frustration Ordering in Holographic Gauge-String Theory:
-           U(1) to SU(3)×SU(2)×U(1)
-Authors:   (from .env: AUTHOR_NAME)
-Affil:     (from .env: AUTHOR_AFFIL)
+Title:     Hierarchical Graded Structure Theory: Axiomatic Foundations,
+           the Grade-Difference Group, and Non-Abelian Frustration Ordering
+           in Classical Lattice Gauge Extensions E1-E7
+Authors:   Boonsup Waikham
+Affil:     College of Computing, Khon Kaen University, Khon Kaen, Thailand
 Category:  hep-lat  (primary)
-Cross:     cond-mat.dis-nn, q-bio.MN
-Abstract:  (copy from main.tex \begin{abstract}...\end{abstract})
-Comments:  31 pages. Code: https://github.com/<USER>/hgst-e7
-           (Zenodo DOI: 10.5281/zenodo.XXXXXXX)
+Cross:     cond-mat.dis-nn, math-ph
+Abstract:  (copy from arxiv_submit_theory/main.tex \begin{abstract}...)
+Comments:  XX pages. Code: https://github.com/boonsup/hgst-e7
+           (Zenodo DOI: 10.5281/zenodo.18873889)
+```
+
+**Empirical paper:**
+```
+Title:     Frustration Universality in Hierarchical Graded Structure Theory:
+           A Lattice Study of the E7 MIXED Class from U(1) to the
+           SU(3)xSU(2)xU(1) Gauge Group
+Authors:   Boonsup Waikham
+Affil:     College of Computing, Khon Kaen University, Khon Kaen, Thailand
+Category:  hep-lat  (primary)
+Cross:     cond-mat.dis-nn
+Abstract:  (copy from arxiv_submit_empirical/main.tex \begin{abstract}...)
+Comments:  XX pages. Code: https://github.com/boonsup/hgst-e7
+           (Zenodo DOI: 10.5281/zenodo.18873889)
+Keywords:  lattice gauge theory, finite-size scaling, non-Abelian gauge groups,
+           MIXED frustration, HGST, SU(2), SU(3), Standard Model
 ```
 
 ### 3-C  arXiv checklist
@@ -211,11 +228,10 @@ paper/main.tex — arXiv:XXXX.XXXXX
 ## COMPLETION CHECKLIST
 
 - [x] P1 — `.env` filled, `.gitignore` ✓, `requirements.txt` ✓
-- [x] P1 — `CITATION.cff` written (v4.0.0)
-- [x] P1 — `README.md` written (Round 4 accepted, canonical values updated)
-- [x] P1 — GitHub repo created (v3.0.0 tag pushed); v4.0.0 tag to push
-- [ ] P2 — Zenodo linked, DOI obtained — **activate deposit, insert live DOI in main.tex**
-- [x] P2 — DOI badge added to README
-- [ ] P3 — arXiv `.bbl` checked, archive built, submitted
-- [ ] P3 — arXiv ID obtained → add to README + Zenodo related-id
-- [ ] P3 — Update CITATION.cff with arXiv ID
+- [x] P1 — `CITATION.cff` fixed (commit 795f28e, 2026-03-07): `type:software`, `doi: 10.5281/zenodo.18873889`, `preferred-citation`, both paper refs (theory + empirical), stale comments removed
+- [x] P1 — `README.md` updated: both paper titles, accepted status, arxiv_submit directories
+- [x] P1 — GitHub repo live; `v4.0.0` tag pushed
+- [x] P2 — Zenodo linked; DOI `10.5281/zenodo.18873889` live; DOI badge in README; live DOI inserted in both `main.tex` files
+- [ ] P3 — arXiv `.bbl` verified, archives built, **both** papers submitted
+- [ ] P3 — arXiv IDs obtained → add to README badges + Zenodo related-id
+- [ ] P3 — Update `CITATION.cff` `preferred-citation` and both `references` entries with arXiv IDs
