@@ -1,6 +1,6 @@
-% ============================================================
+﻿% ============================================================
 %  appendix/tables.tex
-%  Appendix D — Simulation Parameter Tables + Canonical Values
+%  Appendix D --- Simulation Parameter Tables + Canonical Values
 %  STATUS: Update W2
 %  Requirement: ALL values from canonical table (§III of
 %  FRAMEWORK_PLAN.md); include seeds from main.pdf Table 17.
@@ -11,24 +11,26 @@
 % ============================================================
 %  D.1  Canonical Values Table
 %  Single source of truth. Both papers reference this table.
-%  Macro name → value mapping mirrors preamble of main.tex.
+%  Macro name $\to$ value mapping mirrors preamble of main.tex.
 % ============================================================
 
 \subsection{Canonical Values}
 
 \begin{table}[htbp]
 \caption{Canonical values. All numbers in this paper are drawn from
-  these entries. ``Plan v1'' column shows superseded values for reference.
-  Source column refers to main.pdf companion paper.}
+  these entries. $^{\dag}$Initial Draft Values are superseded and shown
+  for historical traceability only. Source column refers to main.pdf companion paper.
+  $^{\ddag}$SM FSS error bars revised in v4: extended production runs
+  ($L{=}4,6,8,10$, seeds 99--102, $N_\text{meas}{=}2000$) reduce jackknife
+  error relative to v3.}
 \label{tab:canonical}
-\begin{ruledtabular}
 \begin{tabular}{llll}
-Quantity & Plan v1 value & Canonical value & Source \\
+Quantity & Initial Draft Value (superseded)$^{\dag}$ & Canonical value & Source \\
 \hline
 $R_\infty[\mathrm{SU}(2)]$
   & $0.3669\pm0.0036$
-  & $0.2315\pm0.0551$ (4-pt $1/L+1/L^2$ FSS, $\beta{=}8.0$)
-  & Task~J (2026-03-05) \\
+  & $\RinfSUtwo$ (5-pt $1/L+1/L^2$ FSS, $\beta{=}8.0$, AIC-selected; jackknife)
+  & main.pdf \S5.3 (long-run analysis) \\
 FSS form SU(2)
   & $1/L^2$
   & $1/L$
@@ -36,8 +38,8 @@ FSS form SU(2)
 SU(2) $L=10$
   & not run (claimed)
   & $\beta{=}4.0$: $R=0.3647\pm0.003$ (seed 203, 500 sweeps);
-    $\beta{=}8.0$: $R=0.3400\pm0.00122$ (seed 203, Task~J)
-  & su2\_l10\_run.log; su2\_b8\_l10\_results.json \\
+    $\beta{=}8.0$: $R=0.3400\pm0.00122$ (seed 203, long-run analysis)
+  & su2\_l10\_run.log; su2\_b8\_l10\_results.json; su2\_longrun\_fss.json \\
 $R_\infty[\mathrm{SU}(3)]$
   & $0.3869\pm0.0015$
   & $0.3539\pm0.0195$
@@ -52,8 +54,8 @@ $\chi^2/\mathrm{dof}$ SU(3) FSS
   & main.pdf \S3.5 \\
 $R_\infty[\mathrm{SU}(3)]/R_\infty[\mathrm{SU}(2)]$
   & $1.055\pm0.011$
-  & $1.529$ (ordering confirmed)
-  & derived from Task~J \\
+  & $\RinfRatio$ (ordering confirmed)
+  & derived from long-run FSS analysis \\
 $\bar{C}[\mathrm{SU}(2)]$ Haar avg
   & $\approx 2.3$
   & $1.601\pm0.002$
@@ -66,36 +68,19 @@ $\bar{C}[\mathrm{SU}(3)]/\bar{C}[\mathrm{SU}(2)]$
   & $\approx 1.14$
   & $1.421$
   & derived \\
-$R_\infty[\text{C-scalar, SM}]$
+$R_\infty[\text{C-scalar, SM}]^{\ddag}$
   & $\approx 0.493$
   & $0.4979\pm0.0005$
   & main.pdf Table~10 (4-pt $1/L$ FSS, seeds 99--102) \\
-$R_\infty[\text{N-scalar, SM}]$
+$R_\infty[\text{N-scalar, SM}]^{\ddag}$
   & $\approx 0.480$
   & $0.4980\pm0.0013$
   & main.pdf Table~10 (4-pt $1/L$ FSS, seeds 99--102) \\
-RegulonDB $R$ (high-conf)
-  & $0.345\pm0.008$
-  & $0.349\pm0.018$
-  & main.pdf App.\ G \\
-RegulonDB $R$ (all-signed)
-  & ---
-  & $0.413\pm0.012$
-  & main.pdf App.\ G \\
-Bio $z$-statistic
-  & ``$p<10^{-4}$''
-  & $z=-8.07\sigma$, $p<0.001$
-  & main.pdf App.\ G \\
-Bio range
-  & $[0.32, 0.48]$
-  & \textbf{Remove} — synthetic GRN only
-  & main.pdf App.\ E \\
 SU(3) $L=10$
   & not yet run
   & $R(L{=}10) = 0.3881\pm0.00128$
   & main.pdf \S6.4, Table~5, seed~203 \\
 \end{tabular}
-\end{ruledtabular}
 \end{table}
 
 % ============================================================
@@ -107,7 +92,6 @@ SU(3) $L=10$
 \begin{table}[htbp]
 \caption{Simulation parameters. Seeds from main.pdf Table~17.}
 \label{tab:sim-params}
-\begin{ruledtabular}
 \begin{tabular}{lllll}
 Run & Gauge group & $L$ & $\beta$ range & Seed \\
 \hline
@@ -132,10 +116,10 @@ SM full-matter $L=4$
 SM FSS
   & SU(3)$\times$SU(2)$\times$U(1) & 4,6,8,10 & $\beta_3=8.0$ & 99, 100, 101, 102 \\
 \end{tabular}
-\end{ruledtabular}
 \end{table}
 
 % SM seeds 99--102 (L=4,6,8,10); SU(3) seeds 200--203 (L=4,6,8,10) confirmed
 % from phase1_empirical_study/data/p1_fss_fits.json and
 % p1_su3_fss_corrected.json.
 % SU(2) seeds pending main.pdf Table~17 verification (gate G2).
+

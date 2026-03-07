@@ -1,7 +1,7 @@
-% ============================================================
+﻿% ============================================================
 %  appendix/proofs.tex
-%  Appendix A — Proof of Theorem 1 (Inversion)
-%  Appendix B — Proof of Theorem 2 (Grade-Difference Group)
+%  Appendix A --- Proof of Theorem 1 (Inversion)
+%  Appendix B --- Proof of Theorem 2 (Grade-Difference Group)
 %  STATUS: Write W1
 % ============================================================
 
@@ -9,7 +9,7 @@
 % The \section headings live in main.tex; only proof bodies here.
 
 % ============================================================
-%  APPENDIX A — Theorem 1: Full Proof
+%  APPENDIX A --- Theorem 1: Full Proof
 % ============================================================
 
 \section{Proof of Theorem~\ref{thm:inversion} (Inversion)}
@@ -17,33 +17,33 @@
 
 \subsection*{Setup}
 
-Recall: $F(n,m) = 2^{n-m}$ for $(n,m)\in\mathbb{N}^2$,
-$\mathrm{VACUUM} = F(0,0) = 1$, and $\mathrm{Op4}$ is multiplication.
+Recall: $\Phi(n,m) = 2^{n-m}$ for $(n,m)\in\mathbb{N}^2$,
+$\mathrm{VACUUM} = \Phi(0,0) = 1$, and $\mathrm{Op4}$ is multiplication.
 
 \begin{proof}[Proof of Theorem~1 (Inversion)]
 We prove existence and uniqueness of $x^{-1}$ for every non-vacuum element.
 
 \medskip
-\textbf{Step 1 — Construction.}
-For $x = F(n,m) = 2^{n-m}$ with $(n,m)\neq(0,0)$, define
+\textbf{Step 1 --- Construction.}
+For $x = \Phi(n,m) = 2^{n-m}$ with $(n,m)\neq(0,0)$, define
 \[
   x^{-1} \coloneqq 2^{-(n-m)} \in \mathcal{F}^*.
 \]
 This element exists in $\mathcal{F}^*$ since any $(a,b) \in \mathbb{N}^2$ with $a-b = -(n-m)$ indexes it.
 
-\textbf{Step 2 — Verification.}
+\textbf{Step 2 --- Verification.}
 \[
   \mathrm{Op4}(x, x^{-1})
   = 2^{n-m} \cdot 2^{-(n-m)}
   = 2^{(n-m)-(n-m)}
   = 2^0
   = 1
-  = F(0,0)
+  = \Phi(0,0)
   = \mathrm{VACUUM}. \quad\checkmark
 \]
 
-\textbf{Step 3 — Uniqueness.}
-Suppose $F(a,b)\cdot F(n,m) = F(0,0) = 1$.
+\textbf{Step 3 --- Uniqueness.}
+Suppose $\Phi(a,b)\cdot \Phi(n,m) = \Phi(0,0) = 1$.
 Then $2^{a-b}\cdot 2^{n-m} = 2^0$, so $(a-b)+(n-m)=0$, giving
 $a-b = -(n-m)$.
 Hence the grades $(a,b)$ are exactly those indexing $x^{-1}$, making it unique in $\mathcal{F}^*$. $\square$
@@ -56,8 +56,50 @@ Check: $2 \times 0.5 = 1 = \mathrm{VACUUM}$.\quad\checkmark
 \end{proof}
 
 % ============================================================
-%  APPENDIX B — Theorem 2: Grade-Difference Group (REWRITE)
-%  ⚠ This is a REWRITE from plan v1. Do NOT use "field".
+%  APPENDIX A.1 --- Proposition 1.4: Commutative Monoid (added P3.2)
+% ============================================================
+
+\subsection*{Proof of Proposition~\ref{prop:monoid} (Commutative Monoid)}
+\label{app:proofs-monoid}
+
+\begin{proof}[Proof of Proposition~\ref{prop:monoid}]
+We prove that $(\Gamma, +_\Gamma)$ with componentwise addition is a
+commutative monoid with identity $(0,0)$.
+
+\medskip
+\textbf{Step 1 --- Closure.}
+For $(n,m),(n',m')\in\mathbb{N}^2$, $(n,m)+_\Gamma(n',m') = (n+n', m+m')$.
+Since $n,n',m,m'\in\mathbb{N}$ and $\mathbb{N}$ is closed under addition,
+$(n+n', m+m')\in\mathbb{N}^2 = \Gamma$. \checkmark
+
+\medskip
+\textbf{Step 2 --- Associativity.}
+For $(n_1,m_1),(n_2,m_2),(n_3,m_3)\in\Gamma$:
+\begin{align*}
+  [(n_1,m_1)+_\Gamma(n_2,m_2)] +_\Gamma (n_3,m_3)
+  &= (n_1+n_2, m_1+m_2) +_\Gamma (n_3,m_3) \\
+  &= (n_1+n_2+n_3, m_1+m_2+m_3) \\
+  &= (n_1,m_1) +_\Gamma [(n_2,m_2)+_\Gamma (n_3,m_3)].
+\end{align*}
+Follows from associativity of $+$ on $\mathbb{N}$. \checkmark
+
+\medskip
+\textbf{Step 3 --- Commutativity.}
+$(n,m)+_\Gamma(n',m') = (n+n', m+m') = (n'+n, m'+m) = (n',m')+_\Gamma(n,m)$.
+Follows from commutativity of $+$ on $\mathbb{N}$. \checkmark
+
+\medskip
+\textbf{Step 4 --- Identity.}
+For any $(n,m)\in\Gamma$:
+$(n,m)+_\Gamma(0,0) = (n+0,m+0) = (n,m)$.
+So $(0,0) = \mathrm{VACUUM}$ is the identity element. \checkmark
+
+Hence $(\Gamma, +_\Gamma)$ is a commutative monoid. $\square$
+\end{proof}
+
+% ============================================================
+%  APPENDIX B --- Theorem 2: Grade-Difference Group (REWRITE)
+%  Corrected result: group isomorphism, not field.
 % ============================================================
 
 \section{Proof of Theorem~\ref{thm:gdg} (Grade-Difference Group)}
@@ -65,35 +107,45 @@ Check: $2 \times 0.5 = 1 = \mathrm{VACUUM}$.\quad\checkmark
 
 \begin{proof}[Proof of Theorem~2 (Grade-Difference Group)]
 
-Let $\mathcal{F}^* \coloneqq \{F(n,m)=2^{n-m} : (n,m)\in\mathbb{N}^2,\,
+Let $\mathcal{F}^* \coloneqq \{\Phi(n,m)=2^{n-m} : (n,m)\in\mathbb{N}^2,\,
 (n,m)\neq(0,0)\}$ with operation $\cdot$ (multiplication).
 Define $\varphi\colon \mathcal{F}^* \to \mathbb{Z}$ by
-$\varphi(F(n,m)) = n - m$.
+$\varphi(\Phi(n,m)) = n - m$.
 
 \medskip
 \textbf{Homomorphism.}
-$\varphi(F(n,m)\cdot F(n',m')) = \varphi(2^{n-m}\cdot 2^{n'-m'})
+$\varphi(\Phi(n,m)\cdot \Phi(n',m')) = \varphi(2^{n-m}\cdot 2^{n'-m'})
 = \varphi(2^{(n+n')-(m+m')}) = (n+n')-(m+m') = (n-m)+(n'-m')
-= \varphi(F(n,m)) + \varphi(F(n',m'))$. \checkmark
+= \varphi(\Phi(n,m)) + \varphi(\Phi(n',m'))$. \checkmark
 
 \medskip
 \textbf{Bijectivity.}
 \emph{Injective:} if $n_1-m_1 = n_2-m_2$ then $\varphi(F_1)=\varphi(F_2)$.
 \emph{Surjective:} for any $k\in\mathbb{Z}$ choose $(n,m)=(k,0)$ if $k\geq 0$
-or $(0,-k)$ if $k<0$; then $\varphi(F(n,m))=k$. \checkmark
+or $(0,-k)$ if $k<0$; then $\varphi(\Phi(n,m))=k$. \checkmark
 
 \medskip
 \textbf{Identity.}
-The multiplicative identity of $\mathcal{F}^*$ is $F(1,1) = 2^{1-1} = 1$.
-Note that VACUUM $= F(0,0)$ is \emph{excluded} from $\mathcal{F}^*$, so the
-group identity is $F(1,1)$, not VACUUM.
-$\varphi(F(1,1)) = 1-1 = 0$, the additive identity of $(\mathbb{Z},+)$.
+The multiplicative identity of $\mathcal{F}^*$ is $\Phi(1,1) = 2^{1-1} = 1$.
+Note that VACUUM $= \Phi(0,0)$ is \emph{excluded} from $\mathcal{F}^*$, so the
+group identity is $\Phi(1,1)$, not VACUUM.
+$\varphi(\Phi(1,1)) = 1-1 = 0$, the additive identity of $(\mathbb{Z},+)$.
 \checkmark
 
 \medskip
-\textbf{Surjectivity extended.}
-For any $k\in\mathbb{Z}$: if $k=0$ take $F(1,1)$; if $k>0$ take $F(k{+}1,1)$;
-if $k<0$ take $F(1,1{-}k)$. All are in $\mathcal{F}^*$ (none is VACUUM).
+\textbf{Surjectivity.}
+For any $k\in\mathbb{Z}$ we exhibit a pre-image in $\mathcal{F}^*$:
+\[
+  \text{if } k>0:\; (k,0)\in\mathbb{N}^2\setminus\{(0,0)\},\quad
+  \varphi(k,0)=k; \qquad
+  \text{if } k<0:\; (0,-k)\in\mathbb{N}^2\setminus\{(0,0)\},\quad
+  \varphi(0,-k)=k;
+\]
+\[
+  \text{if } k=0:\; (1,1)\in\mathbb{N}^2\setminus\{(0,0)\},\quad
+  \varphi(1,1)=0.
+\]
+In all three cases the chosen element lies in $\mathcal{F}^*$ and maps to $k$.
 \checkmark
 
 \medskip

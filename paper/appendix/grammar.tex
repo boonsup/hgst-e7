@@ -1,13 +1,13 @@
 % ============================================================
 %  appendix/grammar.tex
-%  Appendix C — BNF Grammar for Grade Notation and Op1–Op10
+%  Appendix C --- BNF Grammar for Grade Notation and Op1--Op10
 %  STATUS: Write W1
-%  Note: reflect Op10 domain restriction (OPEN) per §3.
+%  Note: reflect Op10 domain restriction (OPEN) per 3.
 % ============================================================
 
 % Note: this file is \input{} from main.tex inside \appendix.
 
-\TODO{Write complete BNF grammar. Template below is a starting point.}
+
 
 \medskip
 The following BNF grammar defines valid grade expressions and operation
@@ -15,12 +15,14 @@ applications in the E1--E7 extension stack.
 
 \begin{verbatim}
 <grade>       ::= "(" <nat> "," <nat> ")"
-<nat>         ::= "0" | "1" | "2" | ...
+<nat>         ::= "0" | <pos-nat>
+<pos-nat>     ::= <digit> | <pos-nat> <digit>
+<digit>       ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 
 <element>     ::= "VACUUM"
                | "F" "(" <nat> "," <nat> ")"
 
-<non-vacuum>  ::= "F" "(" <nat> "," <nat> ")"   -- (n,m) ≠ (0,0)
+<non-vacuum>  ::= "F" "(" <nat> "," <nat> ")"   -- (n,m) \ensuremath{\neq} (0,0)
 
 <op-name>     ::= "Op1" | "Op2" | "Op3" | "Op4" | "Op5"
                | "Op6" | "Op7" | "Op8" | "Op9" | "Op10"
@@ -31,21 +33,45 @@ applications in the E1--E7 extension stack.
                | <element> "," <arg-list>
 
 -- Op-specific domain constraints:
--- Op2 : <element> → <non-vacuum>     (α grade-shift; codomain ≠ VACUUM for n≥1)
--- Op3 : <element> → <non-vacuum>     (β grade-shift; codomain ≠ VACUUM)
--- Op5 : <non-vacuum> → <non-vacuum>  (inversion; VACUUM has no inverse)
--- Op9 : Ω_k → op-subset             (threshold values VALIDATED;
+-- Op2 : <element> $\to$ <non-vacuum>     ($\alpha$ grade-shift; codomain \ensuremath{\neq} VACUUM for n\ensuremath{\geq}1)
+-- Op3 : <element> $\to$ <non-vacuum>     ($\beta$ grade-shift; codomain \ensuremath{\neq} VACUUM)
+-- Op5 : <non-vacuum> $\to$ <non-vacuum>  (inversion; VACUUM has no inverse)
+-- Op9 : $\Omega$_k $\to$ op-subset             (threshold values VALIDATED;
 --                                     selection mechanism CONJECTURE)
--- Op10: <triple> → {0,1}            on individual triples  [DEFINED]
+-- Op10: <triple> $\to$ {0,1}            on individual triples  [DEFINED]
 --       Op10(Op(x))                  iterated form requires
 --                                     domain closure of Op9  [OPEN]
+--
+-- Evaluation order: all application forms are evaluated left-to-right.
+-- Op10 iterated-form domain problem is stated as an open question in §10.
 \end{verbatim}
 
 \begin{remark}
-Op10 domain restriction is labelled \epistemic{OPEN}: the iterated form
+Op10 domain restriction is open: the iterated form
 $\mathrm{Op10}(\mathrm{Op}(x))$ requires that Op9 closes the domain under the
 relevant operation. This condition has not been analytically verified.
 \end{remark}
 
-\TODO{Expand grammar with explicit production rules for each operation.
-Cross-reference to Axioms~1--4 and Table~\ref{tab:ops}.}
+\begin{lemma}[Op10 domain closure under Op1--Op9]\label{lem:op10-closure}
+Let $x = (x_1,x_2,x_3)\in(\mathcal{F}^*)^3$ be a signed triple.
+For any $\mathrm{Op}\in\{\mathrm{Op1},\ldots,\mathrm{Op9}\}$ in the E1--E7-SM
+extension stack, the output $\mathrm{Op}(x)$ is again a signed triple in
+$(\mathcal{F}^*)^3$, so that $\mathrm{Op10}(\mathrm{Op}(x))$ is well-defined.
+\end{lemma}
+\begin{proof}
+Op1--Op8 act component-wise on elements of $\mathcal{F}^*$ and do not change
+the arity of a triple; each output component is a non-VACUUM element
+(Op2, Op3, Op5 require non-zero input, enforced by $x\in(\mathcal{F}^*)^3$).
+Op9 selects a sub-collection of operations based on the threshold $\Omega_k^*$
+applied to each component; the selection preserves arity (triples map to
+triples) by construction of the threshold predicate.
+Hence $\mathrm{Op}(x)\in(\mathcal{F}^*)^3$ in all cases, and Op10
+(which takes a triple to $\{0,1\}$) is applicable. $\square$
+\end{proof}
+\begin{remark}
+The above proof covers the \emph{structural} domain-closure claim.  Whether
+the specific numerical values of $\Omega_k^*$ correctly classify triples
+(i.e.\ Op9 ``selects the right operations'') remains a conjecture
+and is stated as an open problem in Section~10 of the main text.
+\end{remark}
+

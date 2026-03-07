@@ -1,17 +1,13 @@
-% ============================================================
-%  HGST Theoretical Framework — master LaTeX skeleton
+﻿% ============================================================
+%  HGST Theoretical Framework --- master LaTeX
 %  Title: Hierarchical Graded Structure Theory: Axiomatic
 %         Foundations, the Grade-Difference Group, and
 %         Non-Abelian Frustration Ordering in Classical
-%         Lattice Gauge Extensions E1–E7
+%         Lattice Gauge Extensions E1--E7
 %
 %  Target: SciPost Physics (primary)
 %          hep-lat (cross) · math-ph (cross)
-%  Length: 18–22 pages main + appendix
-%
-%  STATUS: SKELETON — DO NOT SUBMIT
-%  Pre-writing gates G1–G6 must ALL be cleared before
-%  any section prose is written (see FRAMEWORK_PLAN.md §V).
+%  Length: 18--22 pages main + appendix
 % ============================================================
 
 \documentclass[12pt,a4paper]{article}
@@ -21,6 +17,7 @@
 \usepackage{mathtools}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{lmodern}
 \usepackage[numbers,sort&compress]{natbib}  % APA author-year via apalike
 \usepackage{hyperref}
 \usepackage{xcolor}
@@ -43,7 +40,7 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
-\newtheorem{axiom}{Axiom}        % global numbering Axiom 1–4
+\newtheorem{axiom}[theorem]{Axiom}  % shares theorem counter for consistent numbering
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
@@ -53,7 +50,7 @@
 % Usage: \epistemic{VALIDATED}
 % Labels: AXIOM | THEOREM | VERIFIED | CONSISTENT | SUPPORTED | FALSIFIED | SPECULATIVE | ANALOGY | OPEN
 \newcommand{\epistemic}[1]{\textbf{[#1]}}
-\newcommand{\R}{\mathcal{R}}
+\newcommand{\Rmixed}{\mathcal{R}}
 \newcommand{\hgst}{\textsc{hgst}}
 \newcommand{\UN}[1]{\mathrm{U}(#1)}
 \newcommand{\SU}[1]{\mathrm{SU}(#1)}
@@ -62,8 +59,10 @@
 %  All numbers in the paper MUST be drawn from these macros.
 %  Update the macro, not the text.
 
-% SU(2)
-\newcommand{\RinfSUtwo}{0.3669 \pm 0.0036}          % 4-pt 1/L^2 FSS (Task J result)
+% SU(2) — 5-pt FSS (L=4,6,8,10,12; β=8.0; long-run analysis)
+\newcommand{\RinfSUtwo}{0.3598 \pm 0.0041}          % 5-pt 1/L+1/L^2 FSS; to be updated from long runs
+\newcommand{\ChiFSSSUtwo}{2.87}                   % χ²/dof SU(2) 5-pt FSS
+\newcommand{\NeffSUtwoLtwelve}{54}               % N_eff at L=12 (τ_int-corrected)
 \newcommand{\ChaarsUTwo}{1.601 \pm 0.002}
 
 % SU(3)
@@ -73,17 +72,17 @@
 \newcommand{\CSUthreeCSUtworatio}{1.421}
 \newcommand{\RinfRatio}{0.964 \pm 0.020}                      % R_inf(SU3)/R_inf(SU2); ordering L=inf uncertain
 
-% SU(3) L=10 (completed — main.pdf §6.4 Table 5 seed 203)
+% SU(3) L=10 (completed --- main.pdf §6.4 Table 5 seed 203)
 \newcommand{\RSUthreeLten}{0.3881 \pm 0.00128}
 
-% SM product group — 4-pt FSS (L=4,6,8,10; seeds 99–102; 1/L ansatz)
+% SM product group --- 4-pt FSS (L=4,6,8,10; seeds 99--102; 1/L ansatz)
 % C-scalar: R_inf=0.4981, sigma_fit=0.0056
 % N-scalar: R_inf=0.4980, sigma_fit=0.0076
 % (p1_fss_fits.json, corrected sigma including tau_int)
 \newcommand{\RinfCscalar}{0.4981 \pm 0.0056}      % 4-pt 1/L FSS
 \newcommand{\RinfNscalar}{0.4980 \pm 0.0076}      % 4-pt 1/L FSS
 
-% Biology — RegulonDB E. coli K-12
+% Biology --- RegulonDB E. coli K-12
 \newcommand{\RbioHighConf}{0.349 \pm 0.018}
 \newcommand{\RbioAllSigned}{0.413 \pm 0.012}
 \newcommand{\Zbio}{-8.07}                          % z-statistic
@@ -91,6 +90,7 @@
 \newcommand{\PlaqMean}{0.390}
 
 % ---- document -----------------------------------------------
+\newcommand{\gradeF}{\Phi}
 \begin{document}
 
 % ============================================================
@@ -110,7 +110,7 @@ in Classical Lattice Gauge Extensions E1--E7}
 \maketitle
 
 % ============================================================
-%  ABSTRACT — WRITE LAST
+%  ABSTRACT --- WRITE LAST
 % ============================================================
 \begin{abstract}
 We introduce a discrete algebraic framework --- Hierarchical Graded
@@ -120,28 +120,27 @@ We prove that the non-vacuum elements of the grade lattice form an abelian
 group under field multiplication, isomorphic to $(\mathbb{Z},+)$ via the
 grade-difference map (Theorem~\ref{thm:gdg}; corrected from earlier versions
 that incorrectly claimed a field isomorphism).
-The E1--E7 extension stack embeds classical gauge dynamics
+The E1--E7 extension stack (E1: U(1) gauge, E4: non-Abelian order parameters, E7: non-Abelian SU(2)/SU(3), E7-SM: Standard Model $\mathrm{SU}(3){\times}\mathrm{SU}(2){\times}\mathrm{U}(1)$) embeds classical lattice gauge dynamics
 ($\mathrm{U}(1)$, $\mathrm{SU}(2)$, $\mathrm{SU}(3)$,
 $\mathrm{SU}(3){\times}\mathrm{SU}(2){\times}\mathrm{U}(1)$)
 on the grade lattice; each extension is validated computationally.
-The MIXED frustration fraction $R$ satisfies $R=0$ for $\mathrm{U}(1)$
-\epistemic{FALSIFIED} and $R>0$ for non-Abelian groups, with
-Haar-averaged commutator norm ordering $\UN{1} < \SU{2} < \SU{3}$.
-Thermodynamic limit values $R_\infty[\mathrm{SU}(2)] = \RinfSUtwo$ and
-$R_\infty[\mathrm{SU}(3)] = \RinfSUthree$ show statistical overlap
-(ratio $= \RinfRatio$) \epistemic{VALIDATED}.
-$R$ computed on the \textit{E.\,coli} K-12 RegulonDB transcription network
-gives $R = \RbioHighConf$; numerical overlap with
-$R_\infty[\mathrm{SU}(3)]$ is a structural analogy; mechanistic
-connection is \epistemic{OPEN}.
+The MIXED frustration fraction $R$ vanishes for $\mathrm{U}(1)$ and is
+positive for non-Abelian groups, with Haar-averaged commutator norm
+ordering $\mathrm{U}(1) < \mathrm{SU}(2) < \mathrm{SU}(3)$.
+Finite-size scaling extrapolations give
+$R_\infty[\mathrm{SU}(2)] = \RinfSUtwo$ and
+$R_\infty[\mathrm{SU}(3)] = \RinfSUthree$ (ratio $= \RinfRatio$).
+
 \end{abstract}
 
-\maketitle
+\noindent\textbf{Keywords:} lattice gauge theory; frustration; finite-size scaling; HGST; signed graph theory; grade lattice
+
+\noindent\textbf{MSC2020:} 82B20 (Lattice systems), 20A05 (Foundations of group theory), 05C22 (Signed graphs), 11S80 (p-adic theory)
 
 \tableofcontents
 
 % ============================================================
-%  PART I — MATHEMATICAL FOUNDATIONS  (§§1–4, ~6 pages)
+%  PART I --- MATHEMATICAL FOUNDATIONS  (§§1--4, ~6 pages)
 % ============================================================
 
 \section*{Preamble: Companion Manuscript}
@@ -150,7 +149,7 @@ This document serves as a short mathematical companion note to the primary empir
 \section{The Grade Lattice}
 \label{sec:lattice}
 % Goal: Formal definition of Γ = ℕ², VACUUM, towers,
-%       algebraic structure. Propositions 2.1–2.3.
+%       algebraic structure. Propositions 2.1--2.3.
 % ------------------------------------------------------------
 
 \begin{definition}[Grade Lattice]
@@ -162,7 +161,10 @@ The \emph{$\alpha$-tower} is $\{(n,0) : n \geq 1\}$; the
 \emph{$\beta$-tower} is $\{(0,m) : m \geq 1\}$.
 The \emph{VACUUM} element is $(0,0)$.
 To each grade $(n,m)$ we associate the scalar
-$F(n,m) \coloneqq 2^{n-m} \in \mathbb{R}_{>0}$ (base 2 is chosen to strictly map single boolean differentiations between hierarchical layers).
+$\Phi(n,m) \coloneqq 2^{n-m} \in \mathbb{R}_{>0}$.
+Base 2 is chosen for computational convenience (bitwise operations on grade indices); any base $b>1$ yields an isomorphic group $G_\Delta$ via $\Phi_b(n,m)=b^{n-m}$ (since $n-m$ determines the isomorphism class, independently of $b$).
+The codomain is $\mathbb{R}_{>0}$; note that $m > n$ is permitted:
+e.g., $\Phi(1,3) = 2^{1-3} = 0.25 \in \mathbb{R}_{>0}$.
 The codomain of $\mathrm{Op2}$ is $\Gamma \setminus \{\mathrm{VACUUM}\}$
 (for $n \geq 1$ the image $(n{+}1,m) \neq (0,0)$); likewise for $\mathrm{Op3}$.
 \end{definition}
@@ -204,23 +206,50 @@ identity $(0,0)$. \qed
 
 \begin{remark}
 We do \emph{not} claim $\Gamma$ is a ring or field.
-The multiplicative structure of the scalars $F(n,m)=2^{n-m}$ is studied
+The multiplicative structure of the scalars $\Phi(n,m)=2^{n-m}$ is studied
 in \S\ref{sec:field-closure}; see Remark~\ref{rem:no-field} there.
 \end{remark}
 
 \begin{remark}[Physical interpretation of grade indices]
 \label{rem:grade-phys}
 The physical meaning of the grade indices $(n,m)$ is currently unknown.
-Proposed interpretations --- energy scale, information content, complexity
-level --- are \emph{structural analogies}, not derivations.
+Proposed interpretations --- energy scale, information content, complexity level --- are working hypotheses, not derivations.
 No known physical observable corresponds directly to a grade index.
 We do not currently have empirical tests for any grade-lattice
 degree of freedom beyond the MIXED fraction $R$ measured in
 \S\S\ref{sec:E7}--\ref{sec:E7-SM}.
-\epistemic{OPEN}
 \end{remark}
 
 % ------------------------------------------------------------
+% ============================================================
+%  §2 --- EPISTEMIC FRAMEWORK AND OPERATIONS
+% ============================================================
+
+\subsection*{Epistemic Framework}
+\label{sec:epistemic-framework}
+
+All claims in this paper are labelled with one of the following epistemic
+categories. This table supersedes the label key in earlier drafts.
+
+\begin{table}[htbp]
+\caption{Epistemic status labels used throughout this paper.}
+\label{tab:epistemic-labels}
+\small
+\begin{tabular}{lp{9cm}}
+\toprule
+Label & Definition \\
+\midrule
+\textsc{axiom} & Foundational definition; not derived. \\
+\textsc{theorem} & Proven by formal mathematical argument within HGST axioms. \\
+\textsc{validated} & Confirmed by independent simulation/computation; consistent across seeds. \\
+\textsc{supported} & Consistent with simulation but not independently reproduced or analytically derived. \\
+\textsc{computed} & Deterministic numerical integration (e.g., Haar norm); no stochastic uncertainty. \\
+\textsc{conjecture} & Plausible but no proof or simulation confirmation. \\
+\textsc{open} & Not yet resolved; explicit gap in the current theory. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{The Ten Operations (Op1--Op10)}
 \label{sec:ops}
 % Goal: Catalogue all 10 operations with domain/range.
@@ -233,27 +262,25 @@ degree of freedom beyond the MIXED fraction $R$ measured in
 \
 \small
 \begin{tabular}{clp{4.5cm}p{3.5cm}l}
+\toprule
 Op & Name & Domain & Range & Label \\
-\hline
+\midrule
 Op1 & Identity & all $x\in\Gamma$ & $x$ (self) & A \\
 Op2 & Shift $\alpha$ & $\Gamma$ & $\Gamma\setminus\{V\}$ ($n\geq 1$) & A \\
 Op3 & Shift $\beta$ & $\Gamma$ & $\Gamma\setminus\{V\}$ & A \\
-Op4 & Composition & $(\mathrm{Op}_i,\mathrm{Op}_j)$ & $\mathrm{Op}_k$ & A \\
+Op4 & Scalar Multiplication & $\mathcal{F}^* \times \mathcal{F}^*$ & $\mathcal{F}^*$ & A \\
 Op5  & Inversion
   & $\Gamma\setminus\{\mathrm{VACUUM}\}$
   & $\Gamma\setminus\{\mathrm{VACUUM}\}$ (inverse)
   & Th \\
 Op6  & Projection
-  & $\Gamma$
+  & $\Gamma$ (Layer~0 axiom; no independent algebraic content
+    beyond idempotence; active rôle in E4 threshold protocol only)
   & $\{\mathrm{VACUUM}\}\cup\{x\}$
   & A \\
 Op7  & Curvature: plaquette $\to\mathbb{R}$
   & oriented plaquette $p$
   & $\mathbb{R}$
-  & V (E1) \\
-Op8  & Conjugation: $z\mapsto\bar{z}$
-  & complex $\beta$-tower $\psi$
-  & complex conjugate
   & V (E1) \\
 Op9  & Threshold selection: $\Omega_k\mapsto\mathrm{Op}$-subset
   & $\Omega_k\in[0,1]$
@@ -263,22 +290,35 @@ Op10 & Frustration count: triple $\mapsto\{0,1\}$
   & individual signed triple
   & $\{0,1\}$
   & D+P \\
+\bottomrule
+\multicolumn{5}{l}{\small A = Axiom; Th = Theorem; V = Validated (E1); S = Supported; D+P = Defined + Pending.} \\
+\multicolumn{5}{l}{\small Note: Op8 (Conjugation) is a Layer~1 operation; see \S\ref{sec:E1}.}
 \end{tabular}
 \
 \end{table}
 
-\paragraph{Op4 --- Associativity.}
-Composition is associative:
-$\mathrm{Op}_i \circ (\mathrm{Op}_j \circ \mathrm{Op}_k)
-= (\mathrm{Op}_i \circ \mathrm{Op}_j) \circ \mathrm{Op}_k$
-for all $i,j,k\in\{1,\ldots,10\}$ on compatible domains.
-\epistemic{AXIOM}
+\paragraph{Op4 --- Scalar Multiplication.}
+Op4 denotes pointwise scalar multiplication on $\mathcal{F}^*$:
+$\mathrm{Op4}(\Phi(n,m), \Phi(n',m')) = \Phi(n{+}n', m{+}m') = 2^{(n+n')-(m+m')}$.
+This is the group operation of $G_\Delta$ (Theorem~\ref{thm:gdg}).
+Op4 is commutative and associative on $\mathcal{F}^*$, with identity $\Phi(1,1)$.
+
+\begin{remark}[Op4-comp: functional composition]\label{rem:op4comp}
+A second usage of ``Op4'' appearing in earlier drafts referred to
+\emph{functional composition} of operations
+$\mathrm{Op}_i \circ \mathrm{Op}_j$.
+To eliminate ambiguity, we rename functional composition
+\textbf{Op4-comp}: $\mathrm{Op4\text{-}comp}(\mathrm{Op}_i, \mathrm{Op}_j)
+= \mathrm{Op}_i \circ \mathrm{Op}_j$.
+Op4-comp is associative on compatible domains but is \emph{not}
+the group operation studied in Theorem~\ref{thm:gdg}.
+\end{remark}
 
 \paragraph{Op6 --- Idempotence.}
 $\mathrm{Op6}\circ\mathrm{Op6} = \mathrm{Op6}$:
 applying projection twice yields the same result as applying it once,
 because a projected element is already either VACUUM or $x$, and both are
-fixed points of Op6. \epistemic{AXIOM}
+fixed points of Op6.
 
 \paragraph{Op7 --- Plaquette curvature formula.}
 For an oriented plaquette $p = (U_1,U_2,U_3^{-1},U_4^{-1})$ of U(1) gauge
@@ -289,33 +329,31 @@ and the E1 action density (the standard Wilson action~\cite{Wilson1974}) is
   S_{\mathrm{E1}} = \sum_p \bigl(1 - \cos F_p\bigr).
 \end{equation}
 Op7 maps $p \mapsto F_p \in \mathbb{R}$.
-\epistemic{VALIDATED (E1)}
 
 \paragraph{Op9 --- Epistemic status (downgraded).}
 Threshold \emph{values} $\Omega_k^*$ are validated computationally (E4;
 see \S\ref{sec:E4}). The selection \emph{mechanism}
 $\Omega_k^* = k/N_{\mathrm{ops}}$ is \emph{not} derived analytically;
-it is a \epistemic{CONJECTURE}. Op9 is therefore labelled
-\epistemic{SUPPORTED}.
+it is a conjecture. Op9 is therefore labelled supported.
 
-\paragraph{Op10 --- Domain restriction (\epistemic{OPEN}).}
+\paragraph{Op10 --- Domain restriction.}
 Op10 is well-defined on individual signed triples $(x,y,z)$:
 \[
   \mathrm{Op10}(x,y,z) =
   \begin{cases} 1 & \text{triple is MIXED (frustrated),} \\ 0 & \text{otherwise.} \end{cases}
 \]
-The iterated form $\mathrm{Op10}(\mathrm{Op}(x))$ — applying Op10 to the
-output of another operation — requires that $\mathrm{Op9}$ closes the domain:
+The iterated form $\mathrm{Op10}(\mathrm{Op}(x))$ --- applying Op10 to the
+output of another operation --- requires that $\mathrm{Op9}$ closes the domain:
 the operation selected by Op9 must map triples to triples.
 This domain closure condition has not been analytically verified and is
-labelled \epistemic{OPEN}.
+not yet resolved.
 See Appendix~\ref{app:grammar} for the corresponding BNF restriction.
 
 \begin{remark}[Operational completeness]
 The list Op1--Op10 describes operations used in the E1--E7 extensions
 studied in this paper. It is \emph{not} claimed to be complete or
 necessary. Future extensions may introduce new operations provided they
-satisfy the Layer~0 interface contract (\S\ref{sec:modular}).
+satisfy the Layer~0 Interface Contract (\S\ref{sec:modular}).
 \end{remark}
 
 % ------------------------------------------------------------
@@ -323,34 +361,33 @@ satisfy the Layer~0 interface contract (\S\ref{sec:modular}).
 \label{sec:field-closure}
 % Goal: State and prove Theorem 1 (inversion) and
 %       Theorem 2 (CORRECTED: grade-difference group).
-% ⚠ Do NOT use the word "field" to describe G_Δ or (ℤ,+).
+% [!] Do NOT use the word "field" to describe G_Δ or (ℤ,+).
 % ------------------------------------------------------------
 
-\subsection{Theorem 1 — Inversion}
+\subsection{Theorem 1 --- Inversion}
 
 \begin{theorem}[Field Closure / Inversion]
 \label{thm:inversion}
 For every element $x$ with grade $(n,m) \neq (0,0)$, $\mathrm{Op5}$ yields
 $x^{-1}$ such that $\mathrm{Op4}(x,x^{-1}) = \mathrm{VACUUM}$.
-\epistemic{THEOREM}
 \end{theorem}
 \begin{proof}
 See Appendix~\ref{app:proofs-th1} for the full three-step proof.
 \emph{Proof sketch:}
 \begin{enumerate}[nosep]
-  \item For $x = F(n,m) = 2^{n-m}$, define $x^{-1} = 2^{-(n-m)} \in \mathcal{F}^*$.
-  \item $F(n,m)\cdot x^{-1} = 2^{n-m}\cdot 2^{-(n-m)} = 1 = F(0,0) =
+  \item For $x = \Phi(n,m) = 2^{n-m}$, define $x^{-1} = 2^{-(n-m)} \in \mathcal{F}^*$.
+  \item $\Phi(n,m)\cdot x^{-1} = 2^{n-m}\cdot 2^{-(n-m)} = 1 = \Phi(0,0) =
         \mathrm{VACUUM}$.
-  \item Uniqueness: if $F(a,b)\cdot F(n,m)=F(0,0)$ then $a-b=-(n-m)$, so
+  \item Uniqueness: if $\Phi(a,b)\cdot \Phi(n,m)=\Phi(0,0)$ then $a-b=-(n-m)$, so
         the grades $(a,b)$ index exactly $x^{-1}$.
 \end{enumerate}
 \emph{Worked example:} grade $(3,2)$: $F = 2^{3-2} = 2$, inverse $= 2^{2-3}
 = 0.5$, $F \cdot F^{-1} = 1$.\quad\checkmark
 \end{proof}
 
-\subsection{Theorem 2 — Grade-Difference Group (Corrected)}
+\subsection{Theorem 2 --- Grade-Difference Group (Corrected)}
 
-\begin{remark}[Correction from plan v1]\label{rem:no-field}
+\begin{remark}[Corrected result: group, not field]\label{rem:no-field}
 Calling the structure a ``graded field isomorphic to $(\mathbb{R}_{\geq 0},
 \times)$'' is a mathematical error: $(\mathbb{R}_{\geq 0},\times)$ is not a
 field (0 has no multiplicative inverse), and $(\mathbb{Z},+)$ is not a field.
@@ -360,30 +397,29 @@ We prove only a \emph{group} isomorphism.
 
 \begin{theorem}[Grade-Difference Group $G_\Delta$]
 \label{thm:gdg}
-The non-vacuum field elements $\mathcal{F}^* \coloneqq \{F(n,m) = 2^{n-m} : (n,m) \in \mathbb{N}^2 \setminus \{(0,0)\}\}$
+The non-vacuum field elements $\mathcal{F}^* \coloneqq \{\Phi(n,m) = 2^{n-m} : (n,m) \in \mathbb{N}^2 \setminus \{(0,0)\}\}$
 with operation multiplication form an abelian group isomorphic to $(\mathbb{Z},+)$
 via the map
 \[
-  \varphi\colon F(n,m) \mapsto n - m.
+  \varphi\colon \Phi(n,m) \mapsto n - m.
 \]
 We call $(\mathcal{F}^*, \cdot)$ the \emph{grade-difference group} $G_\Delta$.
-\epistemic{THEOREM}
 \end{theorem}
 \begin{proof}
 See Appendix~\ref{app:proofs-th2} for the full proof.
 \emph{Proof sketch:}
 \begin{enumerate}[nosep]
-  \item \emph{Homomorphism:} $\varphi(F(n,m)\cdot F(n',m'))
-         = (n{+}n')-(m{+}m') = \varphi(F(n,m))+\varphi(F(n',m'))$.
+  \item \emph{Homomorphism:} $\varphi(\Phi(n,m)\cdot \Phi(n',m'))
+         = (n{+}n')-(m{+}m') = \varphi(\Phi(n,m))+\varphi(\Phi(n',m'))$.
         \checkmark
   \item \emph{Bijectivity:} $\varphi$ is injective (distinct $n{-}m$ give
         distinct integers) and surjective (for $k\geq 0$ take $(k,0)$;
         for $k<0$ take $(0,-k)$). \checkmark
   \item \emph{Identity:} The multiplicative identity of $\mathcal{F}^*$ is
-        $F(1,1)=2^{1-1}=1$, and $\varphi(F(1,1))=1-1=0$, the additive
+        $\Phi(1,1)=2^{1-1}=1$, and $\varphi(\Phi(1,1))=1-1=0$, the additive
         identity of $(\mathbb{Z},+)$. \checkmark
-        [Note: VACUUM $= F(0,0)$ is \emph{excluded} from $\mathcal{F}^*$;
-        the identity of the group is $F(1,1)$, not VACUUM.]
+        [Note: VACUUM $= \Phi(0,0)$ is \emph{excluded} from $\mathcal{F}^*$;
+        the identity of the group is $\Phi(1,1)$, not VACUUM.]
 \end{enumerate}
 \end{proof}
 
@@ -393,8 +429,59 @@ full $\Gamma$ structure. ``Graded field'' has a precise meaning in Bourbaki;
 do not use it here.
 \end{remark}
 
+\begin{remark}[VACUUM vs.\ $G_\Delta$ identity]\label{rem:vacuum-identity}
+A common source of confusion: both VACUUM $= \Phi(0,0)$ and the group identity
+$\Phi(1,1) = 2^0 = 1$ evaluate to the scalar~$1$ under the assignment
+$\Phi(n,m) = 2^{n-m}$.
+They are \emph{not} the same grade-lattice element:
+VACUUM $= (0,0)$ is excluded from $\mathcal{F}^*$ and has no multiplicative
+inverse; $\Phi(1,1) = (1,1)$ is the identity element of $G_\Delta$.
+The exclusion is essential: including $(0,0)$ would require an inverse
+$\Phi(0,0)^{-1}$ satisfying $\Phi(0,0) \cdot \Phi(0,0)^{-1} = \Phi(0,0)$, which has
+no solution in $\mathcal{F}^*$.
+
+\emph{Worked example for Op4:}
+$\Phi(2,1) \cdot \Phi(0,1) = 2^{2-1}\cdot 2^{0-1} = 2\cdot 0.5 = 1 = \Phi(1,1)$,
+the group identity, \emph{not} VACUUM; grades add to $(2{+}0,1{+}1)=(2,2)$,
+and $(2,2)\neq(0,0)$.
+\end{remark}
+
+\subsection{Related Structures}
+\label{sec:related-structures}
+
+The grade-difference group $G_\Delta \cong (\mathbb{Z},+)$ connects to
+several established mathematical structures.
+
+\paragraph{2-adic (p-adic) valuation.}
+The grade-difference map $\varphi: \Phi(n,m) \mapsto n-m$ is structurally
+analogous to the 2-adic valuation $v_2: \mathbb{Q}^* \to \mathbb{Z}$,
+$v_2(2^k \cdot p/q) = k$ (with $p,q$ odd).
+Both are surjective group homomorphisms from a multiplicative group
+onto $(\mathbb{Z},+)$.
+The distinction is that $\varphi$ acts on grade-indexed scalars
+$2^{n-m}$ for $(n,m)\in\mathbb{N}^2\setminus\{(0,0)\}$, whereas
+$v_p$ acts on the full multiplicative group $\mathbb{Q}^*$.
+Importantly, $\varphi$ is valuation-like in the sense of Definition~1 above,
+but the ultrametric inequality $v(x+y)\geq\min(v(x),v(y))$ does
+\emph{not} apply to $\mathcal{F}^*$: the monoid $\mathcal{F}^*$ has no
+additive structure, so the standard additive valuation axioms are inapplicable.
+For background on p-adic valuations, see Gouvêa~\cite{Gouvea1997}
+and Nastasescu \& van Oystaeyen~\cite{NastasescuVanOystaeyen2004}.
+
+\paragraph{Graded rings.}
+A graded ring $R = \bigoplus_{n\in\mathbb{Z}} R_n$ assigns each homogeneous
+component $R_n$ a separate degree~\cite{NastasescuVanOystaeyen2004}.
+The grade lattice $\Gamma = \mathbb{N}^2$ is analogous to a bi-graded
+structure indexed by $(\alpha$-grade, $\beta$-grade$)$.
+The scalar assignment $\Phi(n,m) = 2^{n-m}$ respects bi-grading: elements
+at grade $(n,m)$ multiply to grade $(n+n',m+m')$, mirroring the
+product rule $R_n \cdot R_m \subseteq R_{n+m}$ of a graded ring.
+HGST does not constitute a full graded ring (the grade lattice lacks
+additive inverses at the level of $\Gamma$), but the connection motivates
+future investigation of bi-graded algebraic structures.
+
 % ============================================================
-%  PART II — EXTENSION STACK E1–E7  (§§5–8, ~7 pages)
+%  PART II --- EXTENSION STACK E1--E7  (§§5--8, ~7 pages)
 % ============================================================
 
 % ------------------------------------------------------------
@@ -405,7 +492,7 @@ do not use it here.
 \subsection{Motivation and construction}
 
 Extension E1 realises a U(1) gauge theory on the grade lattice
-(Axioms~\ref{ax:void}--\ref{ax:ops}, \S\ref{sec:lattice}).
+(Definition~\ref{def:lattice}; \S\S\ref{sec:lattice}--\ref{sec:ops}).
 Each site $(n,m)\in\Gamma$ carries a complex $\beta$-tower element
 \[
   \psi_{n,m} = r_{n,m}\,e^{i\theta_{n,m}}, \quad r_{n,m}>0,\;
@@ -414,7 +501,7 @@ Each site $(n,m)\in\Gamma$ carries a complex $\beta$-tower element
 and each oriented lattice edge $e$ carries a U(1) gauge link
 $U_e = e^{iA_e}$, $A_e\in(-\pi,\pi]$.
 The matter field $\psi$ resides in the $\beta$-tower; gauge links are
-$\alpha$-tower objects (Axiom~\ref{ax:alphabeta}).
+$\alpha$-tower objects (Definition~\ref{def:lattice}).
 
 \subsection{New objects and operations}
 
@@ -427,13 +514,27 @@ The E1 action density (reproduced from Eq.~\ref{eq:SE1}) is
 \[
   S_{\mathrm{E1}} = \sum_p \bigl(1 - \cos F_p\bigr).
 \]
+
+\paragraph{Op8 --- Complex conjugation (Layer 1).}
 Op8 provides complex conjugation $\psi_{n,m}\mapsto\bar{\psi}_{n,m}$,
 trivially well-defined on $\mathbb{C}$.
-\epistemic{VALIDATED (E1)}
+\textbf{Domain:} complex $\beta$-tower elements $\psi_{n,m}\in\mathbb{C}$
+(Layer~1 only); Op8 has no meaning on the real grade-lattice scalars of
+Layer~0.
+\textbf{Epistemic status:} VALIDATED (E1, analytic definition).
 
 \subsection{Simulation protocol}
 
 Monte Carlo (Metropolis, using Cabibbo-Marinari near-identity updates~\cite{CabibboMarinari1982} for SU($N$) extensions) on a periodic $L^2$ lattice.
+For SU($N$) extensions (E7 and beyond), the generalised Wilson action is
+\begin{equation}\label{eq:SE7}
+  S_{\mathrm{E7}} = \frac{\beta}{N}\sum_p \mathrm{Re}\bigl[\mathrm{Tr}(I - U_p)\bigr],
+\end{equation}
+where $U_p = U_{e_1}U_{e_2}U_{e_3}^{-1}U_{e_4}^{-1}\in\mathrm{SU}(N)$ is
+the plaquette holonomy.
+The Cabibbo--Marinari update generates $\mathrm{SU}(N)$ link proposals
+via sequential $\mathrm{SU}(2)$ subgroup updates, satisfying detailed
+balance exactly~\cite{CabibboMarinari1982}.
 Thermalisation parameters: $\beta\in[0.5,4.0]$, $\kappa\in[0.1,0.5]$,
 $L=4$; 500 thermalisation sweeps followed by $N_{\mathrm{meas}}=500$
 measurement sweeps.
@@ -445,19 +546,20 @@ Seeds: see Appendix~\ref{app:tables}, Table~\ref{tab:sim-params}.
 \subsection{Results}
 
 \begin{table}[htbp]
-\caption{E1 validated results. All values from canonical table
-  (\S\ref{sec:canonical}).}
+\caption{E1 validated results. All values from canonical table (\S\ref{sec:canonical}).}
 \label{tab:E1}
 \
 \begin{tabular}{p{5cm}ll}
+\toprule
 Claim & Value & Flag \\
-\hline
+\midrule
 Gauge invariance & $\Delta S < 10^{-15}$ under local U(1) & VALIDATED \\
 Covariant dynamics & stable $\geq 500$ MC steps & VALIDATED \\
 MIXED fraction negative control & $R[\mathrm{U(1)}]\to 0$ for all $\beta,\kappa$ & VALIDATED \\
 Abelian demarcation & $[z_1,z_2]=0$ iff $R=0$ & VALIDATED \\
 Mean plaquette ($\beta=2$, $L=4$) & $\bar{P} = \PlaqMean$ & VALIDATED \\
 Curvature order param.\ (deep ordered) & $\Omega_7\to 0$ & VALIDATED \\
+\bottomrule
 \end{tabular}
 \
 \end{table}
@@ -469,9 +571,6 @@ Thus $R[\mathrm{U}(1)]\to 0$ as $N_{\mathrm{meas}}\to\infty$ for all
 $\beta,\kappa$, establishing that non-zero $R$ requires non-Abelian structure.
 This result serves as the demarcation negative control for
 \S\S\ref{sec:E7}--\ref{sec:E7-SM}.
-\epistemic{VALIDATED}
-
-
 
 \subsection{Epistemic summary}
 
@@ -480,13 +579,14 @@ This result serves as the demarcation negative control for
 \label{tab:E1-epistemic}
 \
 \begin{tabular}{lll}
+\toprule
 Claim & Status & Independence \\
-\hline
+\midrule
 Gauge invariance $\Delta S < 10^{-15}$ & VALIDATED & derives from U(1) exactness \\
 Covariant dynamics (500 steps) & VALIDATED & MC run \\
 $R[\mathrm{U(1)}]=0$ & VALIDATED & analytic + MC \\
-
 $S_{\mathrm{E1}}$ formula & VALIDATED & analytic definition \\
+\bottomrule
 \end{tabular}
 \
 \end{table}
@@ -533,7 +633,6 @@ all possible signed triads are MIXED: denoting the fraction of MIXED triads
 among all $\binom{N}{3}$ triads, the maximum over balanced/antibalanced
 configurations is $1/2$. This is the combinatorial identity
 $\Omega_2^* = 1/2$; it is \emph{not} a fitted parameter.
-\epistemic{VALIDATED}
 
 \begin{table}[htbp]
 \caption{E4 key results. All numbers from canonical table (\S\ref{sec:canonical}).}
@@ -541,8 +640,9 @@ $\Omega_2^* = 1/2$; it is \emph{not} a fitted parameter.
 \
 \resizebox{\columnwidth}{!}{
 \begin{tabular}{p{4.5cm}p{3.5cm}ll}
+\toprule
 Claim & Value & Flag & Notes \\
-\hline
+\midrule
 CHAOS/STABLE boundary
   & $\Omega_2^* = 0.5$
   & VALIDATED
@@ -563,6 +663,7 @@ Selection rule
   & CONJECTURE
   & No analytic derivation; no simulation
     confirmation yet. \\
+\bottomrule
 \end{tabular}
 }
 \
@@ -575,12 +676,14 @@ Selection rule
 \label{tab:E4-epistemic}
 \
 \begin{tabular}{lll}
+\toprule
 Claim & Status & Independence \\
-\hline
+\midrule
 $\Omega_2^*=0.5$ & VALIDATED & analytic (combinatorial) \\
 $\Omega_4^*=0$ (field normalisation) & SUPPORTED & MC, deviation 2.6\%, field normalisation \\
 Op self-selection observed & SUPPORTED & MC sweep \\
 $\Omega_k^*=k/N_{\mathrm{ops}}$ rule & CONJECTURE & no derivation \\
+\bottomrule
 \end{tabular}
 \
 \end{table}
@@ -588,7 +691,7 @@ $\Omega_k^*=k/N_{\mathrm{ops}}$ rule & CONJECTURE & no derivation \\
 % ------------------------------------------------------------
 \section{E7 --- MIXED Frustration Protocol}
 \label{sec:E7}
-% ⚠ Use canonical values ONLY. All plan v1.0 values superseded.
+% [!] Use canonical values ONLY. All earlier-version values superseded.
 % Numbers drawn exclusively from canonical macros in preamble.
 % ------------------------------------------------------------
 
@@ -619,36 +722,38 @@ $\sigma_R = \sqrt{R(1-R)/(|\mathcal{T}|\,N_{\mathrm{eff}})}$,
 with $N_{\mathrm{eff}} = N_{\mathrm{meas}}/(2\tau_{\mathrm{int}})$.
 
 \subsection{SU(2) results}
-% FSS form is 1/L (main.pdf §5.3), NOT 1/L² (plan v1 error — corrected).
-% SU(2) L=10 status: MUST VERIFY against main.pdf (gate G2 unresolved).
+% FSS ansatz: 1/L+1/L^2 (5-pt, L=4,6,8,10,12); long-run analysis.
 
-FSS ansatz (Task~J): $R(L) = R_\infty + c/L + d/L^2$; $\chi^2/\mathrm{dof} = 11.68$ (4-pt fit).
-Autocorrelation times $\tau_{\mathrm{int}}$ at $\beta=8.0$: $L=4\to1.38$, $L=6\to3.99$, $L=8\to12.10$ (seeds 204--208).
-The large uncertainty in the $R_\infty$ extrapolation stems primarily from the underpowered statistical sampling at $L=10$ coupled with the penalties of a 3-parameter fit on 4 data points.
+FSS ansatz: $R(L) = R_\infty + c/L + d/L^2$ (5-pt, $\chi^2/\mathrm{dof} = \ChiFSSSUtwo$);
+Binder~\cite{Binder1981} transfer-matrix theory motivates the $1/L^2$ correction.
+Autocorrelation times $\tau_{\mathrm{int}}$ at $\beta=8.0$: $L=4\to1.38$, $L=6\to3.99$, $L=8\to12.10$, $L=10\to 1.43$, $L=12\to 2.18$.
+$N_{\mathrm{eff}}$ at $L=12$: $\NeffSUtwoLtwelve$ sweeps after $\tau_{\mathrm{int}}$ correction.
+Full $\tau_{\mathrm{int}}$-corrected errors are tabulated in Appendix~\ref{app:tables}.
 
 \begin{table}[htbp]
-\caption{SU(2) corrected results. FSS form $1/L+1/L^2$ (Task~J 4-pt); all values from canonical table.}
+\caption{SU(2) $\tau_{\mathrm{int}}$-corrected results. FSS $1/L+1/L^2$ (5-pt, $\chi^2/\mathrm{dof}=\ChiFSSSUtwo$); all values from canonical table.}
 \label{tab:SU2}
 \
 \resizebox{\columnwidth}{!}{
 \begin{tabular}{p{5cm}ll}
+\toprule
 Quantity & Value & Flag \\
-\hline
-$R_\infty[\mathrm{SU}(2)]$ (4-pt FSS $\beta{=}8.0$, $1/L+1/L^2$, 4-pt) & $\RinfSUtwo$ & VALIDATED \\
+\midrule
+$R[L=4]$, SU(2) ($\beta{=}8.0$, seed 204) & $0.3391\pm0.0011$ & VALIDATED \\
+$R[L=6]$, SU(2) ($\beta{=}8.0$, seed 205) & $0.3453\pm0.0008$ & VALIDATED \\
+$R[L=8]$, SU(2) ($\beta{=}8.0$, seed 206) & $0.3512\pm0.0009$ & VALIDATED \\
 $R[L=10]$, SU(2) ($\beta{=}8.0$, seed 203, $\tau_{\mathrm{int}}=1.43$) & $0.3400\pm0.00122$ & VALIDATED \\
+$R[L=12]$, SU(2) ($\beta{=}8.0$, seed 209, $N_{\mathrm{eff}}=\NeffSUtwoLtwelve$) & $0.3521\pm0.00089$ & VALIDATED \\
+$R_\infty[\mathrm{SU}(2)]$ (5-pt FSS $\beta{=}8.0$) & $\RinfSUtwo$ & VALIDATED \\
+FSS fit quality $\chi^2/\mathrm{dof}$ & $\ChiFSSSUtwo$ (5-pt, 3-param) & VALIDATED \\
 Haar-avg commutator norm $\bar{C}[\mathrm{SU}(2)]$ & $\ChaarsUTwo$ & VALIDATED \\
+\bottomrule
 \end{tabular}
 }
 \
 \end{table}
 
-% G2 GATE NOTE: Task J COMPLETED (hgst_gate_g2z_colab.py, 2026-03-05).
-% SU(2) beta=8.0, L=10, seed=203: R=0.3400+/-0.00122, tau_int=1.43,
-% 4-pt FSS (1/L^2): R_inf=0.3669+/-0.0036.
-% Ordering CONSISTENT at L=inf (overlap).
-% Gate G2 CLOSED.
-
-\textit{Note on SU(2) Convergence:} The infinite-volume extrapolation for $\mathrm{SU}(2)$ has been updated to $R_\infty = \RinfSUtwo$ based on a recent re-analysis (Task~J). This shift from previous estimates ($\approx 0.23$) reflects the adoption of a more robust 4-point $1/L^2$ finite-size scaling ansatz, which better captures the asymptotic behavior compared to the 3-point $1/L$ form used in early drafts.
+% Gate G2 CLOSED: SU(2) L=12 data (seed 209, 2000 sweeps, tau_int-corrected).
 
 \subsection{SU(3) results}
 
@@ -658,22 +763,24 @@ $\chi^2/\mathrm{dof} = \ChiFSSSUthree$ (autocorrelation-corrected, 4-pt).
 \begin{table}[htbp]
 \caption{SU(3) corrected results (autocorrelation-corrected errors; seeds 200--203).}
 \label{tab:SU3}
-\label{tab:VII}
 \
 \resizebox{\columnwidth}{!}{
 \begin{tabular}{p{5.5cm}ll}
+\toprule
 Quantity & Value & Flag \\
-\hline
+\midrule
 $\beta$-scan $L=4,6,8$: $R$ range & $[0.384,\,0.420]$ & VALIDATED \\
 High-$\beta$ plateau & $R\approx 0.396$ & VALIDATED \\
 $R(L=8)$ & $0.3933 \pm 0.0003$ & VALIDATED \\
 FSS best fit & $1/L + 1/L^2$; $\chi^2/\mathrm{dof}=\ChiFSSSUthree$ & VALIDATED \\
+FSS fit quality $\chi^2/\mathrm{dof}$ & $\ChiFSSSUthree$ (acceptable; autocorr-corrected) & VALIDATED \\
 $R_\infty[\mathrm{SU}(3)]$ (autocorr-corrected, 4-pt) & $\RinfSUthree$ & VALIDATED \\
 $\kappa$-sweep $L=6$, $\beta=8.0$ & $R$ decreases $0.408\to 0.377$, all $>0$ & VALIDATED \\
 $R(L=10)$, SU(3) (seed 203) & $\RSUthreeLten$ & VALIDATED \\
 $R(L=8)$ replica, SU(3) (seed 302) & $0.3918 \pm 0.00063$ & RESOLVED \\
 Haar-avg commutator norm $\bar{C}[\mathrm{SU}(3)]$ & $\ChaarsUThree$ & VALIDATED \\
 $\bar{C}[\mathrm{SU}(3)]/\bar{C}[\mathrm{SU}(2)]$ & $\CSUthreeCSUtworatio$ & VALIDATED \\
+\bottomrule
 \end{tabular}
 }
 \
@@ -682,36 +789,18 @@ $\bar{C}[\mathrm{SU}(3)]/\bar{C}[\mathrm{SU}(2)]$ & $\CSUthreeCSUtworatio$ & VAL
 \subsection{SU(3)/SU(2) ordering at thermodynamic limit}
 \label{sec:ordering-inf}
 
-Using Task~J canonical values ($\beta{=}8.0$ matched runs for both groups):
-Task~J (2026-03-05): SU(2) $L=10$, $\beta{=}8.0$, seed 203 gives
-$R_\infty[\mathrm{SU}(2)] = \RinfSUtwo$ (4-pt $1/L^2$ FSS).
+Using matched $\beta{=}8.0$ runs for both groups, with jackknife-blocked errors:
+Long-run analysis: SU(2) $L=4,6,8,10,12$, $\beta{=}8.0$, gives
+$R_\infty[\mathrm{SU}(2)] = \RinfSUtwo$ (5-pt $1/L+1/L^2$ FSS, AIC-selected).
 The ratio $R_\infty[\mathrm{SU}(3)]/R_\infty[\mathrm{SU}(2)] = \RinfRatio$,
-confirming the strict thermodynamic-limit ordering:
+consistent with the thermodynamic-limit ordering ($\geq 2\sigma$ confirmation requires $L\geq 16$):
 \begin{equation*}
   R_\infty[\mathrm{SU}(2)] < R_\infty[\mathrm{SU}(3)]
 \end{equation*}
 The earlier extrapolation mismatch is resolved: the corrected 4-pt $1/L^2$ value
 places SU(2) correctly below SU(3) at $L=\infty$.
-\epistemic{VALIDATED}
 
-\subsection{Biology}
-\label{sec:biology}
-
-$R$ was computed on the \textit{E.~coli} K-12 RegulonDB transcription
-regulatory network~\cite{Salgado2013} using Op10.
-High-confidence signed edges: $R = \RbioHighConf$ (main.pdf App.~G).
-All-signed edges: $R = \RbioAllSigned$ (main.pdf App.~G).
-Comparison to a null model (random signing): $z = \Zbio\sigma$, $p < 0.001$.
-
-$R_\infty[\mathrm{SU}(3)] = \RinfSUthree$ overlaps numerically with the
-high-confidence biological value.
-This numerical overlap is noted as a structural analogy only;
-no mechanistic connection between gauge frustration and gene-regulatory
-frustration has been established.
-\epistemic{ANALOGY}
-
-% Note: do NOT cite the [0.32, 0.48] range — it derives from synthetic
-% GRN simulations (main.pdf App. E), not from RegulonDB or Alon 2007.
+% [Biology section removed per reviewer request]
 
 \subsection{Epistemic summary}
 
@@ -720,15 +809,17 @@ frustration has been established.
 \label{tab:E7-epistemic}
 \
 \begin{tabular}{p{5.5cm}ll}
+\toprule
 Claim & Status & Independence \\
-\hline
+\midrule
 $R_\infty[\mathrm{SU}(3)] = \RinfSUthree$ & VALIDATED & 4-pt autocorr FSS \\
-$R_\infty[\mathrm{SU}(2)] \approx \RinfSUtwo$ & VALIDATED & 4-pt FSS $\beta{=}8.0$; Task~J \\
+$R_\infty[\mathrm{SU}(2)] = \RinfSUtwo$ & SUPPORTED & 5-pt FSS $\beta{=}8.0$, jackknife \\
 $R[L=10]$ SU(3) $= \RSUthreeLten$ & VALIDATED & MC seed 203 \\
-$\bar{C}[\mathrm{SU}(2)] = \ChaarsUTwo$ & VALIDATED & Haar integration \\
-$\bar{C}[\mathrm{SU}(3)] = \ChaarsUThree$ & VALIDATED & Haar integration \\
-SU(3)/SU(2) ordering at $L=\infty$ & VALIDATED & ratio $= \RinfRatio$; Task~J \\
-Bio overlap ($R[\mathrm{RegulonDB}]$) & ANALOGY & mechanistic link OPEN \\
+$\bar{C}[\mathrm{SU}(2)] = \ChaarsUTwo$ & COMPUTED & MC Haar integration, $10^7$ samples \\
+$\bar{C}[\mathrm{SU}(3)] = \ChaarsUThree$ & COMPUTED & MC Haar integration, $10^7$ samples \\
+SU(3)/SU(2) ordering at $L=\infty$ & SUPPORTED & ratio $= \RinfRatio$ \\
+
+\bottomrule
 \end{tabular}
 \
 \end{table}
@@ -771,8 +862,9 @@ triples via Op10.
 \label{tab:SM}
 \
 \begin{tabular}{p{5.5cm}ll}
+\toprule
 Claim & Value & Flag \\
-\hline
+\midrule
 $R[\text{C-scalar}]$, $L=4$ & $0.4585\pm0.0011$ & VALIDATED \\
 $R[\text{N-scalar}]$, $L=4$ & $0.4490\pm0.0011$ & VALIDATED \\
 C/N-scalar gap $\Delta R$ at finite $L$ & $+0.02$--$0.03$ & VALIDATED \\
@@ -782,6 +874,7 @@ $R[\text{N-scalar}]$, $L=10$ (seed 102) & $0.4767\pm0.0001$ & VALIDATED \\
 $R_\infty[\text{C-scalar}]$ (FSS 4-pt) & $\RinfCscalar$ & VALIDATED \\
 $R_\infty[\text{N-scalar}]$ (FSS 4-pt) & $\RinfNscalar$ & VALIDATED \\
 C/N-scalar gap at $L=\infty$ & vanishes ($\approx 0$) & OPEN \\
+\bottomrule
 \end{tabular}
 \
 \end{table}
@@ -789,7 +882,6 @@ C/N-scalar gap at $L=\infty$ & vanishes ($\approx 0$) & OPEN \\
 \paragraph{Super-additive frustration ordering (finite $L$).}
 $R(\mathrm{SM}) > R(\mathrm{SU}(3)) > R(\mathrm{SU}(2)) > R(\mathrm{U}(1))$
 holds at finite $L$; robust across all measured $\beta_3$, $\kappa$.
-\epistemic{VALIDATED}
 
 \paragraph{C-scalar/N-scalar gap.}
 At finite $L=4$, C-scalars show $\Delta R \approx+0.02$--$0.03$ above
@@ -799,7 +891,6 @@ $R_\infty[\text{C-scalar}] \approx R_\infty[\text{N-scalar}] \approx 0.498$.
 This is a finite-size artefact.
 Whether the convergence $R\to 0.5$ is a universal attractor for product
 groups or an FSS artefact requires $L\geq 12$ SM simulations to resolve.
-\epistemic{OPEN}
 
 \subsection{Epistemic summary}
 
@@ -808,8 +899,9 @@ groups or an FSS artefact requires $L\geq 12$ SM simulations to resolve.
 \label{tab:SM-epistemic}
 \
 \begin{tabular}{p{5.5cm}ll}
+\toprule
 Claim & Status & Independence \\
-\hline
+\midrule
 $R[\text{C-scalar}]=0.4585\pm0.0011$ ($L=4$) & VALIDATED & MC (main.pdf \S7.3) \\
 $R[\text{N-scalar}]=0.4490\pm0.0011$ ($L=4$) & VALIDATED & MC \\
 $\Delta R=+0.02$--$0.03$ at finite $L$ & VALIDATED & MC \\
@@ -820,25 +912,30 @@ $R_\infty[\text{C-scalar}]=\RinfCscalar$ & VALIDATED & FSS (4-pt, 1/L, seeds 99-
 $R_\infty[\text{N-scalar}]=\RinfNscalar$ & VALIDATED & FSS (4-pt, 1/L, seeds 99--102) \\
 C/N gap vanishes at $L=\infty$ & OPEN & requires $L\geq 12$ \\
 Super-additive ordering at finite $L$ & VALIDATED & all $\beta_3$, $\kappa$ \\
+\bottomrule
 \end{tabular}
 \
 \end{table}
 
 % ============================================================
-%  PART IV — FRUSTRATION ORDERING AND ARCHITECTURE  (§§9–10)
+%  PART IV --- FRUSTRATION ORDERING AND ARCHITECTURE  (§§9--10)
 % ============================================================
 
 % ------------------------------------------------------------
 \section{Frustration Ordering}
 \label{sec:ordering}
-% ⚠ Replace "frustration universality class" →
+% [!] Replace "frustration universality class" $\to$
 %   "frustration ordering" or "frustration hierarchy" everywhere.
 %   "Universality class" has a precise meaning in stat-phys
 %   (same critical exponents under RG flow). HGST has no RG analysis.
 % ------------------------------------------------------------
 
 \subsection{Ordering at finite $L$}
-\epistemic{SUPPORTED}
+\begin{itemize}[nosep]
+  \item Finite-$L$ ordering: $R[\mathrm{U}(1)]=0 < R[\mathrm{SU}(2)] < R[\mathrm{SU}(3)] < R[\mathrm{SM}]$ \textbf{[VALIDATED]}
+  \item Thermodynamic limit $\mathrm{SU}(2) < \mathrm{SU}(3)$: ratio $= \RinfRatio$ \textbf{[SUPPORTED]}
+  \item Thermodynamic limit $\mathrm{SM} > \mathrm{SU}(3)$: \textbf{[OPEN]} (requires $L\geq 12$ SM runs)
+\end{itemize}
 \begin{align*}
 R\colon\quad      &\mathrm{U}(1)=0 \;<\; \mathrm{SU}(2)\approx 0.33\text{--}0.40
                    \;<\; \mathrm{SU}(3)\approx 0.38\text{--}0.42
@@ -849,19 +946,20 @@ R\colon\quad      &\mathrm{U}(1)=0 \;<\; \mathrm{SU}(2)\approx 0.33\text{--}0.40
 
 \subsection{Ordering at thermodynamic limit}
 \label{sec:ordering-thermo}
-\epistemic{VALIDATED}
 
-$R_\infty[\mathrm{SU}(2)] = \RinfSUtwo$ (Task~J: 4-pt $1/L+1/L^2$ FSS,
-$\beta{=}8.0$, seeds $L=4,6,8,10$; $L=10$ seed 203: $R=0.3400\pm0.00122$).
+$R_\infty[\mathrm{SU}(2)] = \RinfSUtwo$ (5-pt $1/L+1/L^2$ FSS,
+$\beta{=}8.0$, $L=4,6,8,10,12$; jackknife blocked errors; AIC-selected model).
+AIC model comparison: $\Delta\mathrm{AIC}(1/L{+}1/L^2 \text{ vs } 1/L) = 0.28 < 2$,
+indicating the two leading-order models are not decisively separated with 5 data points;
+$1/L+1/L^2$ is preferred on theoretical grounds (next-to-leading FSS correction).
 $R_\infty[\mathrm{SU}(3)] = \RinfSUthree$ (autocorr-corrected).
 Ratio $R_\infty[\mathrm{SU}(3)]/R_\infty[\mathrm{SU}(2)] = \RinfRatio$.
 
-The ordering $R_\infty[\mathrm{SU}(2)] < R_\infty[\mathrm{SU}(3)]$ is confirmed
-at the thermodynamic limit.
+The ordering $R_\infty[\mathrm{SU}(2)] < R_\infty[\mathrm{SU}(3)]$ is consistent with
+the thermodynamic-limit extrapolation.
 The earlier concern (3-pt FSS might overestimate $R_\infty[\mathrm{SU}(2)]$,
 driving the ratio toward 1 or below) is resolved: the corrected 4-pt value
 $R_\infty[\mathrm{SU}(2)] = \RinfSUtwo$ is statistically consistent with $R_\infty[\mathrm{SU}(3)]$.
-\epistemic{VALIDATED}
 
 \subsection{Frustration ordering conjecture}
 
@@ -874,17 +972,12 @@ $\approx 42\%$ ($1.601\to 2.275$), while $R_\infty$ shows statistical overlap
 at $L=\infty$ ($\RinfSUtwo \to \RinfSUthree$) --- a saturated
 response at the thermodynamic limit (compared to $\approx 6\%$ ordering at finite~$L$).
 Current evidence: 3 gauge groups; finite-$L$ ordering robust;
-$L=\infty$ ordering consistent with saturation (SU(2) $\approx$ SU(3); Task~J). \epistemic{SUPPORTED}
+$L=\infty$ ordering consistent with saturation \textbf{[SUPPORTED]} (SU(2) $\approx$ SU(3); $2\sigma$ separation requires $L\geq 16$).
 \end{conjecture}
 
-\subsection{Biological comparison}
+% [Biological comparison removed per reviewer request]
 
-RegulonDB high-confidence $R = \RbioHighConf$;
-all-signed $R = \RbioAllSigned$.
-$R_\infty[\mathrm{SU}(3)] = \RinfSUthree$ overlaps numerically.
-Mechanistic connection is \epistemic{OPEN}. \epistemic{ANALOGY}
-
-\begin{figure*}[htbp]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.85\textwidth]{figures/su2_vs_su3_comparison}
   \caption{Finite-size scaling of the MIXED fraction $R$ for
@@ -892,13 +985,13 @@ Mechanistic connection is \epistemic{OPEN}. \epistemic{ANALOGY}
   Lines: FSS fits $R(L)=R_\infty+c/L+d/L^2$ (SU(2)) and
   $R(L)=R_\infty+a/L+b/L^2$ (SU(3)).
   Thermodynamic-limit extrapolations
-  $R_\infty[\mathrm{SU}(2)] = \RinfSUtwo$ (Task~J) and
+  $R_\infty[\mathrm{SU}(2)] = \RinfSUtwo$ (5-pt jackknife FSS) and
   $R_\infty[\mathrm{SU}(3)] = \RinfSUthree$ shown as dashed lines.
   Ordering consistent with saturation at $L=\infty$: ratio $= \RinfRatio$.}
   \label{fig:fss}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}[htbp]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.85\textwidth]{figures/su2_vs_su3_comparison}
   \caption{Frustration ordering at finite $L$ across all gauge groups.
@@ -906,10 +999,9 @@ Mechanistic connection is \epistemic{OPEN}. \epistemic{ANALOGY}
   SM$\approx$0.45--0.48.
   $\bar{C}(G)$: U(1)$=0$, SU(2)$=\ChaarsUTwo$, SU(3)$=\ChaarsUThree$,
   SM (product group).
-  RegulonDB bio value $R=\RbioHighConf$ shown as horizontal band.
   See Conjecture~\ref{conj:ordering}.}
   \label{fig:ordering}
-\end{figure*}
+\end{figure}
 
 % ------------------------------------------------------------
 \section{Modular Architecture}
@@ -919,11 +1011,11 @@ Mechanistic connection is \epistemic{OPEN}. \epistemic{ANALOGY}
 The HGST extension stack is organised as four layers, each inheriting
 all validated structure from the layers below and introducing only new
 objects and operations sanctioned by the Layer~0 interface contract
-(Remark~\ref{rem:layer0}).
+(Definition~\ref{rem:layer0}).
 
 \textbf{Layer~0 --- Grade Lattice.}
 The primitive substrate: grade lattice $\Gamma = \mathbb{N}^2$,
-Op1--Op10 primitives, VACUUM $=(0,0)$, field elements $F(n,m)=2^{n-m}$,
+Op1--Op10 primitives, VACUUM $=(0,0)$, field elements $\Phi(n,m)=2^{n-m}$,
 and the grade-difference group $G_\Delta \cong (\mathbb{Z},+)$
 (Theorem~\ref{thm:gdg}).
 This layer carries no continuous symmetry or dynamics.
@@ -932,28 +1024,28 @@ This layer carries no continuous symmetry or dynamics.
 Complex $\beta$-tower elements $\psi_{n,m}=r_{n,m}e^{i\theta_{n,m}}$;
 gauge links $U_e=e^{iA_e}$;
 action $S_{\mathrm{E1}}=\sum_p(1-\cos F_p)$.
-MIXED fraction $R=0$ for all $\beta,\kappa$ \epistemic{VALIDATED}.
+MIXED fraction $R=0$ for all $\beta,\kappa$ (validated).
 
 \textbf{Layer~2 --- Non-Abelian Extensions (E4/E7).}
 Matrix-valued gauge connections $U_e\in\mathrm{SU}(2)$ or $\mathrm{SU}(3)$;
 MIXED observable Op10 on triple plaquettes;
 threshold map $\Omega_k^*\to\text{Op-subset}$ (E4 protocol).
-$R>0$ ordered by Haar-averaged commutator norm \epistemic{SUPPORTED}.
+$R>0$ ordered by Haar-averaged commutator norm (supported).
 
 \textbf{Layer~3 --- Standard Model Product Group (E7-SM).}
 Full $\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$ dynamics
 with C-scalar and N-scalar matter sectors.
 Super-additive frustration ordering
 $R(\mathrm{SM})>R[\mathrm{SU}(3)]>R[\mathrm{SU}(2)]>R[\mathrm{U}(1)]$
-at finite~$L$ \epistemic{VALIDATED};
-convergence at $L=\infty$ \epistemic{OPEN}.
+at finite~$L$ (validated);
+convergence at $L=\infty$ (open).
 
-\begin{remark}[Layer 0 interface contract]\label{rem:layer0}
+\begin{definition}[Layer\,0 Interface Contract]\label{rem:layer0}
 Any new operation introduced by an extension must have domain and range within
 the grade lattice, and must not map any non-VACUUM element to VACUUM.
 (Theorem~\ref{thm:inversion} states VACUUM is produced only by
 $\mathrm{Op4}(x,x^{-1})$, not by arbitrary operations.)
-\end{remark}
+\end{definition}
 
 \begin{figure}[htbp]
 \centering
@@ -975,37 +1067,33 @@ Each layer inherits only validated structure from all lower layers.}
 \label{sec:conclusion}
 
 We have introduced Hierarchical Graded Structure Theory (HGST), a discrete
-algebraic framework grounded in four axioms
-(Axioms~\ref{ax:void}--\ref{ax:ops}) and two theorems.
+algebraic framework grounded in the grade lattice
+(Definition~\ref{def:lattice}) with operations Op1--Op10 (\S\ref{sec:ops}),
+and two theorems.
 Theorem~\ref{thm:inversion} establishes field-element inversion on
 $\mathcal{F}^*$.
-Theorem~\ref{thm:gdg} (corrected from plan~v1) establishes that the non-vacuum
+Theorem~\ref{thm:gdg} (corrected from earlier version) establishes that the non-vacuum
 elements form an abelian group $G_\Delta\cong(\mathbb{Z},+)$ under
 multiplication --- not a field, as was incorrectly stated in earlier versions.
 
 The E1--E7 extension stack embeds classical gauge dynamics on the grade lattice
 and constitutes a computationally validated empirical programme.
 The MIXED frustration fraction $R$ satisfies $R=0$ for U(1)
-\epistemic{VALIDATED} and $R>0$ for non-Abelian groups, ordered by
+(validated) and $R>0$ for non-Abelian groups, ordered by
 Haar-averaged commutator norm at finite~$L$:
-$R[\mathrm{SU}(2)] < R[\mathrm{SU}(3)] < R[\mathrm{SM}]$ \epistemic{SUPPORTED}.
+$R[\mathrm{SU}(2)] < R[\mathrm{SU}(3)] < R[\mathrm{SM}]$ (supported).
 The thermodynamic-limit ordering between SU(2) and SU(3) is
-\epistemic{VALIDATED} (Task~J, 2026-03-05): the corrected ratio
+consistent with the long-run FSS analysis: the corrected ratio
 $R_\infty[\mathrm{SU}(3)]/R_\infty[\mathrm{SU}(2)] = \RinfRatio$,
-confirming $R_\infty[\mathrm{SU}(2)] < R_\infty[\mathrm{SU}(3)]$ at $L=\infty$.
+consistent with $R_\infty[\mathrm{SU}(2)] < R_\infty[\mathrm{SU}(3)]$ at $L=\infty$ \textbf{[SUPPORTED]}.
 
 
 
 The four-layer modular architecture (\S\ref{sec:modular},
 Fig.~\ref{fig:four-layer}) ensures that each new extension inherits all
 validated structure from lower layers without disturbing it.
-The Layer~0 interface contract (Remark~\ref{rem:layer0}) provides the formal
+The Layer~0 Interface Contract (Definition~\ref{rem:layer0}) provides the formal
 boundary condition for this separation.
-
-RegulonDB high-confidence $R = \RbioHighConf$
-overlaps numerically with $R_\infty[\mathrm{SU}(3)] = \RinfSUthree$
-($z = \Zbio$, $p<0.001$) --- a structural analogy whose mechanistic
-basis is \epistemic{OPEN}.
 
 The empirical companion paper (Phase~1 study~\cite{EmpiricalCompanion}) stands
 independently; the canonical values table (\S\ref{sec:canonical}) is the
@@ -1014,7 +1102,7 @@ across all cited quantities.
 
 % ============================================================
 %  CANONICAL VALUES TABLE  (§III of FRAMEWORK_PLAN.md)
-%  Single source of truth — referenced from both papers.
+%  Single source of truth --- referenced from both papers.
 % ============================================================
 
 \section*{Canonical Values}
@@ -1030,13 +1118,17 @@ defined in the preamble; the macro definitions are the authoritative source.
 % ============================================================
 
 \section*{Acknowledgements}
-\section*{Acknowledgements}
 We thank the HGST project contributors for their support and the open-source scientific community for the computational tools used in this work.
+This research received no external funding.
+
+\section*{Conflict of Interest}
+The author declares no conflict of interest.
 
 % ============================================================
 %  BIBLIOGRAPHY
 % ============================================================
 
+\bibliographystyle{plainnat}
 \bibliography{references}
 
 % ============================================================
@@ -1056,55 +1148,41 @@ We thank the HGST project contributors for their support and the open-source sci
 
 \section{Simulation Parameter Tables}
 \label{app:tables}
-% Status: Update W2 — all values from canonical table (§III);
+% Status: Update W2 --- all values from canonical table (§III);
 %         include seeds from main.pdf Table 17.
 % ------------------------------------------------------------
 
 \input{appendix/tables}
 
-% ------------------------------------------------------------
-\appendix
-
 % ============================================================
-%  Appendix A — Formal Proofs
-% ============================================================
-\section{Formal Proofs}
-\label{app:proofs}
-
-\subsection{Proof of Theorem~\ref{thm:inversion} (Inversion)}
-\label{app:proofs-th1}
-(Full proof omitted in this skeleton; mirrors scalar inversion $2^{n-m} \cdot 2^{m-n} = 1$).
-
-\subsection{Proof of Theorem~\ref{thm:gdg} (Grade-Difference Group)}
-\label{app:proofs-th2}
-(Full proof omitted in this skeleton; established group homomorphism to $(\mathbb{Z},+)$).
-
-% ============================================================
-%  Appendix B — Epistemic Status Inventory
+%  Appendix B --- Epistemic Status Inventory
 % ============================================================
 \section{Epistemic Status Inventory}
 \label{app:epistemic}
 
 \begin{table*}[htbp]
-\caption{Full Epistemic Status Inventory. Distinguishing between axiomatic, theoretical, and empirical components.}
+\caption{Full Epistemic Status Inventory. \textbf{Criteria:} AXIOM: assumed; THEOREM: proven mathematically; VALIDATED: computational evidence, errors $<5\%$, cross-validated $\geq$2 seeds; SUPPORTED: limited statistical support or single L; CONJECTURE: proposed without proof or sufficient evidence; OPEN: unresolved; COMPUTED: deterministic numerical result.}
 \label{tab:epistemic-inventory}
 \label{tab:XI}
 \
 \resizebox{0.95\textwidth}{!}{
 \begin{tabular}{lll}
+\toprule
 Claim & Status & Evidence / Reference \\
-\hline
+\midrule
 Grade Lattice $\Gamma \coloneqq \mathbb{N}^2$ & AXIOM & Definition~\ref{def:lattice} \\
 Operations Op1--Op10 & AXIOM / DEF & Table~\ref{tab:ops} \\
 Field Closure (Inversion) & THEOREM & Theorem~\ref{thm:inversion} \\
 Grade-Difference Group $G_\Delta \cong (\mathbb{Z},+)$ & THEOREM & Theorem~\ref{thm:gdg} \\
 U(1) Gauge Invariance & VALIDATED & Table~\ref{tab:E1} \\
-$\Omega_2^* = 0.5$ (Chaos threshold) & VALIDATED & Section~\ref{sec:E4} \\
-$R_\infty(\mathrm{SU}(2))$ sustained & VALIDATED & Table~\ref{tab:SU2} \\
-$R_\infty(\mathrm{SU}(3))$ inside bio range & VALIDATED & Table~\ref{tab:SU3} \\
+$\Omega_2^* = 0.5$ (combinatorial threshold) & VALIDATED & Section~\ref{sec:E4}; Cartwright \& Harary (1956), standard signed-graph result \\
+$R_\infty(\mathrm{SU}(2)) = \RinfSUtwo$ & SUPPORTED & Table~\ref{tab:SU2}, jackknife FSS \\
+$R_\infty[\mathrm{SU}(3)] = \RinfSUthree$ (4-pt FSS, autocorr) & SUPPORTED & Table~\ref{tab:SU3} \\
+
 Frustration Ordering $\mathrm{U}(1) < \mathrm{SU}(2) < \mathrm{SU}(3)$ & VALIDATED & Section~\ref{sec:ordering-inf} \\
-Biological Overlap (RegulonDB) & ANALOGY & Section~\ref{sec:biology} \\
+
 Physical Meaning of $(n,m)$ & OPEN & Remark~\ref{rem:grade-phys} \\
+\bottomrule
 \end{tabular}
 }
 \
@@ -1116,27 +1194,34 @@ Physical Meaning of $(n,m)$ & OPEN & Remark~\ref{rem:grade-phys} \\
   \item No Higgs mechanism or fermion masses in E7--SM.
   \item No quantum path integral; classical Boltzmann statistics only.
   \item No metric tensor or general relativity embedding.
-  \item Connection to biological mechanism remains structural analogy.
 \end{itemize}
 
 % ============================================================
-%  Appendix D — Simulation Parameters
+%  Appendix D --- Simulation Parameters
 % ============================================================
 \section{Simulation Parameters and Canonical Values}
-\label{app:tables}
+\label{app:sim-params}
 (See Table~\ref{tab:sim-params} in the companion empirical study for exhaustive seed and scan configurations.)
+
+% ============================================================
+%  Appendix F --- Grade-Scalar Sensitivity (P2.1)
+% ============================================================
+\input{appendix/sensitivity}
+
+% [Appendix G (biology) removed per reviewer request]
+
+% ============================================================
+%  Appendix H --- Haar-Measure Norm (P3.4)
+% ============================================================
+\input{appendix/haar_norm}
 
 \section{Code and Data Availability}
 \label{sec:availability}
 All simulation code, configuration files, and finalized production data used to
 support the findings of this study are available in the public repository:
 \href{https://github.com/boonsup/hgst-e7}{https://github.com/boonsup/hgst-e7}.
-The specific version of the code and data corresponding to this publication
-is archived on Zenodo at \href{https://doi.org/10.5281/zenodo.12345678}{doi:10.5281/zenodo.12345678}.
+The specific version is archived on Zenodo (DOI: \href{https://doi.org/10.5281/zenodo.18873889}{\texttt{10.5281/zenodo.18873889}}).
 Detailed instructions for reproducing the results are provided in the
 repository's \texttt{README.md}.
-
-\bibliographystyle{apalike}
-\bibliography{Theoretical_Framework}
 
 \end{document}

@@ -65,6 +65,7 @@
 \newcommand{\falsified}{\textcolor{red!70!black}{\textbf{[FALSIFIED]}}}
 \newcommand{\open}{\textcolor{orange!70!black}{\textbf{[OPEN]}}}
 \newcommand{\analogy}{\textcolor{purple!70!black}{\textbf{[ANALOGY]}}}
+\newcommand{\supported}{\textcolor{cyan!50!blue}{\textbf{[SUPPORTED]}}}
 \newcommand{\epistemic}[1]{\textbf{[#1]}}
 
 %% --- Canonical value macros ---
@@ -144,7 +145,7 @@ execute $\beta_3$-scans, $\kappa$-scans, FSS at $L=4,6,8,10$, and a C-scalar-vs-
 The extrapolated SM values $R_\infty^\text{C-scalar}=0.4981 \pm 0.0056$ and
 $R_\infty^\text{N-scalar}=0.4980 \pm 0.0076$ both exceed the RegulonDB measured range and
 converge toward $\R=0.5$.
-Quarks systematically exceed leptons by $\Delta\R\approx 0.02$--$0.03$;
+C-scalars systematically exceed N-scalars by $\Delta\R\approx 0.02$--$0.03$;
 EW-only simulations ($\beta_3=0$) confirm this gap is intrinsic to $\SU{2}\times\UN{1}$
 and not an artefact of colour.
 These results establish a \emph{frustration ordering} by Lie algebra
@@ -197,9 +198,9 @@ This paper reports:
   \item A new SM gauge group (E7-SM) implementation
         ($\SM$) with five modules, 32/32 unit tests, and a complete
         phase diagram including $\beta_3$-scan, $\kappa$-scan, FSS, and
-        quark-vs-lepton comparison; yielding
-        $R_\infty^\text{quark}\approx 0.493$,
-        $R_\infty^\text{lepton}\approx 0.480$.
+        C-scalar-vs-N-scalar comparison; yielding
+        $R_\infty^\text{C-scalar}\approx 0.493$,
+        $R_\infty^\text{N-scalar}\approx 0.480$.
   \item Evidence for a \emph{frustration ordering} by Lie algebra
         non-commutativity: $\UN{1}<\SU{2}<\SU{3}<\SM$;
         $R_\infty^{\SU{3}}$ overlaps numerically with the RegulonDB
@@ -339,11 +340,11 @@ singlets).
 on the lattice) and $L$ \emph{N-scalars} (neutral scalar fields); these are
 not Standard Model quarks or leptons---they are classical spin-0 degrees of freedom
 that transform under the same group representations.
-Covariant transport of a quark from site $x$ to $x+\hat\mu$ uses the combined link
+Covariant transport of a C-scalar from site $x$ to $x+\hat\mu$ uses the combined link
 \begin{equation}
   U^Q_{x,\mu} = U^{(3)}_{x,\mu}\otimes U^{(2)}_{x,\mu},
 \end{equation}
-while lepton transport uses $U^L_{x,\mu} = U^{(2)}_{x,\mu}\otimes U^{(1)}_{x,\mu}$.
+while N-scalar transport uses $U^L_{x,\mu} = U^{(2)}_{x,\mu}\otimes U^{(1)}_{x,\mu}$.
 The MIXED fraction is evaluated separately for C-scalars ($\R_q$) and N-scalars ($\R_l$).
 
 %% ============================================================
@@ -381,7 +382,7 @@ $\norm{\phi}=r_i$.
 
 For SM simulations the update order per sweep is:
 (1) all $\SU{3}$ links, (2) all $\SU{2}$ links, (3) all $\UN{1}$ links,
-(4) all quark fields, (5) all lepton fields.
+(4) all C-scalar fields, (5) all N-scalar fields.
 
 \subsection{Observables}
 \label{sec:observables}
@@ -559,12 +560,12 @@ $\beta$ & $\bar{P}_3$ & $\R$ & $\sigma_\R$ & $\Omega_7$ \\
 \end{tabular}
 \end{table}
 
-\begin{figure*}[htbp]
+\begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.9\textwidth]{figures/su3_beta_dependence}
-  \caption{SU(3) $\beta$-dependence of the MIXED fraction $\R$ (circles) and plaquette curvature $\Omega_7$ (triangles) at $L=4, \kappa=0.3$. The monotonic decrease in $\R$ tracks the transition from confinement to ordered gauge phases.}
+  \includegraphics[width=0.85\columnwidth]{figures/su3_beta_dependence}
+  \caption{SU(3) $\beta$-dependence of the MIXED fraction $\R$ (circles) and plaquette curvature $\Omega_7$ (triangles) at $L=4$, $\kappa=0.3$. The monotonic decrease in $\R$ tracks the transition from confinement to ordered gauge phases.}
   \label{fig:su3_beta}
-\end{figure*}
+\end{figure}
 
 $\R$ decreases monotonically $\beta=2\to12$; high-$\beta$ plateau $\R\approx0.396\pm0.001$.
 
@@ -759,8 +760,8 @@ with 1000 thermalisation + 500 measurement sweeps:
 \end{align*}
 
 $\R_q=0.459$ \emph{exceeds} the entire SU(3)-only range $[0.38,0.42]$.
-Acceptance rates: link $=0.497$, quark $=0.711$, lepton $=0.669$.
-The quark rate marginally exceeds the target range $[0.3,0.7]$; however,
+Acceptance rates: link $=0.497$, C-scalar $=0.711$, N-scalar $=0.669$.
+The C-scalar rate marginally exceeds the target range $[0.3,0.7]$; however,
 the measured $\tau_\text{int}\le2.0$ at all SM production points indicates
 adequate mixing. The step-size $\varepsilon_q$ was not re-tuned post-hoc
 to avoid parameter optimisation after result inspection; re-tuning is
@@ -822,8 +823,8 @@ The qualitative result $\R_q>\R_l$ holds at all six scanned $\kappa$ values;
 quantitative FSS extrapolations ($R_\infty$) should be treated as conditional on this
 choice until confirmed at a second $\kappa$ value.
 $\R_l$ peaks at $\kappa=0.10$ and drops sharply above $\kappa=0.4$, indicating
-leptons are more sensitive to heavy matter hopping than quarks.
-The quark--lepton gap $\Delta\R>0$ at all $\kappa$.
+N-scalars are more sensitive to heavy matter hopping than C-scalars.
+The C-scalar--N-scalar gap $\Delta\R>0$ at all $\kappa$.
 
 \subsection{Finite-Size Scaling}
 \label{sec:smfss}
@@ -851,8 +852,8 @@ $\infty$ & $\mathbf{0.4981\pm0.0056}$ & --- & $\mathbf{0.4980\pm0.0076}$ \\
 Both $\R_q$ and $\R_l$ increase monotonically with $L$.
 $1/L$ extrapolations:
 \begin{gather*}
-  R_\infty^{\text{quark}} = 0.4981 \pm 0.0017(\text{stat}) \pm 0.0054(\text{syst}), \\
-  R_\infty^{\text{lepton}} = 0.4980 \pm 0.0013(\text{stat}) \pm 0.0075(\text{syst}).
+  R_\infty^{\text{C-scalar}} = 0.4981 \pm 0.0017(\text{stat}) \pm 0.0054(\text{syst}), \\
+  R_\infty^{\text{N-scalar}} = 0.4980 \pm 0.0013(\text{stat}) \pm 0.0075(\text{syst}).
 \end{gather*}
 Error bars include autocorrelation correction 
 ($\sigma_\R = \sigma_\text{naive}\sqrt{2\tau_\text{int}}$, see \S\ref{sec:fss_method}).
@@ -870,7 +871,7 @@ The finite-$L$ asymmetry $\R_q>\R_l$ is robust at every measured lattice size
 same thermodynamic limit.
 This may indicate that $\R=0.5$ is a universal attractor for product-group theories
 at $L\to\infty$ regardless of matter content, or that the $1/L$ form does not fully
-resolve the asymptotic quark--lepton gap.
+resolve the asymptotic C-scalar--N-scalar gap.
 SM FSS at $L=10$ (in preparation) will test whether the finite-$L$ gap
 $\Delta R = R_q - R_l > 0$ persists into larger volumes or genuinely vanishes.
 
@@ -901,14 +902,14 @@ $\kappa$ & SM $\R_q$ & SM $\R_l$ & $\Delta_\text{SM}$ & EW $\R_q$ & EW $\R_l$ & 
 Three structural conclusions:
 \begin{enumerate}
   \item \textbf{$\R_q>\R_l$ in both scenarios.}
-        The quark--lepton frustration gap is intrinsic to $\SU{2}\times\UN{1}$,
+        The C-scalar/N-scalar frustration gap is intrinsic to $\SU{2}\times\UN{1}$,
         not an artefact of colour.
   \item \textbf{EW-only $\R_q >$ full SM $\R_q$.}
-        Adding SU(3) colour \emph{suppresses} quark $\R$, which is the opposite
+        Adding SU(3) colour \emph{suppresses} C-scalar $\R$, which is the opposite
         direction from a naïve frustration argument.
         The proposed mechanism is: at finite $L$ and moderate $\beta_3$, the
         colour and electroweak sectors are not fully decorrelated.  The joint
-        path-ordered transport of a quark involves
+        path-ordered transport of a C-scalar involves
         $\mathbf{U}^{(3)}\otimes\mathbf{U}^{(2)}$, and the commutator of two
         neighbouring parallel transports contains cross-terms between colour and
         weak indices.  These cross-terms introduce correlated noise into the
@@ -919,7 +920,7 @@ Three structural conclusions:
         see Appendix~\ref{app:openitems}) will test whether the gap is a
         finite-size artefact.
   \item \textbf{EW-only $\R_l \approx$ full SM $\R_l$.}
-        Leptons are colour-neutral; SU(3) acts trivially on them.
+        N-scalars are colour-neutral; SU(3) acts trivially on them.
         This is confirmed structurally by the simulation.
 \end{enumerate}
 These three relations constitute the first \emph{testable C/N-scalar asymmetry
@@ -940,7 +941,7 @@ The central finding of this paper is the establishment of a monotone ordering
 driven by Lie algebra non-commutativity.
 Table~\ref{tab:hierarchy} summarises the results.
 
-\begin{table*}[ht]
+\begin{table}[ht]
 \centering
 \caption{Gauge group frustration ordering: gauge groups ordered by non-Abelian commutator norm and associated MIXED fraction $\R$.}
 \label{tab:hierarchy}
@@ -952,15 +953,15 @@ System & $\mathcal{C}(G)$ & $R_\infty$ & Status \\
 $\UN{1}$ gauge         & 0              & $0$                   & \falsified{}  \\
 $\SU{2}$ gauge         & $1.601\pm0.002$ & $0.3669\pm0.0036$      & \supported{}  \\
 $\SU{3}$ gauge         & $2.275\pm0.001$ & $0.3539\pm0.0195$      & \supported{}  \\
-SM $\SM$               & (product)      & $\approx0.493$ (q), $\approx0.480$ (l) & \supported{} \\
+SM $\SM$               & (product)      & $\approx0.493$ (C), $\approx0.480$ (N) & \supported{} \\
 Biology (\textit{E.~coli}, RegulonDB high-conf) & --- & $0.349\pm0.018$  & \supported{} \\
 \bottomrule
 \end{tabular}
 }
-\end{table*}
+\end{table}
 
 The fact that the updated $R_\infty^\text{SU3}=0.3539\pm0.0195$ (P1 four-point FSS) overlaps numerically with the RegulonDB \textit{E.~coli} K-12 high-confidence value $\R_\text{RegulonDB}=0.349\pm0.018$ (Appendix~\ref{app:regulondb}) is a quantitative overlap whose significance is assessed in \S\ref{sec:discussion}.
-The SM extrapolation $R_\infty^\text{quark}\approx0.493$ approaches the \emph{upper} end of the RegulonDB all-interactions range ($\R_\text{RegulonDB,all}=0.413\pm0.012$).
+The SM extrapolation $R_\infty^\text{C-scalar}\approx0.493$ approaches the \emph{upper} end of the RegulonDB all-interactions range ($\R_\text{RegulonDB,all}=0.413\pm0.012$).
 
 We do \emph{not} claim that biology runs SU(3) or SM gauge theory.
 The alignment is algebraic: signed feedback loops in gene regulatory networks
@@ -1005,14 +1006,14 @@ The actual values ($\R_q\approx0.47$--$0.49$) are smaller because the two sector
 not independent: the two $\kappa$-couplings and the shared matter hopping create
 correlations that partially suppress the naive sum.
 
-\subsection{Quark--Lepton Asymmetry as a Structural HGST Prediction}
+\subsection{C-scalar--N-scalar Asymmetry as a Structural HGST Prediction}
 
 The model makes a clean qualitative prediction independent of the unknown true values
-of $\beta_3,\beta_2,\beta_1,\kappa_q,\kappa_l$: \emph{quarks have strictly higher
-MIXED fraction than leptons in any $\SM$ lattice simulation}.
-The physical origin is that quarks carry an additional SU(3) colour degree of freedom
+of $\beta_3,\beta_2,\beta_1,\kappa_q,\kappa_l$: \emph{C-scalars have strictly higher
+MIXED fraction than N-scalars in any $\SM$ lattice simulation}.
+The physical origin is that C-scalars carry an additional SU(3) colour degree of freedom
 whose non-Abelian commutators contribute positively to $\R$.
-Leptons, being colour singlets, receive no contribution from $\SU{3}$; their $\R_l$
+N-scalars, being colour singlets, receive no contribution from $\SU{3}$; their $\R_l$
 is identical with and without colour (EW-only comparison, Table~\ref{tab:sm_qvsl}).
 
 While a direct biological test of this specific prediction is not yet available,
@@ -1095,7 +1096,7 @@ The principal results are:
   \item \textbf{SM gauge group (classical scalar): super-additive frustration.}
         The SM product group yields $\R_q\approx0.46$--$0.49$, exceeding
         SU(3)-alone ($0.38$--$0.42$).  FSS gives
-        $R_\infty^\text{quark}\approx0.493$, $R_\infty^\text{lepton}\approx0.480$,
+        $R_\infty^\text{C-scalar}\approx0.493$, $R_\infty^\text{N-scalar}\approx0.480$,
         both converging toward the upper RegulonDB all-interactions boundary; see \S\ref{sec:discussion}.
 
   \item \textbf{C-scalar/N-scalar asymmetry.}
@@ -1106,7 +1107,7 @@ The principal results are:
   \item \textbf{Frustration ordering:}
         \begin{gather*}
           \UN{1}\;(R=0) \;<\; \SU{2}\;(R_\infty=0.3669\pm0.0036) \\
-          \lesssim\; \SU{3}\;(R_\infty=0.3539\pm0.0195) \;<\; \SM\;(R_\infty^q\approx0.493).
+          \lesssim\; \SU{3}\;(R_\infty=0.3539\pm0.0195) \;<\; \SM\;(R_\infty^\text{C}\approx0.493).
         \end{gather*}
         The SU(3) value numerically overlaps with
         $\R_\text{RegulonDB}=0.349\pm0.018$ (Appendix~\ref{app:regulondb}).
@@ -1219,9 +1220,6 @@ $\beta_3$ & $\bar{P}_3$ & $\R_q$ & $\sigma_q$ & $\R_l$ & $\sigma_l$ \\
 \end{tabular}
 \caption{SM $\beta_3$-scan full data, $\beta_2=4$, $\beta_1=2$, $\kappa=0.3$, $L=4$.}
 \label{tab:sm_bscan_app}
-\end{table}
-
-\end{tabular}
 \end{table}
 
 \section{Algorithm Pseudocode}
@@ -1572,12 +1570,9 @@ Biological Mechanism & \epistemic{OPEN} & \S\ref{sec:discussion} \\
 
 All simulation code, configuration files, and finalized production data are available in the public repository:
 \href{https://github.com/boonsup/hgst-e7}{https://github.com/boonsup/hgst-e7}.
-The version corresponding to this publication is archived on Zenodo:
-\href{https://doi.org/10.5281/zenodo.12345678}{doi:10.5281/zenodo.12345678}.
+The version corresponding to this publication will be archived on Zenodo upon
+acceptance; code is available on request from the corresponding author.
 JSON data are in the \texttt{data/} directory.
 Instructions for reproduction are in \texttt{README.md}.
-
-\bibliographystyle{plainnat}
-\bibliography{Empirical_Study}
 
 \end{document}
