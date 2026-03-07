@@ -111,7 +111,7 @@ def plot_comparison(pairs, output_dir):
             capsize=3, label="SU(2)", color="steelblue")
     ax1.bar(x + width/2, R_su3, width, yerr=R_su3_err,
             capsize=3, label="SU(3)", color="tomato")
-    ax1.axhspan(0.35, 0.48, color="green", alpha=0.10, label="biological range")
+    # biological range band removed (biology analysis moved to companion paper)
     ax1.set_xticks(x)
     ax1.set_xticklabels([f"L={p['L']}\nb={p['beta']:.1f}" for p in pairs])
     ax1.set_ylabel("R  (MIXED fraction)")

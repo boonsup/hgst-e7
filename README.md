@@ -4,6 +4,7 @@
 [![DOI](https://zenodo.org/badge/1173352700.svg)](https://doi.org/10.5281/zenodo.18873889)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org)
+[![Status](https://img.shields.io/badge/Paper-Accepted-green)](https://github.com/boonsup/hgst-e7)
 
 **Author:** Boonsup Waikham  
 **Affiliation:** College of Computing, Khon Kaen University, Khon Kaen, Thailand  
@@ -25,11 +26,10 @@ We measure the HGST **MIXED frustration fraction** $R$ — the fraction of sign-
 | Gauge group | $R_\infty$ | Status |
 |-------------|------------|--------|
 | U(1) | 0 | Falsified |
-| SU(2) | $0.3669 \pm 0.0036$ | Verified |
-| SU(3) | $0.3539 \pm 0.0195$ | Consistent |
-| SM C-scalar | $0.4981 \pm 0.0056$ | Verified |
-| SM N-scalar | $0.4980 \pm 0.0076$ | Verified |
-| *E. coli* RegulonDB | $0.349 \pm 0.018$ | (biological reference) |
+| SU(2) | $0.3598 \pm 0.0041$ | Validated (5-pt FSS) |
+| SU(3) | $0.3539 \pm 0.0195$ | Validated |
+| SM C-scalar | $0.4981 \pm 0.0056$ | Validated |
+| SM N-scalar | $0.4980 \pm 0.0076$ | Validated |
 
 ---
 
@@ -48,11 +48,13 @@ HGST-E7/
 │   ├── updates.py       Metropolis sweep (links + matter)
 │   ├── simulation.py    SimConfig dataclass, run_point(), FSS utilities
 │   ├── su2_l10_colab.py ★ Self-contained Colab-ready SU(2) L=10 script
+│   ├── su2_longrun_fss.py  Long-run FSS analysis (L=4–12, seeds 99–102)
 │   ├── sm_*.py          Standard Model (SU(3)×SU(2)×U(1)) modules
 │   └── ...
 │
 ├── data/                JSON result files (all production runs)
-│   ├── su2_l10_summary.json   SU(2) L=10 FSS result (R=0.364±0.001)
+│   ├── su2_l10_summary.json   SU(2) L=10 FSS result
+│   ├── su2_L12_b8.json         SU(2) L=12 production run (R=0.3521±0.00089)
 │   ├── p1_su3_fss_corrected.json
 │   ├── p1_sm_fss_corrected.json
 │   └── ...
@@ -134,7 +136,7 @@ If you use this code, please cite:
   title     = {HGST E7: Simulation Code for Frustration Ordering
                in Non-Abelian Gauge Theory},
   year      = {2026},
-  version   = {3.0.0},
+  version   = {4.0.0},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.18873889},
   url       = {https://github.com/boonsup/hgst-e7}

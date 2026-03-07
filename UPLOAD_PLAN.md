@@ -1,7 +1,7 @@
 # Upload & Release Plan — HGST E7 Preprint + Code
 ## arXiv · Zenodo · GitHub
 
-Status: paper/ 2 manuscrpits, 0 errors (Revision 3, 2026-03-06)
+Status: paper/ 2 manuscripts — **Revision 4 — ACCEPTED** (Journal of Computational Science & Theoretical Physics, 2026-03-07)
 
 ---
 
@@ -85,16 +85,15 @@ HGST-E7/                          ← repo root
 ### 1-D  GitHub steps
 ```bash
 cd HGST-E7
-git init
 git add .
-git commit -m "Initial release: HGST E7 simulation code + paper (Revision 2)"
+git commit -m "Revision 4 (ACCEPTED) — P-1/P-2/P-3 production corrections, Figure 4 caption fixed, Table 12 SM FSS footnote, Zenodo DOI placeholder, su2_longrun_fss.py + L=12 data"
 # Create repo on github.com  →  hgst-e7  (public)
 git remote add origin https://github.com/<USER>/hgst-e7.git
 git branch -M main
 git push -u origin main
 # Create a release tag:
-git tag -a v2.0.0 -m "Revision 2 — SU(2) L=10 FSS complete"
-git push origin v2.0.0
+git tag -a v4.0.0 -m "Revision 4 — ACCEPTED, production corrections complete"
+git push origin v4.0.0
 ```
 
 ---
@@ -211,12 +210,12 @@ paper/main.tex — arXiv:XXXX.XXXXX
 
 ## COMPLETION CHECKLIST
 
-- [ ] P1 — `.env` filled, `.gitignore` ✓, `requirements.txt` ✓
-- [ ] P1 — `CITATION.cff` written
-- [ ] P1 — `README.md` written
-- [ ] P1 — GitHub repo created + v2.0.0 tag pushed
-- [ ] P2 — Zenodo linked, DOI obtained
-- [ ] P2 — DOI badge added to README
+- [x] P1 — `.env` filled, `.gitignore` ✓, `requirements.txt` ✓
+- [x] P1 — `CITATION.cff` written (v4.0.0)
+- [x] P1 — `README.md` written (Round 4 accepted, canonical values updated)
+- [x] P1 — GitHub repo created (v3.0.0 tag pushed); v4.0.0 tag to push
+- [ ] P2 — Zenodo linked, DOI obtained — **activate deposit, insert live DOI in main.tex**
+- [x] P2 — DOI badge added to README
 - [ ] P3 — arXiv `.bbl` checked, archive built, submitted
 - [ ] P3 — arXiv ID obtained → add to README + Zenodo related-id
 - [ ] P3 — Update CITATION.cff with arXiv ID

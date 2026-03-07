@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this code, please cite both the paper and the software."
 
 title: "HGST E7: Simulation Code for Frustration Ordering in Non-Abelian Gauge Theory"
-version: "3.0.0"
-date-released: "2026-03-06"
+version: "4.0.0"
+date-released: "2026-03-07"
 license: MIT
 
 authors:

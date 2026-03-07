@@ -81,7 +81,7 @@ def generate_four_layer_stack(output_path):
         elif "SU(2)" in label:
             ax.text(2.5, y + 0.15, "Non-Abelian Frustration ($R>0$)", ha='center', fontsize=9, style='italic')
         elif "SU(3)" in label:
-            ax.text(2.5, y + 0.15, "RegulonDB Overlap & SM Extensions", ha='center', fontsize=9, style='italic')
+            ax.text(2.5, y + 0.15, r"SM Extensions (SU(3)$\times$SU(2)$\times$U(1))", ha='center', fontsize=9, style='italic')
 
     # Draw vertical arrow showing inheritance/stacking
     ax.annotate('', xy=(5.5, (len(layers)-1)*(height+spacing) + height), xytext=(5.5, 0),
